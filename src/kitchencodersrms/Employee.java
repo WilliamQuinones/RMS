@@ -37,45 +37,42 @@ public class Employee extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        firstName = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        middleName = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
+        lastName = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPane4 = new javax.swing.JTextPane();
+        phoneNumber = new javax.swing.JTextPane();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextPane5 = new javax.swing.JTextPane();
+        address = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextPane6 = new javax.swing.JTextPane();
+        city = new javax.swing.JTextPane();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextPane7 = new javax.swing.JTextPane();
+        zipCode = new javax.swing.JTextPane();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextPane8 = new javax.swing.JTextPane();
+        state = new javax.swing.JTextPane();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextPane10 = new javax.swing.JTextPane();
+        managerStatus = new javax.swing.JTextPane();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane12 = new javax.swing.JScrollPane();
-        jTextPane12 = new javax.swing.JTextPane();
+        employeeId = new javax.swing.JTextPane();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
-        jTextPane13 = new javax.swing.JTextPane();
+        socialSecurity = new javax.swing.JTextPane();
         jScrollPane14 = new javax.swing.JScrollPane();
-        jTextPane14 = new javax.swing.JTextPane();
+        jobTitle = new javax.swing.JTextPane();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane15 = new javax.swing.JScrollPane();
-        jTextPane15 = new javax.swing.JTextPane();
-        jScrollPane16 = new javax.swing.JScrollPane();
-        jTextPane16 = new javax.swing.JTextPane();
+        hourlyWage = new javax.swing.JTextPane();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane17 = new javax.swing.JScrollPane();
-        jTextPane17 = new javax.swing.JTextPane();
+        hours = new javax.swing.JTextPane();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         jScrollPane18 = new javax.swing.JScrollPane();
-        jTextPane18 = new javax.swing.JTextPane();
+        tips = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -99,53 +96,49 @@ public class Employee extends javax.swing.JFrame {
 
         jLabel9.setText("State");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(firstName);
 
-        jScrollPane2.setViewportView(jTextPane2);
+        jScrollPane2.setViewportView(middleName);
 
-        jScrollPane3.setViewportView(jTextPane3);
+        jScrollPane3.setViewportView(lastName);
 
-        jScrollPane4.setViewportView(jTextPane4);
+        jScrollPane4.setViewportView(phoneNumber);
 
-        jScrollPane5.setViewportView(jTextPane5);
+        jScrollPane5.setViewportView(address);
 
-        jScrollPane6.setViewportView(jTextPane6);
+        jScrollPane6.setViewportView(city);
 
-        jScrollPane7.setViewportView(jTextPane7);
+        jScrollPane7.setViewportView(zipCode);
 
-        jScrollPane8.setViewportView(jTextPane8);
+        jScrollPane8.setViewportView(state);
 
-        jScrollPane10.setViewportView(jTextPane10);
+        jScrollPane10.setViewportView(managerStatus);
 
         jLabel11.setText("Job Title");
 
         jLabel12.setText("Hourly Wage");
 
-        jScrollPane12.setViewportView(jTextPane12);
+        jScrollPane12.setViewportView(employeeId);
 
         jLabel13.setText("Hours");
 
-        jScrollPane13.setViewportView(jTextPane13);
+        jScrollPane13.setViewportView(socialSecurity);
 
-        jScrollPane14.setViewportView(jTextPane14);
+        jScrollPane14.setViewportView(jobTitle);
 
         jLabel14.setText("Tips");
 
-        jScrollPane15.setViewportView(jTextPane15);
-
-        jScrollPane16.setViewportView(jTextPane16);
+        jScrollPane15.setViewportView(hourlyWage);
 
         jLabel15.setText("Manager Status");
 
         jLabel16.setText("Employee ID");
 
-        jScrollPane17.setViewportView(jTextPane17);
+        jScrollPane17.setViewportView(hours);
 
-        jLabel17.setText("Zip Code");
+        jLabel17.setText("Social Security");
 
-        jLabel18.setText("Social Security");
-
-        jScrollPane18.setViewportView(jTextPane18);
+        jScrollPane18.setViewportView(tips);
 
         jButton1.setText("Back");
 
@@ -181,7 +174,6 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel18)
                             .addComponent(jLabel17)
                             .addComponent(jLabel16)
                             .addComponent(jLabel11)
@@ -201,9 +193,8 @@ public class Employee extends javax.swing.JFrame {
                     .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,11 +228,7 @@ public class Employee extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
-                            .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -274,7 +261,7 @@ public class Employee extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -320,6 +307,12 @@ public class Employee extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextPane address;
+    private javax.swing.JTextPane city;
+    private javax.swing.JTextPane employeeId;
+    private javax.swing.JTextPane firstName;
+    private javax.swing.JTextPane hourlyWage;
+    private javax.swing.JTextPane hours;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -330,7 +323,6 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -345,7 +337,6 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
-    private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane2;
@@ -355,21 +346,14 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane10;
-    private javax.swing.JTextPane jTextPane12;
-    private javax.swing.JTextPane jTextPane13;
-    private javax.swing.JTextPane jTextPane14;
-    private javax.swing.JTextPane jTextPane15;
-    private javax.swing.JTextPane jTextPane16;
-    private javax.swing.JTextPane jTextPane17;
-    private javax.swing.JTextPane jTextPane18;
-    private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane3;
-    private javax.swing.JTextPane jTextPane4;
-    private javax.swing.JTextPane jTextPane5;
-    private javax.swing.JTextPane jTextPane6;
-    private javax.swing.JTextPane jTextPane7;
-    private javax.swing.JTextPane jTextPane8;
+    private javax.swing.JTextPane jobTitle;
+    private javax.swing.JTextPane lastName;
+    private javax.swing.JTextPane managerStatus;
+    private javax.swing.JTextPane middleName;
+    private javax.swing.JTextPane phoneNumber;
+    private javax.swing.JTextPane socialSecurity;
+    private javax.swing.JTextPane state;
+    private javax.swing.JTextPane tips;
+    private javax.swing.JTextPane zipCode;
     // End of variables declaration//GEN-END:variables
 }

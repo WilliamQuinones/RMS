@@ -59,7 +59,6 @@
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel18" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel17" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel16" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel11" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -84,9 +83,8 @@
                   <Component id="jScrollPane10" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
                   <Component id="jScrollPane12" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
                   <Component id="jScrollPane13" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                  <Component id="jScrollPane16" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="65" max="32767" attributes="0"/>
+              <EmptySpace pref="280" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -129,11 +127,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane13" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane16" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -178,7 +171,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="85" max="32767" attributes="0"/>
+              <EmptySpace pref="194" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -236,7 +229,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane1">
+        <Component class="javax.swing.JTextPane" name="firstName">
         </Component>
       </SubComponents>
     </Container>
@@ -247,7 +240,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane2">
+        <Component class="javax.swing.JTextPane" name="middleName">
         </Component>
       </SubComponents>
     </Container>
@@ -258,7 +251,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane3">
+        <Component class="javax.swing.JTextPane" name="lastName">
         </Component>
       </SubComponents>
     </Container>
@@ -269,7 +262,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane4">
+        <Component class="javax.swing.JTextPane" name="phoneNumber">
         </Component>
       </SubComponents>
     </Container>
@@ -280,7 +273,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane5">
+        <Component class="javax.swing.JTextPane" name="address">
         </Component>
       </SubComponents>
     </Container>
@@ -291,7 +284,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane6">
+        <Component class="javax.swing.JTextPane" name="city">
         </Component>
       </SubComponents>
     </Container>
@@ -302,7 +295,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane7">
+        <Component class="javax.swing.JTextPane" name="zipCode">
         </Component>
       </SubComponents>
     </Container>
@@ -313,7 +306,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane8">
+        <Component class="javax.swing.JTextPane" name="state">
         </Component>
       </SubComponents>
     </Container>
@@ -324,7 +317,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane10">
+        <Component class="javax.swing.JTextPane" name="managerStatus">
         </Component>
       </SubComponents>
     </Container>
@@ -345,7 +338,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane12">
+        <Component class="javax.swing.JTextPane" name="employeeId">
         </Component>
       </SubComponents>
     </Container>
@@ -361,7 +354,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane13">
+        <Component class="javax.swing.JTextPane" name="socialSecurity">
         </Component>
       </SubComponents>
     </Container>
@@ -372,7 +365,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane14">
+        <Component class="javax.swing.JTextPane" name="jobTitle">
         </Component>
       </SubComponents>
     </Container>
@@ -388,18 +381,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane15">
-        </Component>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane16">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane16">
+        <Component class="javax.swing.JTextPane" name="hourlyWage">
         </Component>
       </SubComponents>
     </Container>
@@ -420,16 +402,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane17">
+        <Component class="javax.swing.JTextPane" name="hours">
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel17">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Zip Code"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel18">
       <Properties>
         <Property name="text" type="java.lang.String" value="Social Security"/>
       </Properties>
@@ -441,7 +418,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane18">
+        <Component class="javax.swing.JTextPane" name="tips">
         </Component>
       </SubComponents>
     </Container>

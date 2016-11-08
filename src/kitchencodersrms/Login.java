@@ -294,6 +294,9 @@ public class Login extends javax.swing.JFrame {
         
     
     System.out.println("Opened database successfully");
+    //buttonGroup1.getSelection(POSbutton.getModel(),true);
+    //POSbutton.isSelected(true);
+    //POSbutton.setSelected(true);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

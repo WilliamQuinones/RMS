@@ -127,6 +127,11 @@ public class EmployeeLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NewTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTicketButtonActionPerformed
+        dispose();
+        POS s = new POS();
+                        
+        s.setVisible(true);
+        
         // TODO add your handling code here:
 
         

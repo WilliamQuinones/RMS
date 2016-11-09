@@ -85,8 +85,8 @@ public class KitchenCodersRMS {
                 " id integer PRIMARY KEY AUTOINCREMENT,\n"+
                 " itemname text NOT NULL,\n"+
                 " itemtype integer,\n"+
-                " itemamount integer,\n"+
-                " criticalamount integer,\n"+
+                " itemamount real,\n"+
+                " criticalamount real,\n"+
                 " criticaltime integer,\n"+
                 " shipment1 integer,\n"+
                 " shipment2 integer,\n"+
@@ -111,6 +111,26 @@ public class KitchenCodersRMS {
             Statement stmt = c.createStatement();
             stmt.execute(sql);
             System.out.println("Added Inventory Table");
+            
+            //Checking to see if there are values in the Inventory table
+            ResultSet rs = stmt.executeQuery("SELECT itemname FROM Inventory");
+            ArrayList<String> ItemNames = new ArrayList<String>();
+            
+            while(rs.next()){
+                ItemNames.add(rs.getString("itemname"));
+            }
+            
+            //If there are no values in the table creates an item
+            
+            if (ItemNames.size() == 0){
+                
+                sql = "INSERT INTO Inventory (id,itemname,itemtype,itemamount,criticalamount,criticaltime) "
+                        +"VALUES (1, 'beef', 3, 100, 50, 10)"
+                        +"VALUES (2, 'buns', 1, 200, 50, 10)";
+                stmt.execute(sql);
+                System.out.println("Added item");
+                
+            }
             
         
         } catch (SQLException ex) {
@@ -153,7 +173,27 @@ public class KitchenCodersRMS {
             
             Statement stmt = c.createStatement();
             stmt.execute(sql);
-            System.out.println("Added Inventory Table");
+            System.out.println("Added MenuItem Table");
+            
+               //Checking to see if there are values in the MenuItem table
+            ResultSet rs = stmt.executeQuery("SELECT name FROM MenuItem");
+            ArrayList<String> Names = new ArrayList<String>();
+            
+            while(rs.next()){
+                Names.add(rs.getString("name"));
+            }
+            
+            //If there are no values in the table creates an item
+            
+            if (Names.size() == 0){
+                
+                sql = "INSERT INTO MenuItem (id,name,type,cost,price,item1,item2,amount1,amount2) "
+                        
+                        +"VALUES (1, 'burger', 1, 5, 10, 'beef','buns',0.5,1)";
+                stmt.execute(sql);
+                System.out.println("Added menu item");
+                
+            }
             
         
         } catch (SQLException ex) {
@@ -194,6 +234,26 @@ public class KitchenCodersRMS {
             Statement stmt = c.createStatement();
             stmt.execute(sql);
             System.out.println("Added Employee Table");
+            
+            //Checking to see if there are values in the Employee table
+            ResultSet rs = stmt.executeQuery("SELECT firstname FROM Employee");
+            ArrayList<String> firstNames = new ArrayList<String>();
+            
+            while(rs.next()){
+                firstNames.add(rs.getString("firstname"));
+            }
+            
+            //If there are no values in the table creates an item
+            
+            if (firstNames.size() == 0){
+                
+                sql = "INSERT INTO Employee (id,firstname,middlename,lastname,jobtitle,phonenumber,street,city,state,zipcode,employeeid,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hourlywage,socialsecurity) "
+                        
+                        +"VALUES (1, 'john', 'william', 'doe', 'server', '4041234567','123 abc st','atlanta','GA','30303',1234,1,2,3,0,0,3,1,7.75,'123456789')";
+                stmt.execute(sql);
+                System.out.println("Added Employee");
+                
+            }
             
         
         } catch (SQLException ex) {
@@ -246,7 +306,7 @@ public class KitchenCodersRMS {
             
             Statement stmt = c.createStatement();
             stmt.execute(sql);
-            System.out.println("Added Inventory Table");
+            System.out.println("Added TimeClock Table");
             
         
         } catch (SQLException ex) {
@@ -281,7 +341,7 @@ public class KitchenCodersRMS {
             
             Statement stmt = c.createStatement();
             stmt.execute(sql);
-            System.out.println("Added Inventory Table");
+            System.out.println("Added Sales Table");
             
         
         } catch (SQLException ex) {

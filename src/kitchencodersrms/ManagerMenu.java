@@ -33,23 +33,56 @@ public class ManagerMenu extends javax.swing.JFrame {
         analyticsButton = new javax.swing.JButton();
         menuButton = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        admin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         employeesButton.setText("Employees");
+        employeesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeesButtonActionPerformed(evt);
+            }
+        });
 
         SchedulingButton.setText("Scheduling");
+        SchedulingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SchedulingButtonActionPerformed(evt);
+            }
+        });
 
         inventoryButton.setText("Inventory");
+        inventoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inventoryButtonActionPerformed(evt);
+            }
+        });
 
         analyticsButton.setText("Analytics");
+        analyticsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                analyticsButtonActionPerformed(evt);
+            }
+        });
 
         menuButton.setText("Menu");
+        menuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuButtonActionPerformed(evt);
+            }
+        });
 
         back.setText("Back");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
+            }
+        });
+
+        admin.setText("Add Admin");
+        admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminActionPerformed(evt);
             }
         });
 
@@ -64,8 +97,9 @@ public class ManagerMenu extends javax.swing.JFrame {
                     .addComponent(SchedulingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(inventoryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(analyticsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(611, Short.MAX_VALUE))
+                    .addComponent(menuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(610, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back)
@@ -84,7 +118,9 @@ public class ManagerMenu extends javax.swing.JFrame {
                 .addComponent(analyticsButton)
                 .addGap(26, 26, 26)
                 .addComponent(menuButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(admin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(back)
                 .addContainerGap())
         );
@@ -100,6 +136,54 @@ public class ManagerMenu extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_backActionPerformed
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+        dispose();
+        NewAdmin s = new NewAdmin();
+                        
+        s.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adminActionPerformed
+
+    private void SchedulingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SchedulingButtonActionPerformed
+        dispose();
+        Schedule s = new Schedule();
+                        
+        s.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SchedulingButtonActionPerformed
+
+    private void analyticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyticsButtonActionPerformed
+        dispose();
+        Analytics s = new Analytics();
+                        
+        s.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_analyticsButtonActionPerformed
+
+    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
+        dispose();
+        Menu s = new Menu();
+                        
+        s.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuButtonActionPerformed
+
+    private void employeesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeesButtonActionPerformed
+        dispose();
+        Employees s = new Employees();
+                        
+        s.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_employeesButtonActionPerformed
+
+    private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
+        dispose();
+        Inventory s = new Inventory();
+                        
+        s.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inventoryButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,6 +222,7 @@ public class ManagerMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SchedulingButton;
+    private javax.swing.JButton admin;
     private javax.swing.JButton analyticsButton;
     private javax.swing.JButton back;
     private javax.swing.JButton employeesButton;

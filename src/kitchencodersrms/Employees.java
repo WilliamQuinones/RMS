@@ -27,22 +27,25 @@ public class Employees extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addBOHButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        employeeFOHList = new javax.swing.JList<String>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        employeeBOHList = new javax.swing.JList<String>();
+        modBOHButton = new javax.swing.JButton();
+        removeBOHButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        removeFOHButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        addFOHButton = new javax.swing.JButton();
+        modFOHButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        jLabel1.setText("Employees");
+        jLabel1.setText("Front of House");
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -51,36 +54,123 @@ public class Employees extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Add Employee");
+        addBOHButton.setText("Add");
+        addBOHButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBOHButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Back of House");
+
+        employeeFOHList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(employeeFOHList);
+
+        employeeBOHList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(employeeBOHList);
+
+        modBOHButton.setText("Modify");
+        modBOHButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modBOHButtonActionPerformed(evt);
+            }
+        });
+
+        removeBOHButton.setText("Remove");
+
+        jLabel3.setText("Functions");
+
+        removeFOHButton.setText("Remove");
+
+        jLabel4.setText("Functions");
+
+        addFOHButton.setText("Add");
+        addFOHButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFOHButtonActionPerformed(evt);
+            }
+        });
+
+        modFOHButton.setText("Modify");
+        modFOHButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modFOHButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(215, 215, 215))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(modFOHButton, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                    .addComponent(addFOHButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removeFOHButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(108, 108, 108)
-                                .addComponent(jButton2)))))
-                .addContainerGap(252, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(addBOHButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modBOHButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(removeBOHButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(addFOHButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(modFOHButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(removeFOHButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(addBOHButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(modBOHButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(removeBOHButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -89,14 +179,37 @@ public class Employees extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        dispose();
-        ManagerMenu s = new ManagerMenu();
-                        
-        s.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void addFOHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFOHButtonActionPerformed
+                        dispose();
+                        NewEmployee s = new NewEmployee();                  
+                        s.setVisible(true);                                        
+    }//GEN-LAST:event_addFOHButtonActionPerformed
+
+    private void addBOHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBOHButtonActionPerformed
+                        dispose();
+                        NewEmployee s = new NewEmployee();                  
+                        s.setVisible(true);         
+    }//GEN-LAST:event_addBOHButtonActionPerformed
+
+    private void modBOHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modBOHButtonActionPerformed
+                        dispose();
+                        Employee s = new Employee();                  
+                        s.setVisible(true);                  
+    }//GEN-LAST:event_modBOHButtonActionPerformed
+
+    private void modFOHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modFOHButtonActionPerformed
+                        dispose();
+                        Employee s = new Employee();                  
+                        s.setVisible(true); 
+    }//GEN-LAST:event_modFOHButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+                        dispose();
+                        ManagerMenu s = new ManagerMenu();                  
+                        s.setVisible(true);           
+    }
+
 
     /**
      * @param args the command line arguments
@@ -134,10 +247,20 @@ public class Employees extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBOHButton;
+    private javax.swing.JButton addFOHButton;
+    private javax.swing.JList<String> employeeBOHList;
+    private javax.swing.JList<String> employeeFOHList;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton modBOHButton;
+    private javax.swing.JButton modFOHButton;
+    private javax.swing.JButton removeBOHButton;
+    private javax.swing.JButton removeFOHButton;
     // End of variables declaration//GEN-END:variables
 }

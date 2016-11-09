@@ -209,6 +209,7 @@ public class KitchenCodersRMS {
                 " middlename text,\n"+
                 " lastname text NOT NULL,\n"+
                 " jobtitle text,\n"+
+                " location integer,\n"+
                 " phonenumber text,\n"+
                 " street text,\n"+
                 " city text,\n"+
@@ -247,9 +248,9 @@ public class KitchenCodersRMS {
             
             if (firstNames.size() == 0){
                 
-                sql = "INSERT INTO Employee (id,firstname,middlename,lastname,jobtitle,phonenumber,street,city,state,zipcode,employeeid,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hourlywage,socialsecurity) "
+                sql = "INSERT INTO Employee (id,firstname,middlename,lastname,jobtitle,location,phonenumber,street,city,state,zipcode,employeeid,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hourlywage,socialsecurity) "
                         
-                        +"VALUES (1, 'john', 'william', 'doe', 'server', '4041234567','123 abc st','atlanta','GA','30303',1234,1,2,3,0,0,3,1,7.75,'123456789')";
+                        +"VALUES (1, 'john', 'william', 'doe', 'server', 1, '4041234567','123 abc st','atlanta','GA','30303',1234,1,2,3,0,0,3,1,7.75,'123456789')";
                 stmt.execute(sql);
                 System.out.println("Added Employee");
                 
@@ -266,6 +267,7 @@ public class KitchenCodersRMS {
         sql = "CREATE TABLE IF NOT EXISTS Tickets (\n"+
                 " id integer PRIMARY KEY AUTOINCREMENT,\n"+
                 " server text NOT NULL,\n"+
+                " table integer,\n"+
                 " item1 text,\n"+
                 " item2 text,\n"+
                 " item3 text,\n"+

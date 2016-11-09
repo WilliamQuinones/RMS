@@ -50,6 +50,11 @@ public class Inventory extends javax.swing.JFrame {
         });
 
         newShipment.setText("New Shipment");
+        newShipment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newShipmentActionPerformed(evt);
+            }
+        });
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +113,14 @@ public class Inventory extends javax.swing.JFrame {
         s.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void newShipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newShipmentActionPerformed
+        dispose();
+        Shipment s = new Shipment();
+                        
+        s.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newShipmentActionPerformed
 
     /**
      * @param args the command line arguments

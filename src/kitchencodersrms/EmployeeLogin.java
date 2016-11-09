@@ -60,6 +60,11 @@ public class EmployeeLogin extends javax.swing.JFrame {
         jLabel1.setText("Employee ID");
 
         BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
 
         ClockIn.setText("Clock In");
 
@@ -127,6 +132,15 @@ public class EmployeeLogin extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_NewTicketButtonActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+
+
+        dispose();
+        Login s = new Login();
+                        
+        s.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
      * @param args the command line arguments

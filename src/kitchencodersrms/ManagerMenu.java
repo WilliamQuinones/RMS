@@ -32,7 +32,7 @@ public class ManagerMenu extends javax.swing.JFrame {
         inventoryButton = new javax.swing.JButton();
         analyticsButton = new javax.swing.JButton();
         menuButton = new javax.swing.JButton();
-        closeButton = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,7 +46,12 @@ public class ManagerMenu extends javax.swing.JFrame {
 
         menuButton.setText("Menu");
 
-        closeButton.setText("Close");
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,7 +68,7 @@ public class ManagerMenu extends javax.swing.JFrame {
                 .addContainerGap(611, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(closeButton)
+                .addComponent(back)
                 .addGap(102, 102, 102))
         );
         layout.setVerticalGroup(
@@ -80,12 +85,21 @@ public class ManagerMenu extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(menuButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                .addComponent(closeButton)
+                .addComponent(back)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        dispose();
+        Login s = new Login();
+                        
+        s.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,7 +139,7 @@ public class ManagerMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SchedulingButton;
     private javax.swing.JButton analyticsButton;
-    private javax.swing.JButton closeButton;
+    private javax.swing.JButton back;
     private javax.swing.JButton employeesButton;
     private javax.swing.JButton inventoryButton;
     private javax.swing.JButton menuButton;

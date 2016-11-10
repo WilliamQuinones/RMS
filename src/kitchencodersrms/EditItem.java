@@ -5,6 +5,16 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author williammcclain
@@ -18,6 +28,8 @@ public class EditItem extends javax.swing.JFrame {
         initComponents();
     }
 
+        String Original=null;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +51,7 @@ public class EditItem extends javax.swing.JFrame {
         units = new javax.swing.JRadioButton();
         liters = new javax.swing.JRadioButton();
         pounds = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        enter = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         criticalAmount = new javax.swing.JTextField();
@@ -62,6 +74,11 @@ public class EditItem extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Name");
 
@@ -75,7 +92,12 @@ public class EditItem extends javax.swing.JFrame {
 
         pounds.setText("Pounds");
 
-        jButton1.setText("Enter");
+        enter.setText("Enter");
+        enter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterActionPerformed(evt);
+            }
+        });
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +144,7 @@ public class EditItem extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(enter)
                 .addGap(232, 232, 232))
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
@@ -178,7 +200,6 @@ public class EditItem extends javax.swing.JFrame {
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(s1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(s2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,7 +235,7 @@ public class EditItem extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(enter)
                     .addComponent(backButton))
                 .addGap(23, 23, 23))
         );
@@ -234,6 +255,181 @@ public class EditItem extends javax.swing.JFrame {
     private void s3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_s3ActionPerformed
+
+    private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
+        Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        PreparedStatement ps1 = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        String txt = name.getText();
+        String sql;
+        Double iAmount = Double.parseDouble(amount.getText());
+        Double crit = Double.parseDouble(criticalAmount.getText());
+        int time = Integer.parseInt(criticalTime.getText());
+        int type = 0;
+        if(units.isSelected()){
+            type = 1;
+        }
+        if(liters.isSelected()){
+            type = 2;
+        }
+        if(pounds.isSelected()){
+            type = 3;
+        }
+        Double sh1a = Double.parseDouble(s1.getText());
+        Double sh2a = Double.parseDouble(s2.getText());
+        Double sh3a = Double.parseDouble(s3.getText());
+        Double sh4a = Double.parseDouble(s4.getText());
+        Double sh5a = Double.parseDouble(s5.getText());
+        
+        try{
+            stmt = c.createStatement();
+            sql = "UPDATE Inventory SET itemname = '"+txt+"' WHERE itemname = '"+Original+"';";
+            
+            stmt.executeUpdate(sql);
+            
+            sql = "UPDATE Inventory SET itemamount = "+iAmount+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET criticalamount = "+crit+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET criticaltime = "+time+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET itemtype = "+type+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET s1amount = "+sh1a+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET s2amount = "+sh2a+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET s3amount = "+sh3a+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET s4amount = "+sh4a+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET s5amount = "+sh5a+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            // Date dt = new Date(Date().getTime());
+            //int crTime = (int) (new Date().getTime()/1000);
+            /*
+            sql = "UPDATE Inventory (itemamount, "+snumber+", "+samount+", "+ctime+") WHERE itemname = "+txt+" "
+                        +"VALUES ("+iAmount+", "+currentTime+", "+Amount+", "+crTime+")";
+            ps1.setString(1, txt);
+            ps1.setString(2, snumber);
+            ps1.setString(3, samount);
+            ps1.setString(4, ctime);
+            
+           // ps.setInt(3, type1);
+            ps1.setDouble(5, iAmount);
+            ps1.setInt(6, currentTime);
+            ps1.setDouble(7, Amount);
+            
+            ps1.setInt(8, crTime);
+           
+            //ps.setDouble(4, cAmount);
+            
+            ps1.executeUpdate(); */
+            stmt = c.createStatement();
+            stmt.executeUpdate(sql);
+            //c.commit();
+           
+            
+            
+            c.close();
+            dispose();
+        Item ni = new Item();
+        ni.sendName(txt);
+        ni.setVisible(true);
+        this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+         Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        PreparedStatement ps1 = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            String sql = "SELECT * FROM Inventory WHERE itemname = ?";
+            ps = c.prepareStatement(sql);
+            ps.setString(1, name.getText());
+            rs = ps.executeQuery();
+            System.out.println("query performed");
+            ArrayList<String> itemNames = new ArrayList<String>();
+            Double amt = null;
+            String txt = null;
+            String nm = null;
+            int type1 = 0;
+            int s1a = 0;
+            int s2a = 0;
+            int s3a = 0;
+            int s4a = 0;
+            int s5a = 0;
+            Double camt = 0.0;
+            int ccTime = 0;
+            while(rs.next()){
+                txt = rs.getString("itemname");
+                itemNames.add(txt);
+                amt = rs.getDouble("itemamount");
+                type1 = rs.getInt("itemtype");
+                s1a = rs.getInt("s1amount");
+                s2a = rs.getInt("s2amount");
+                s3a = rs.getInt("s3amount");
+                s4a = rs.getInt("s4amount");
+                s5a = rs.getInt("s5amount");
+                nm = rs.getString("itemname");
+                camt = rs.getDouble("criticalamount");
+                ccTime = rs.getInt("criticaltime");
+                
+                //addInventory(txt);
+                //addAmount(amt);
+            }
+           
+                //Double amt = rs.getDouble("itemamount");
+                String amount1 = amt.toString();
+                amount.setText(amount1);
+                String sh1;
+                sh1 = Integer.toString(s1a);
+                s1.setText(sh1);
+                String sh2 = Integer.toString(s2a);
+                s2.setText(sh2);
+                String sh3 = Integer.toString(s3a);
+                s3.setText(sh3);
+                String sh4 = Integer.toString(s4a);
+                s4.setText(sh4);
+                String sh5 = Integer.toString(s5a);
+                s5.setText(sh5);
+                amount.setText(amt.toString());
+                criticalAmount.setText(camt.toString());
+                criticalTime.setText(Integer.toString(ccTime));
+                c.close();
+                 
+               
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // TODO add your handling code here:
+                                        
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -272,6 +468,7 @@ public class EditItem extends javax.swing.JFrame {
     }
     void sendName(String info){
         name.setText(info);
+        Original = info;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -282,7 +479,7 @@ public class EditItem extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JTextField criticalAmount;
     private javax.swing.JTextField criticalTime;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton enter;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

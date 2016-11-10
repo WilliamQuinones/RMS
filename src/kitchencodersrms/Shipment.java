@@ -121,7 +121,7 @@ public class Shipment extends javax.swing.JFrame {
 
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
     
-    Connection c = null;
+        Connection c = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
         PreparedStatement ps1 = null;
@@ -222,6 +222,8 @@ public class Shipment extends javax.swing.JFrame {
             int crTime = currentTime + ccTime;
             stmt = c.createStatement();
             
+            
+            
             sql = "UPDATE Inventory SET itemamount = "+iAmount+" WHERE itemname = '"+txt+"';";
             
             stmt.executeUpdate(sql);
@@ -305,6 +307,7 @@ public class Shipment extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount;

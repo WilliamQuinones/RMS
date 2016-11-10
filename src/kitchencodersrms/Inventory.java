@@ -55,6 +55,11 @@ public class Inventory extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        inventoryList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inventoryListMouseClicked(evt);
+            }
+        });
         inventoryList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 inventoryListValueChanged(evt);
@@ -201,6 +206,16 @@ public class Inventory extends javax.swing.JFrame {
             Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void inventoryListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryListMouseClicked
+        // TODO add your handling code here
+        String selected = inventoryList.getSelectedValue().toString();
+        Item ni = new Item();
+        ni.sendName(selected);
+        ni.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_inventoryListMouseClicked
 
     /**
      * @param args the command line arguments

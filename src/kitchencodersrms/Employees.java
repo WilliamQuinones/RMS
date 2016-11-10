@@ -5,12 +5,22 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import javax.swing.DefaultListModel;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author williammcclain
  */
 public class Employees extends javax.swing.JFrame {
 
+    
+    Connection c = null;
+    ResultSet rs = null;
+    Statement stmt;
     /**
      * Creates new form Employees
      */
@@ -44,6 +54,11 @@ public class Employees extends javax.swing.JFrame {
         modFOHButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Front of House");
 
@@ -185,6 +200,21 @@ public class Employees extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
+    DefaultListModel DM = new DefaultListModel();
+    DefaultListModel DM2 = new DefaultListModel();
+
+    private void addFOH(String names){
+        employeeFOHList.setModel(DM);
+        DM.addElement(names);
+    }
+    
+        private void addBOH(String names){
+        employeeBOHList.setModel(DM2);
+        DM2.addElement(names);
+    }
+    
+
+    
     private void addFOHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFOHButtonActionPerformed
                         dispose();
                         NewEmployee s = new NewEmployee();                  
@@ -193,7 +223,7 @@ public class Employees extends javax.swing.JFrame {
 
     private void addBOHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBOHButtonActionPerformed
                         dispose();
-                        NewEmployee s = new NewEmployee();                  
+                        NewEmployeeBOH s = new NewEmployeeBOH();                  
                         s.setVisible(true);         
     }//GEN-LAST:event_addBOHButtonActionPerformed
 
@@ -208,6 +238,37 @@ public class Employees extends javax.swing.JFrame {
                         Employee s = new Employee();                  
                         s.setVisible(true); 
     }//GEN-LAST:event_modFOHButtonActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+                // TODO add your handling code here:
+        c = KitchenCodersRMS.callDatbase();
+        try {
+            stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM Employee WHERE FOH=1");
+            while(rs.next()){
+                String name = rs.getString("firstname");
+                name += " ";
+                name += rs.getString("lastname");
+                addFOH(name);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            try {
+            stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM Employee WHERE BOH=1");
+            while(rs.next()){
+                String name = rs.getString("firstname");
+                name += " ";
+                name += rs.getString("lastname");
+                addBOH(name);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
                         dispose();

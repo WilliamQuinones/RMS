@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author williammcclain
  */
-public class NewEmployee extends javax.swing.JFrame {
+public class NewEmployeeBOH extends javax.swing.JFrame {
 
     Statement stmt =null;
     Connection c = null;
@@ -29,7 +29,7 @@ public class NewEmployee extends javax.swing.JFrame {
     /**
      * Creates new form NewEmployee
      */
-    public NewEmployee() {
+    public NewEmployeeBOH() {
         initComponents();
     }
 
@@ -430,9 +430,8 @@ public class NewEmployee extends javax.swing.JFrame {
         String statename = state.getText();  
         String zip = zipCode.getText();
         String social = socialSecurity.getText().replaceAll("\\D+","");
-        
 
-        int FOH = 1;
+        int BOH = 1;
         int monday = 0, tuesday = 0, wednesday = 0, thursday = 0,
                 friday = 0, saturday = 0, sunday = 0;
         
@@ -559,7 +558,7 @@ public class NewEmployee extends javax.swing.JFrame {
                     + "jobtitle1, jobtitle2, jobtitle3, phonenumber, street,"
                     + " city, state, zipcode, employeeid, monday, tuesday,"
                     + "wednesday, thursday, friday, saturday, sunday, hourlywage1, "
-                    + "hourlywage2, hourlywage3, socialsecurity, FOH)"
+                    + "hourlywage2, hourlywage3, socialsecurity, BOH)"
                      + "VALUES('" + firstname + "', '" + middlename + "', '" + 
                     lastname + "', '" + jobtitle1 + "', '" + jobtitle2 + "', '"
                     + jobtitle3 + "', '" + phonenumber + "', '" + street + 
@@ -568,7 +567,7 @@ public class NewEmployee extends javax.swing.JFrame {
                      + "', '" + wednesday + "', '" + thursday + "', '" + friday
                      + "', '" + saturday + "', '" + sunday + "', '" + hourlywage1
                      + "', '" + hourlywage2 + "', '" + hourlywage3 + "', '" + social
-                    + "', '" + FOH + "')";
+                    + "', '" + BOH + "')";
             stmt.executeUpdate(sql);
             
             int input = JOptionPane.showOptionDialog(null, "Employee added", "Success", JOptionPane.DEFAULT_OPTION,
@@ -587,7 +586,7 @@ public class NewEmployee extends javax.swing.JFrame {
         
         
         } catch (SQLException ex) {
-            Logger.getLogger(NewEmployee.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NewEmployeeBOH.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -608,20 +607,20 @@ public class NewEmployee extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewEmployeeBOH.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewEmployeeBOH.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewEmployeeBOH.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewEmployeeBOH.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewEmployee().setVisible(true);
+                new NewEmployeeBOH().setVisible(true);
             }
         });
     }

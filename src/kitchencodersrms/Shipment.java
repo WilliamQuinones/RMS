@@ -5,6 +5,17 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author williammcclain
@@ -109,7 +120,155 @@ public class Shipment extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
-        // TODO add your handling code here:
+    
+    Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        PreparedStatement ps1 = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            String sql = "SELECT * FROM Inventory WHERE itemname = ?";
+            ps = c.prepareStatement(sql);
+            ps.setString(1, name.getText());
+            rs = ps.executeQuery();
+            System.out.println("query performed");
+            ArrayList<String> itemNames = new ArrayList<String>();
+            Double amt = null;
+            String txt = null;
+            String nm = null;
+            int type1 = 0;
+            int s1a = 0;
+            int s2a = 0;
+            int s3a = 0;
+            int s4a = 0;
+            int s5a = 0;
+            Double camt = 0.0;
+            int ccTime = 0;
+            while(rs.next()){
+                txt = rs.getString("itemname");
+                itemNames.add(txt);
+                amt = rs.getDouble("itemamount");
+                type1 = rs.getInt("itemtype");
+                s1a = rs.getInt("s1amount");
+                s2a = rs.getInt("s2amount");
+                s3a = rs.getInt("s3amount");
+                s4a = rs.getInt("s4amount");
+                s5a = rs.getInt("s5amount");
+                nm = rs.getString("itemname");
+                camt = rs.getDouble("criticalamount");
+                ccTime = rs.getInt("criticaltime");
+                
+                //addInventory(txt);
+                //addAmount(amt);
+            }
+            if(itemNames.size()==0){
+                JOptionPane.showMessageDialog(null, "Error: no such item in inventory");
+
+            }
+            if(itemNames.size()>1){
+                JOptionPane.showMessageDialog(null, "Error: multiple such items in inventory");
+            }
+            if(itemNames.size()==1){
+                //Double amt = rs.getDouble("itemamount");
+                 
+                
+                String amnt = amount.getText();
+                Double Amount = Double.parseDouble(amnt);
+                Double iAmount = amt + Amount;
+                //Double 
+                String snumber=null;
+                String samount=null;
+                String ctime=null;
+                if(s1a==0){
+                    snumber = "shipment1";
+                    samount = "s1amount";
+                    ctime = "s1critical";
+                } else if(s2a==0){
+                    snumber = "shipment2";
+                    samount = "s2amount";
+                    ctime = "s2critical";
+                }else if(s3a==0){
+                    snumber = "shipment3";
+                    samount = "s3amount";
+                    ctime = "s3critical";
+                }else if(s4a==0){
+                    snumber = "shipment4";
+                    samount = "s4amount";
+                    ctime = "s4critical";
+                }else if(s5a==0){
+                    snumber = "shipment5";
+                    samount = "s5amount";
+                    ctime = "s5critical";
+                }else{
+                    JOptionPane.showMessageDialog(null, "Error: no open shipment values");
+                    dispose();
+                    Shipment s = new Shipment();
+                        
+                    s.setVisible(true);
+                }
+                
+              // sql = "INSERT INTO Inventory WHERE itemname = ? (itemamount, ?, ?, ?)"
+                  //      +"VALUES (?, ?, ?, ?)";
+        
+           // ps1 = c.prepareStatement(sql);
+            int currentTime = 0;
+            
+            Long sysTime = System.currentTimeMillis();
+            Long divTime = sysTime / 1000;
+            String divTimes = divTime.toString();
+            currentTime = Integer.parseInt(divTimes);
+            int crTime = currentTime + ccTime;
+            stmt = c.createStatement();
+            
+            sql = "UPDATE Inventory SET itemamount = "+iAmount+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET "+snumber+" = "+currentTime+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET "+samount+" = "+Amount+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            sql = "UPDATE Inventory SET "+ctime+" = "+crTime+" WHERE itemname = '"+txt+"';";
+            
+            stmt.executeUpdate(sql);
+            // Date dt = new Date(Date().getTime());
+            //int crTime = (int) (new Date().getTime()/1000);
+            /*
+            sql = "UPDATE Inventory (itemamount, "+snumber+", "+samount+", "+ctime+") WHERE itemname = "+txt+" "
+                        +"VALUES ("+iAmount+", "+currentTime+", "+Amount+", "+crTime+")";
+            ps1.setString(1, txt);
+            ps1.setString(2, snumber);
+            ps1.setString(3, samount);
+            ps1.setString(4, ctime);
+            
+           // ps.setInt(3, type1);
+            ps1.setDouble(5, iAmount);
+            ps1.setInt(6, currentTime);
+            ps1.setDouble(7, Amount);
+            
+            ps1.setInt(8, crTime);
+           
+            //ps.setDouble(4, cAmount);
+            
+            ps1.executeUpdate(); */
+            stmt = c.createStatement();
+            stmt.executeUpdate(sql);
+            //c.commit();
+           
+            }
+            
+            c.close();
+            dispose();
+        Inventory s = new Inventory();
+                        
+        s.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+// TODO add your handling code here:
     }//GEN-LAST:event_enterActionPerformed
 
     /**

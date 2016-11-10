@@ -5,6 +5,12 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author williammcclain
@@ -17,7 +23,12 @@ public class NewItem extends javax.swing.JFrame {
     public NewItem() {
         initComponents();
     }
-
+    
+    PreparedStatement ps=null;
+    Connection c = null;
+    ResultSet rs = null;
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +73,11 @@ public class NewItem extends javax.swing.JFrame {
         pounds.setText("Pounds");
 
         jButton1.setText("Enter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +171,44 @@ public class NewItem extends javax.swing.JFrame {
         s.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String name1 = name.getText();
+        int type1=0;
+        if(units.isSelected()){
+            type1=1;
+        }
+        if(liters.isSelected()){
+            type1=2;
+        }
+        if(pounds.isSelected()){
+            type1=3;
+        }
+        Double cAmount = Double.parseDouble(criticalAmount.getText());
+        int cTime = Integer.parseInt(criticalTime.getText().trim());
+        int crTime= cTime;
+        Double iAmount = Double.parseDouble(amount.getText());
+        c = KitchenCodersRMS.callDatbase();
+        String sql = "INSERT INTO Inventory (itemname,itemtype,itemamount,criticalamount,criticaltime) "
+                        +"VALUES (?, ?, ?, ?, ?)";
+        try {
+            ps = c.prepareStatement(sql);
+            ps.setString(1, name1);
+            ps.setInt(2, type1);
+            ps.setDouble(3, iAmount);
+            ps.setDouble(4, cAmount);
+            ps.setInt(5, crTime);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NewItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        dispose();
+        Inventory s = new Inventory();
+                        
+        s.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

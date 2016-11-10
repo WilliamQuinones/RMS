@@ -429,7 +429,12 @@ public class NewEmployee extends javax.swing.JFrame {
         String cityname = city.getText();
         String statename = state.getText();  
         String zip = zipCode.getText();
-        String social = socialSecurity.getText().replaceAll("\\D+","");
+        String social = "";
+        
+        try{
+            social = socialSecurity.getText().replaceAll("\\D+","");
+        }catch(Exception e){}
+
         
 
         int FOH = 1;

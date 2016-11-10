@@ -7,10 +7,12 @@ package kitchencodersrms;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,8 +23,9 @@ public class Employee extends javax.swing.JFrame {
 
     Statement stmt =null;
     Connection c = null;
+    ResultSet rs;
         float hourlywage1, hourlywage2, hourlywage3; 
-    String wageTemp;
+    String wageTemp, receiveName = "", first, last;
     /**
      * Creates new form Employee
      */
@@ -102,6 +105,11 @@ public class Employee extends javax.swing.JFrame {
         jLabel4.setText("Last Name");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel17.setText("Social Security");
 
@@ -411,10 +419,14 @@ public class Employee extends javax.swing.JFrame {
         s.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    void sendName(String nameFromList){
+        receiveName = nameFromList;
+    }
+    
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-try {
-                Class.forName("org.sqlite.JDBC");
-                c = DriverManager.getConnection("jdbc:sqlite:RMS.db");
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:RMS.db");
         }catch ( Exception e ) {
                 System.err.println( e.getClass().getName() + ": " + e.getMessage() );
                 System.exit(0);
@@ -423,166 +435,172 @@ try {
             stmt = c.createStatement();
 
         
-        String firstname = firstName.getText();
-        String middlename = middleName.getText();
-        String lastname = lastName.getText();
-        String jobtitle1 = jobTitle.getText();
-        String jobtitle2 = jobTitle1.getText();
-        String jobtitle3 = jobTitle2.getText();
-        String phonenumber = phoneNumber.getText();
-        String street = address.getText();
-        String cityname = city.getText();
-        String statename = state.getText();  
-        String zip = zipCode.getText();
-        String social = socialSecurity.getText().replaceAll("\\D+","");
+            String firstname = firstName.getText();
+            String middlename = middleName.getText();
+            String lastname = lastName.getText();
+            String jobtitle1 = jobTitle.getText();
+            String jobtitle2 = jobTitle1.getText();
+            String jobtitle3 = jobTitle2.getText();
+            String phonenumber = phoneNumber.getText();
+            String street = address.getText();
+            String cityname = city.getText();
+            String statename = state.getText();  
+            String zip = zipCode.getText();
+            String social = socialSecurity.getText().replaceAll("\\D+","");
 
 
-        int monday = 0, tuesday = 0, wednesday = 0, thursday = 0,
-                friday = 0, saturday = 0, sunday = 0;
-        
-        boolean blankField = false;
-        
-        if(firstname.isEmpty() || lastname.isEmpty() || (jobtitle1.isEmpty() && 
-                jobtitle2.isEmpty() && jobtitle3.isEmpty()) || phonenumber.isEmpty() || 
-                street.isEmpty() || cityname.isEmpty() || statename.isEmpty() || 
-                zip.isEmpty()){
-            blankField = true;
-        }
-        
-        if(social.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Please input valid value for social security");
-            blankField = true;
-        }
-        
-        
-        if(!jobtitle1.isEmpty()){
-                    wageTemp = wage1.getText();
-                    try{
-                        hourlywage1 = Float.parseFloat(wageTemp);
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 1");
-                        blankField = true;
-                    }
-        }
-        if(!jobtitle2.isEmpty()){
-                    wageTemp = wage2.getText();
-                    try{
-                        hourlywage2 = Float.parseFloat(wageTemp);
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 2");
-                        blankField = true;
-                    }
-        }
-        if(!jobtitle3.isEmpty()){
-                    wageTemp = wage3.getText();    
-                    try{
-                        hourlywage3 = Float.parseFloat(wageTemp);
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 3");
-                        blankField = true;
-                    }
-        }
-        
-        if(!blankField){
+            int monday = 0, tuesday = 0, wednesday = 0, thursday = 0,
+                    friday = 0, saturday = 0, sunday = 0;
 
-        int employeeID = Integer.parseInt(social)%10000;
-            
-        if(monLunch.isSelected() && monDinner.isSelected()){
-            monday = 3;
-        }else if(monLunch.isSelected() && !monDinner.isSelected()){
-            monday = 1;
-        }else if(!monLunch.isSelected() && monDinner.isSelected()){
-            monday = 2;
-        }else if(!monLunch.isSelected() && !monDinner.isSelected()){
-            monday = 0;
-        }
-        
-        if(tuesdayLunch.isSelected() && tuesdayDinner.isSelected()){
-            tuesday = 3;
-        }else if(tuesdayLunch.isSelected() && !tuesdayDinner.isSelected()){
-            tuesday = 1;
-        }else if(!tuesdayLunch.isSelected() && tuesdayDinner.isSelected()){
-            tuesday = 2;
-        }else if(!tuesdayLunch.isSelected() && !tuesdayDinner.isSelected()){
-            tuesday = 0;
-        }
-        
-        if(wedLunch.isSelected() && wedDinner.isSelected()){
-            wednesday = 3;
-        }else if(wedLunch.isSelected() && !wedDinner.isSelected()){
-            wednesday = 1;
-        }else if(!wedLunch.isSelected() && wedDinner.isSelected()){
-            wednesday = 2;
-        }else if(!wedLunch.isSelected() && !wedDinner.isSelected()){
-            wednesday = 0;
-        }
-        
-        if(thursLunch.isSelected() && thursDinner.isSelected()){
-            thursday = 3;
-        }else if(thursLunch.isSelected() && !thursDinner.isSelected()){
-            thursday = 1;
-        }else if(!thursLunch.isSelected() && thursDinner.isSelected()){
-            thursday = 2;
-        }else if(!thursLunch.isSelected() && !thursDinner.isSelected()){
-            thursday = 0;
-        }
-        
-        if(fridayLunch.isSelected() && fridayDinner.isSelected()){
-            friday = 3;
-        }else if(fridayLunch.isSelected() && !fridayDinner.isSelected()){
-            friday = 1;
-        }else if(!fridayLunch.isSelected() && fridayDinner.isSelected()){
-            friday = 2;
-        }else if(!fridayLunch.isSelected() && !fridayDinner.isSelected()){
-            friday = 0;
-        }
-        
-        if(satLunch.isSelected() && satDinner.isSelected()){
-            saturday = 3;
-        }else if(satLunch.isSelected() && !satDinner.isSelected()){
-            saturday = 1;
-        }else if(!satLunch.isSelected() && satDinner.isSelected()){
-            saturday = 2;
-        }else if(!satLunch.isSelected() && !satDinner.isSelected()){
-            saturday = 0;
-        }
-        
-        if(sunLunch.isSelected() && sunDinner.isSelected()){
-            sunday = 3;
-        }else if(sunLunch.isSelected() && !sunDinner.isSelected()){
-            sunday = 1;
-        }else if(!sunLunch.isSelected() && sunDinner.isSelected()){
-            sunday = 2;
-        }else if(!sunLunch.isSelected() && !sunDinner.isSelected()){
-            sunday = 0;
-        }
-        
-        
-        
-            String sql="INSERT INTO Employee ( firstname, middlename, lastname, "
-                    + "jobtitle1, jobtitle2, jobtitle3, phonenumber, street,"
-                    + " city, state, zipcode, employeeid, monday, tuesday,"
-                    + "wednesday, thursday, friday, saturday, sunday, hourlywage1, "
-                    + "hourlywage2, hourlywage3, socialsecurity)"
-                     + "VALUES('" + firstname + "', '" + middlename + "', '" + 
-                    lastname + "', '" + jobtitle1 + "', '" + jobtitle2 + "', '"
-                    + jobtitle3 + "', '" + phonenumber + "', '" + street + 
-                    "', '" + cityname + "', '" + statename + "', '" + zip +
-                     "', '" + employeeID + "', '" + monday + "', '" + tuesday
-                     + "', '" + wednesday + "', '" + thursday + "', '" + friday
-                     + "', '" + saturday + "', '" + sunday + "', '" + hourlywage1
-                     + "', '" + hourlywage2 + "', '" + hourlywage3 + "', '" + social
-                    + "')";
-            stmt.executeUpdate(sql);
-            
-            int input = JOptionPane.showOptionDialog(null, "Employee added", "Success", JOptionPane.DEFAULT_OPTION,
-                 JOptionPane.INFORMATION_MESSAGE, null, null, null);
-            if(input == JOptionPane.OK_OPTION){
-                 c.close();
-                 dispose();
-                 Employees s = new Employees();
-                 s.setVisible(true);
+            boolean blankField = false;
+
+            if(firstname.isEmpty() || lastname.isEmpty() || (jobtitle1.isEmpty() && 
+                    jobtitle2.isEmpty() && jobtitle3.isEmpty()) || phonenumber.isEmpty() || 
+                    street.isEmpty() || cityname.isEmpty() || statename.isEmpty() || 
+                    zip.isEmpty()){
+                blankField = true;
             }
+
+            if(social.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Please input valid value for social security");
+                blankField = true;
+            }
+
+
+            if(!jobtitle1.isEmpty()){
+                        wageTemp = wage1.getText();
+                        try{
+                            hourlywage1 = Float.parseFloat(wageTemp);
+                        }catch(Exception e){
+                            JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 1");
+                            blankField = true;
+                        }
+            }
+            if(!jobtitle2.isEmpty()){
+                        wageTemp = wage2.getText();
+                        try{
+                            hourlywage2 = Float.parseFloat(wageTemp);
+                        }catch(Exception e){
+                            JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 2");
+                            blankField = true;
+                        }
+            }
+            if(!jobtitle3.isEmpty()){
+                        wageTemp = wage3.getText();    
+                        try{
+                            hourlywage3 = Float.parseFloat(wageTemp);
+                        }catch(Exception e){
+                            JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 3");
+                            blankField = true;
+                        }
+            }
+
+            if(!blankField){
+
+            int employeeID = Integer.parseInt(social)%10000;
+
+            if(monLunch.isSelected() && monDinner.isSelected()){
+                monday = 3;
+            }else if(monLunch.isSelected() && !monDinner.isSelected()){
+                monday = 1;
+            }else if(!monLunch.isSelected() && monDinner.isSelected()){
+                monday = 2;
+            }else if(!monLunch.isSelected() && !monDinner.isSelected()){
+                monday = 0;
+            }
+
+            if(tuesdayLunch.isSelected() && tuesdayDinner.isSelected()){
+                tuesday = 3;
+            }else if(tuesdayLunch.isSelected() && !tuesdayDinner.isSelected()){
+                tuesday = 1;
+            }else if(!tuesdayLunch.isSelected() && tuesdayDinner.isSelected()){
+                tuesday = 2;
+            }else if(!tuesdayLunch.isSelected() && !tuesdayDinner.isSelected()){
+                tuesday = 0;
+            }
+
+            if(wedLunch.isSelected() && wedDinner.isSelected()){
+                wednesday = 3;
+            }else if(wedLunch.isSelected() && !wedDinner.isSelected()){
+                wednesday = 1;
+            }else if(!wedLunch.isSelected() && wedDinner.isSelected()){
+                wednesday = 2;
+            }else if(!wedLunch.isSelected() && !wedDinner.isSelected()){
+                wednesday = 0;
+            }
+
+            if(thursLunch.isSelected() && thursDinner.isSelected()){
+                thursday = 3;
+            }else if(thursLunch.isSelected() && !thursDinner.isSelected()){
+                thursday = 1;
+            }else if(!thursLunch.isSelected() && thursDinner.isSelected()){
+                thursday = 2;
+            }else if(!thursLunch.isSelected() && !thursDinner.isSelected()){
+                thursday = 0;
+            }
+
+            if(fridayLunch.isSelected() && fridayDinner.isSelected()){
+                friday = 3;
+            }else if(fridayLunch.isSelected() && !fridayDinner.isSelected()){
+                friday = 1;
+            }else if(!fridayLunch.isSelected() && fridayDinner.isSelected()){
+                friday = 2;
+            }else if(!fridayLunch.isSelected() && !fridayDinner.isSelected()){
+                friday = 0;
+            }
+
+            if(satLunch.isSelected() && satDinner.isSelected()){
+                saturday = 3;
+            }else if(satLunch.isSelected() && !satDinner.isSelected()){
+                saturday = 1;
+            }else if(!satLunch.isSelected() && satDinner.isSelected()){
+                saturday = 2;
+            }else if(!satLunch.isSelected() && !satDinner.isSelected()){
+                saturday = 0;
+            }
+
+            if(sunLunch.isSelected() && sunDinner.isSelected()){
+                sunday = 3;
+            }else if(sunLunch.isSelected() && !sunDinner.isSelected()){
+                sunday = 1;
+            }else if(!sunLunch.isSelected() && sunDinner.isSelected()){
+                sunday = 2;
+            }else if(!sunLunch.isSelected() && !sunDinner.isSelected()){
+                sunday = 0;
+            }
+
+
+
+                /*String sql="UPDATE Employee SET firstname ='" + firstname + "', middlename ='" + middlename + 
+                        "', lastname='"+ lastname + "', jobtitle1='" + jobtitle1 + "', jobtitle2='"
+                         + jobtitle2 + "', jobtitle3='" + jobtitle3 + "', phonenumber='" + phonenumber + 
+                        "', street='" + street + "', city='" + cityname + "', state='" + statename +
+                        "', zipcode='" + zip + "', employeeid=" + employeeID + ", monday=" + monday 
+                        + ", tuesday=" + tuesday + ", wednesday=" + wednesday + ", thursday="
+                        + ", friday=" + friday + ", saturday=" + saturday + ", sunday=" + sunday
+                        + ", hourlywage1=" + hourlywage1 + ", hourlywage2=" + hourlywage2 + 
+                        ", hourlywage3=" + hourlywage3 + ", socialsecurity='" + social + 
+                        "' WHERE firstname='" + first + "' AND lastname='" + last + "'";*/
+                String sql="UPDATE Employee SET firstname ='" + firstname + "', middlename='" + middlename + 
+                        "', lastname='" + lastname + "', jobtitle1='" + jobtitle1 + "', jobtitle2='" + jobtitle2 + 
+                        "', jobtitle3='" + jobtitle3 + "', phonenumber='" + phonenumber + "', street='" + street + 
+                        "', city='" + cityname + "', state='" + statename + "', zipcode='" + zip + "', employeeid='" + 
+                        employeeID + "', monday='" + monday 
+                        + "', tuesday='" + tuesday + "', wednesday='" + wednesday + "', thursday='"
+                        + "', friday='" + friday + "', saturday='" + saturday + "', sunday='" + sunday
+                        + "', hourlywage1='" + hourlywage1 + "', hourlywage2='" + hourlywage2 + 
+                        "', hourlywage3='" + hourlywage3 + "', socialsecurity='" + social + 
+                        "' WHERE firstname='" + first + "' AND lastname='" + last + "';";
+                stmt.executeUpdate(sql);
+
+                int input = JOptionPane.showOptionDialog(null, "Employee information updated", "Success", JOptionPane.DEFAULT_OPTION,
+                     JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                if(input == JOptionPane.OK_OPTION){
+                     c.close();
+                     dispose();
+                     Employees s = new Employees();
+                     s.setVisible(true);
+                }
 
         }else{
             JOptionPane.showMessageDialog(null, "Please fill out all required fields");
@@ -592,8 +610,95 @@ try {
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:RMS.db");
+        }catch ( Exception e ) {
+                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+                System.exit(0);
+        }
+        first = receiveName.substring(0, receiveName.indexOf(" "));
+        last = receiveName.substring(receiveName.indexOf(" ") + 1);
+        try{
+            String temp;
+            Integer tempInt;
+            float tempFloat;
+                stmt = c.createStatement();
+                rs = stmt.executeQuery("SELECT * FROM Employee WHERE firstname='" + first + "' "
+                        + "AND lastname='" + last + "'");
+                while(rs.next()){
+                    firstName.setText(first);
+                    temp = rs.getString("middlename");
+                    middleName.setText(temp);
+                    lastName.setText(last);
+                    temp = rs.getString("jobtitle1");
+                    jobTitle.setText(temp);
+                    temp = rs.getString("jobtitle2");
+                    jobTitle1.setText(temp);
+                    temp = rs.getString("jobtitle3");
+                    jobTitle2.setText(temp);
+                    temp = rs.getString("phonenumber");
+                    phoneNumber.setText(temp);
+                    temp = rs.getString("street");
+                    address.setText(temp);
+                    temp = rs.getString("state");
+                    state.setText(temp);
+                    temp = rs.getString("zipcode");
+                    zipCode.setText(temp);
+                    temp = rs.getString("city");
+                    city.setText(temp);
+                    tempInt = rs.getInt("employeeid");
+                    temp = tempInt.toString();
+                    employeeID.setText(temp);
+                    temp = rs.getString("socialsecurity");
+                    socialSecurity.setText(temp);
+                    tempFloat = rs.getFloat("hourlywage1");
+                    temp = Float.toString(tempFloat);
+                    wage1.setText(temp);
+                    tempFloat = rs.getFloat("hourlywage2");
+                    temp = Float.toString(tempFloat);
+                    wage2.setText(temp);
+                    tempFloat = rs.getFloat("hourlywage3");
+                    temp = Float.toString(tempFloat);
+                    wage3.setText(temp);
+                    
+                    tempInt = rs.getInt("monday");
+                    setCheckboxes(monLunch, monDinner, tempInt);
+                    tempInt = rs.getInt("tuesday");
+                    setCheckboxes(tuesdayLunch, tuesdayDinner, tempInt);
+                    tempInt = rs.getInt("wednesday");
+                    setCheckboxes(wedLunch, wedDinner, tempInt);
+                    tempInt = rs.getInt("thursday");
+                    setCheckboxes(thursLunch, thursDinner, tempInt);
+                    tempInt = rs.getInt("friday");
+                    setCheckboxes(fridayLunch, fridayDinner, tempInt);
+                    tempInt = rs.getInt("saturday");
+                    setCheckboxes(satLunch, satDinner, tempInt);
+                    tempInt = rs.getInt("sunday");
+                    setCheckboxes(sunLunch, sunDinner, tempInt);
+                    
+                }
+        } catch (SQLException ex) {
+            Logger.getLogger(NewEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
 
+    private void setCheckboxes(JCheckBox shift1, JCheckBox shift2, Integer status){
+        switch(status){
+            case(1):
+                shift1.setSelected(true);
+                break;
+            case(2):
+                shift2.setSelected(true);
+                break;
+            case(3):
+                shift1.setSelected(true);
+                shift2.setSelected(true);
+                break;
+        }
+    }
 
 
     /**
@@ -626,6 +731,7 @@ try {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new Employee().setVisible(true);
             }
         });

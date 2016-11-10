@@ -235,7 +235,7 @@ public class KitchenCodersRMS {
                 " hourlywage3 real,\n"+
                 " hoursworked real,\n"+
                 " tips real,\n"+
-                " socialsecurity text\n"+
+                " socialsecurity text,\n"+
                 " FOH integer,\n"+
                 " BOH integer\n"+
                 ");";
@@ -261,7 +261,7 @@ public class KitchenCodersRMS {
                 
                 sql = "INSERT INTO Employee (id,firstname,middlename,lastname,jobtitle1,location,phonenumber,street,city,state,zipcode,employeeid,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hourlywage1,socialsecurity, FOH) "
                         
-                        +"VALUES (1, 'john', 'william', 'doe', 'server', 1, '4041234567','123 abc st','atlanta','GA','30303',1234,1,2,3,0,0,3,1,7.75,'123456789', 1)";
+                        +"VALUES (1, 'john', 'william', 'doe', 'server', 1, '4041234567','123 abc st','atlanta','GA','30303',6789,1,2,3,0,0,3,1,7.75,'123456789', 1)";
                 stmt.execute(sql);
                 System.out.println("Added Employee");
                 

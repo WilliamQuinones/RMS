@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -100,10 +101,20 @@ public class Employees extends javax.swing.JFrame {
         });
 
         removeBOHButton.setText("Remove");
+        removeBOHButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBOHButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Functions");
 
         removeFOHButton.setText("Remove");
+        removeFOHButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeFOHButtonActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Functions");
 
@@ -146,18 +157,19 @@ public class Employees extends javax.swing.JFrame {
                             .addComponent(removeFOHButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(addFOHButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(37, 37, 37)
                         .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addBOHButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(modBOHButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(removeBOHButton, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(17, 17, 17)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(addBOHButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modBOHButton, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(17, 17, 17)))
+                    .addComponent(removeBOHButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
@@ -228,15 +240,32 @@ public class Employees extends javax.swing.JFrame {
     }//GEN-LAST:event_addBOHButtonActionPerformed
 
     private void modBOHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modBOHButtonActionPerformed
-                        dispose();
-                        Employee s = new Employee();                  
-                        s.setVisible(true);                  
+        if(!employeeBOHList.isSelectionEmpty()){
+            String selected = employeeBOHList.getSelectedValue();
+            if(!selected.isEmpty()){
+                    c = KitchenCodersRMS.callDatbase();
+                    Employee editEmployee = new Employee();
+                    editEmployee.sendName(selected);
+                    editEmployee.setVisible(true);
+                    this.dispose();
+            }  
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select employee to modify info");
+        }                 
     }//GEN-LAST:event_modBOHButtonActionPerformed
 
     private void modFOHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modFOHButtonActionPerformed
-                        dispose();
-                        Employee s = new Employee();                  
-                        s.setVisible(true); 
+        if(!employeeFOHList.isSelectionEmpty()){
+            String selected = employeeFOHList.getSelectedValue();
+            if(!selected.isEmpty()){
+                    Employee editEmployee = new Employee();
+                    editEmployee.sendName(selected);
+                    editEmployee.setVisible(true);
+                    this.dispose();
+            }  
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select employee to modify info");
+        }
     }//GEN-LAST:event_modFOHButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -246,10 +275,10 @@ public class Employees extends javax.swing.JFrame {
             stmt = c.createStatement();
             rs = stmt.executeQuery("SELECT * FROM Employee WHERE FOH=1");
             while(rs.next()){
-                String name = rs.getString("firstname");
-                name += " ";
-                name += rs.getString("lastname");
-                addFOH(name);
+                String nameFOH = rs.getString("firstname");
+                nameFOH += " ";
+                nameFOH += rs.getString("lastname");
+                addFOH(nameFOH);
 
             }
         } catch (SQLException ex) {
@@ -259,16 +288,66 @@ public class Employees extends javax.swing.JFrame {
             stmt = c.createStatement();
             rs = stmt.executeQuery("SELECT * FROM Employee WHERE BOH=1");
             while(rs.next()){
-                String name = rs.getString("firstname");
-                name += " ";
-                name += rs.getString("lastname");
-                addBOH(name);
+                String nameBOH = rs.getString("firstname");
+                nameBOH += " ";
+                nameBOH += rs.getString("lastname");
+                addBOH(nameBOH);
 
             }
         } catch (SQLException ex) {
             Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void removeFOHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFOHButtonActionPerformed
+        String selected = employeeFOHList.getSelectedValue();
+        String firstName = selected.substring(0, selected.indexOf(" "));
+        String lastName = selected.substring(selected.indexOf(" ") + 1);
+        if(!selected.isEmpty()){
+            try {
+                stmt = c.createStatement();
+                String sql = "DELETE FROM Employee WHERE firstname='" + firstName + "' "
+                        + "AND lastname='" + lastName + "'";
+                stmt.executeUpdate(sql);
+                
+                int input = JOptionPane.showOptionDialog(null, "Employee removed", "Success", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                if(input == JOptionPane.OK_OPTION){
+                     c.close();
+                     dispose();
+                     Employees s = new Employees();
+                     s.setVisible(true);
+                }     
+            } catch (SQLException ex) {
+                Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_removeFOHButtonActionPerformed
+
+    private void removeBOHButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBOHButtonActionPerformed
+        String selected = employeeBOHList.getSelectedValue();
+        String firstName = selected.substring(0, selected.indexOf(" "));
+        String lastName = selected.substring(selected.indexOf(" ") + 1);
+        if(!selected.isEmpty()){
+            try {
+                stmt = c.createStatement();
+                String sql = "DELETE FROM Employee WHERE firstname='" + firstName + "' "
+                        + "AND lastname='" + lastName + "'";
+                stmt.executeUpdate(sql);
+                
+                int input = JOptionPane.showOptionDialog(null, "Employee removed", "Success", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                if(input == JOptionPane.OK_OPTION){
+                     c.close();
+                     dispose();
+                     Employees s = new Employees();
+                     s.setVisible(true);
+                }     
+            } catch (SQLException ex) {
+                Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_removeBOHButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
                         dispose();

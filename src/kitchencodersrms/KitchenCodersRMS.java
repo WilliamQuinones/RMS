@@ -271,7 +271,7 @@ public class KitchenCodersRMS {
         sql = "CREATE TABLE IF NOT EXISTS Tickets (\n"+
                 " id integer PRIMARY KEY AUTOINCREMENT,\n"+
                 " server text NOT NULL,\n"+
-                " table integer,\n"+
+                " tablenumber integer,\n"+
                 " item1 text,\n"+
                 " item2 text,\n"+
                 " item3 text,\n"+

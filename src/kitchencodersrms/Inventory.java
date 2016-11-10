@@ -5,6 +5,8 @@
  */
 package kitchencodersrms;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author williammcclain
@@ -188,6 +190,7 @@ public class Inventory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                String[] s = {"one", "two", "three"};
                 new Inventory().setVisible(true);
             }
         });

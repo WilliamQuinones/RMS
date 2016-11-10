@@ -67,6 +67,11 @@ public class EmployeeLogin extends javax.swing.JFrame {
         });
 
         ClockIn.setText("Clock In");
+        ClockIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClockInActionPerformed(evt);
+            }
+        });
 
         ClockOut.setText("Clock Out");
 
@@ -146,8 +151,9 @@ public class EmployeeLogin extends javax.swing.JFrame {
 
         s.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_BackButtonActionPerformed
-    private void ClockInActionPerformed(java.awt.event.ActionEvent evt) {
 
+    private void ClockInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClockInActionPerformed
+        // TODO add your handling code here:
         //Checks database for valid id
         String input = EmployeeID.getText();
         try {
@@ -184,7 +190,11 @@ public class EmployeeLogin extends javax.swing.JFrame {
                         Logger.getLogger(EmployeeLogin.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-    }
+    
+    }//GEN-LAST:event_ClockInActionPerformed
+
+
+        
     /**
      * @param args the command line arguments
      */

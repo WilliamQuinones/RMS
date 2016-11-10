@@ -125,8 +125,13 @@ public class KitchenCodersRMS {
             if (ItemNames.size() == 0){
                 
                 sql = "INSERT INTO Inventory (id,itemname,itemtype,itemamount,criticalamount,criticaltime) "
-                        +"VALUES (1, 'beef', 3, 100, 50, 10)"
-                        +"VALUES (2, 'buns', 1, 200, 50, 10)";
+                        +"VALUES (1, 'beef', 3, 100, 50, 10)";
+                        
+                stmt.execute(sql);
+                System.out.println("Added item");
+                sql = "INSERT INTO Inventory (id,itemname,itemtype,itemamount,criticalamount,criticaltime) "
+                        +"VALUES (2, 'buns', 3, 200, 50, 10)";
+                        
                 stmt.execute(sql);
                 System.out.println("Added item");
                 
@@ -252,7 +257,7 @@ public class KitchenCodersRMS {
             
             if (firstNames.size() == 0){
                 
-                sql = "INSERT INTO Employee (id,firstname,middlename,lastname,jobtitle,location,phonenumber,street,city,state,zipcode,employeeid,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hourlywage,socialsecurity) "
+                sql = "INSERT INTO Employee (id,firstname,middlename,lastname,jobtitle1,location,phonenumber,street,city,state,zipcode,employeeid,monday,tuesday,wednesday,thursday,friday,saturday,sunday,hourlywage1,socialsecurity) "
                         
                         +"VALUES (1, 'john', 'william', 'doe', 'server', 1, '4041234567','123 abc st','atlanta','GA','30303',1234,1,2,3,0,0,3,1,7.75,'123456789')";
                 stmt.execute(sql);

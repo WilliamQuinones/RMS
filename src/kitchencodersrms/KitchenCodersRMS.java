@@ -130,7 +130,7 @@ public class KitchenCodersRMS {
                 stmt.execute(sql);
                 System.out.println("Added item");
                 sql = "INSERT INTO Inventory (id,itemname,itemtype,itemamount,criticalamount,criticaltime) "
-                        +"VALUES (2, 'buns', 3, 200, 50, 10)";
+                        +"VALUES (2, 'buns', 1, 200, 50, 10)";
                         
                 stmt.execute(sql);
                 System.out.println("Added item");

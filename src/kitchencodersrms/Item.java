@@ -5,6 +5,15 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author williammcclain
@@ -31,8 +40,34 @@ public class Item extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         name = new javax.swing.JTextPane();
         back = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        totalAmount = new javax.swing.JTextPane();
+        edit = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        shipments = new javax.swing.JList<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        amounts = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        criticalAmount = new javax.swing.JTextPane();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        criticalTime = new javax.swing.JTextPane();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        criticalTimes = new javax.swing.JList<>();
+        jLabel8 = new javax.swing.JLabel();
+        units = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Name");
 
@@ -45,18 +80,92 @@ public class Item extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Amount");
+
+        jScrollPane2.setViewportView(totalAmount);
+
+        edit.setText("Edit");
+
+        shipments.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(shipments);
+
+        amounts.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(amounts);
+
+        jLabel3.setText("Critical Amount");
+
+        jScrollPane6.setViewportView(criticalAmount);
+
+        jLabel4.setText("Critical Time");
+
+        jScrollPane7.setViewportView(criticalTime);
+
+        jLabel5.setText("Shipments");
+
+        jLabel6.setText("Date");
+
+        jLabel7.setText("Amount");
+
+        criticalTimes.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane8.setViewportView(criticalTimes);
+
+        jLabel8.setText("Critical time");
+
+        units.setText("Units");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5))
                 .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                     .addComponent(back)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(571, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane6)
+                    .addComponent(jLabel6))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(edit)
+                        .addGap(197, 197, 197))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(units, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                                .addGap(249, 249, 249))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,20 +174,124 @@ public class Item extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 364, Short.MAX_VALUE)
-                .addComponent(back)
-                .addGap(36, 36, 36))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(units))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel5))
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(back)
+                            .addComponent(edit))
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        dispose();
+        Inventory s = new Inventory();
+                        
+        s.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_backActionPerformed
-    void sendName(String info){
-        name.setText(info);
-    }
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            String sql = "SELECT * FROM Inventory WHERE itemname = ?";
+            ps = c.prepareStatement(sql);
+            ps.setString(1, name.getText());
+            rs = ps.executeQuery();
+            System.out.println("query performed");
+            while(rs.next()){
+                String txt = rs.getString("itemname");
+                Double amt = rs.getDouble("itemamount");
+                totalAmount.setText(amt.toString());
+                Double cAmountd = rs.getDouble("criticalamount");
+                String cAmounts = cAmountd.toString();
+                criticalAmount.setText(cAmounts);
+                int t1 = rs.getInt("shipment1");
+                addShipment(t1);
+                int t2 = rs.getInt("shipment2");
+                addShipment(t2);
+                int t3 = rs.getInt("shipment3");
+                addShipment(t3);
+                int t4 = rs.getInt("shipment4");
+                addShipment(t4);
+                int t5 = rs.getInt("shipment5");
+                addShipment(t5);
+                Double d1 = rs.getDouble("s1amount");
+                addAmount(d1);
+                Double d2 = rs.getDouble("s2amount");
+                addAmount(d2);
+                Double d3 = rs.getDouble("s3amount");
+                addAmount(d3);
+                Double d4 = rs.getDouble("s4amount");
+                addAmount(d4);
+                Double d5 = rs.getDouble("s5amount");
+                addAmount(d5);
+                int c1 = rs.getInt("s1critical");
+                addCritical(c1);
+                int c2 = rs.getInt("s2critical");
+                addCritical(c2);
+                int c3 = rs.getInt("s3critical");
+                addCritical(c3);
+                int c4 = rs.getInt("s4critical");
+                addCritical(c4);
+                int c5 = rs.getInt("s5critical");
+                addCritical(c5);
+                int type1 = rs.getInt("itemtype");
+                if(type1 == 1){
+                    units.setText("Units");
+                }
+                if(type1 == 2){
+                    units.setText("Liters");
+                }
+                if(type1 == 3){
+                    units.setText("Pounds");
+                }
+                int cTime = rs.getInt("criticaltime");
+                String Ctime = Integer.toString(cTime);
+                criticalTime.setText(Ctime);
+                
+                //addInventory(txt);
+                //addAmount(amt);
+            }
+            c.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }                                 
     /**
      * @param args the command line arguments
      */
@@ -112,12 +325,58 @@ public class Item extends javax.swing.JFrame {
                 new Item().setVisible(true);
             }
         });
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
+    void sendName(String info){
+        name.setText(info);
     }
+    DefaultListModel DM = new DefaultListModel();
+    DefaultListModel DM2 = new DefaultListModel();
+    DefaultListModel DM3 = new DefaultListModel();
+
+    
+    private void addShipment(int txt){
+        
+       shipments.setModel(DM);
+       DM.addElement(txt);
+    }
+    private void addAmount(Double txt){
+        
+       amounts.setModel(DM2);
+       DM2.addElement(txt);
+    }
+    private void addCritical(int time){
+        
+       criticalTimes.setModel(DM3);
+       DM3.addElement(time);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> amounts;
     private javax.swing.JButton back;
+    private javax.swing.JTextPane criticalAmount;
+    private javax.swing.JTextPane criticalTime;
+    private javax.swing.JList<String> criticalTimes;
+    private javax.swing.JButton edit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTextPane name;
+    private javax.swing.JList<String> shipments;
+    private javax.swing.JTextPane totalAmount;
+    private javax.swing.JLabel units;
     // End of variables declaration//GEN-END:variables
 }

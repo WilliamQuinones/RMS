@@ -208,7 +208,9 @@ public class KitchenCodersRMS {
                 " firstname text NOT NULL,\n"+
                 " middlename text,\n"+
                 " lastname text NOT NULL,\n"+
-                " jobtitle text,\n"+
+                " jobtitle1 text,\n"+
+                " jobtitle2 text,\n"+
+                " jobtitle3 text,\n"+
                 " location integer,\n"+
                 " phonenumber text,\n"+
                 " street text,\n"+
@@ -223,8 +225,10 @@ public class KitchenCodersRMS {
                 " friday integer,\n"+
                 " saturday integer,\n"+
                 " sunday integer,\n"+
-                " hourlywage real,\n"+
-                " hoursworked integer,\n"+
+                " hourlywage1 real,\n"+
+                " hourlywage2 real,\n"+
+                " hourlywage3 real,\n"+
+                " hoursworked real,\n"+
                 " tips real,\n"+
                 " socialsecurity text\n"+
                 ");";

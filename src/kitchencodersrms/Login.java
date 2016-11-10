@@ -242,6 +242,8 @@ public class Login extends javax.swing.JFrame {
                         
                     //});
                         
+                    }else{
+                       JOptionPane.showMessageDialog(null, "Please select what menu to go to");
                     }
                     
                 }

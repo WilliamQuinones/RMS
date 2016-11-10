@@ -5,12 +5,24 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author williammcclain
  */
 public class NewEmployee extends javax.swing.JFrame {
 
+    Statement stmt =null;
+    Connection c = null;
     /**
      * Creates new form NewEmployee
      */
@@ -28,18 +40,18 @@ public class NewEmployee extends javax.swing.JFrame {
     private void initComponents() {
 
         backButton = new javax.swing.JButton();
-        jobTitle2 = new javax.swing.JTextField();
+        wage1 = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
-        hourlyWage = new javax.swing.JTextField();
+        wage2 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         wedLunch = new javax.swing.JCheckBox();
         jLabel28 = new javax.swing.JLabel();
-        hours = new javax.swing.JTextField();
+        jobTitle2 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         monDinner = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
-        tips = new javax.swing.JTextField();
+        wage3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         socialSecurity = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -79,11 +91,10 @@ public class NewEmployee extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         sunLunch = new javax.swing.JCheckBox();
         sunDinner = new javax.swing.JCheckBox();
-        jLabel25 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
         jobTitle1 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +106,11 @@ public class NewEmployee extends javax.swing.JFrame {
         });
 
         addButton.setText("Submit");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         jLabel26.setText("Job Title 1");
 
@@ -140,17 +156,11 @@ public class NewEmployee extends javax.swing.JFrame {
 
         jLabel23.setText("Tuesday");
 
-        jLabel25.setText("Open Availability");
-
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel18.setText("Lunch");
 
         jLabel24.setText("Dinner");
+
+        jLabel4.setText("Availability");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,7 +189,7 @@ public class NewEmployee extends javax.swing.JFrame {
                                         .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(zipCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(zipCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                                     .addComponent(city, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(address, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(phoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,39 +201,38 @@ public class NewEmployee extends javax.swing.JFrame {
                                 .addComponent(jLabel17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(socialSecurity)))
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel14))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(wage2, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                    .addComponent(jobTitle2)
+                                    .addComponent(wage3)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jobTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(wage1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel26)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel12)
-                                            .addComponent(jLabel13)
-                                            .addComponent(jLabel14))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(hourlyWage, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                            .addComponent(hours)
-                                            .addComponent(tips)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel28)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jobTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel27)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jobTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(67, 67, 67)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(64, 64, 64)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel21)
-                                            .addComponent(jLabel23)
-                                            .addComponent(jLabel10)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel21)
+                                        .addComponent(jLabel23)
+                                        .addComponent(jLabel10))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +240,7 @@ public class NewEmployee extends javax.swing.JFrame {
                                             .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                                .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel18)
                                     .addComponent(wedLunch)
@@ -251,13 +260,11 @@ public class NewEmployee extends javax.swing.JFrame {
                                     .addComponent(monDinner)
                                     .addComponent(jLabel24)
                                     .addComponent(wedDinner))
-                                .addGap(18, 18, 18))
+                                .addGap(86, 86, 86))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel25)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton1)
-                                .addGap(69, 69, 69))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addGap(121, 121, 121))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,32 +309,59 @@ public class NewEmployee extends javax.swing.JFrame {
                             .addComponent(socialSecurity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel24))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(wage1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel27))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jobTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel28))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(wage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jobTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(wage3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel21)
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel23)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel22))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel24))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel21)
-                                        .addGap(9, 9, 9)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel23)
-                                            .addComponent(tuesdayLunch)))
-                                    .addComponent(monLunch))
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel15)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel19)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel20)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel22))
-                                    .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(23, 23, 23)
+                                                .addComponent(tuesdayLunch))
+                                            .addComponent(monLunch))
+                                        .addGap(3, 3, 3)
                                         .addComponent(wedLunch)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(thursLunch)
@@ -336,50 +370,22 @@ public class NewEmployee extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(satLunch)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(sunLunch))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(monDinner)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tuesdayDinner)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(wedDinner)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(thursDinner)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fridayDinner)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(satDinner)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sunDinner)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25)
-                            .addComponent(jRadioButton1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel26))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jobTitle2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jobTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hourlyWage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tips, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                                        .addComponent(sunLunch))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(monDinner)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tuesdayDinner)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(wedDinner)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(thursDinner)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(fridayDinner)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(satDinner)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(sunDinner)))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                     .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -395,22 +401,134 @@ public class NewEmployee extends javax.swing.JFrame {
         s.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        monLunch.setEnabled(true);
-        monDinner.setEnabled(true);
-        tuesdayLunch.setEnabled(true);
-        tuesdayDinner.setEnabled(true);
-        wedLunch.setEnabled(true);
-        wedDinner.setEnabled(true);
-        thursLunch.setEnabled(true);
-        thursDinner.setEnabled(true);
-        fridayLunch.setEnabled(true);
-        fridayDinner.setEnabled(true);
-        satLunch.setEnabled(true);
-        satDinner.setEnabled(true);
-        sunLunch.setEnabled(true);
-        sunDinner.setEnabled(true);
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        try {
+                Class.forName("org.sqlite.JDBC");
+                c = DriverManager.getConnection("jdbc:sqlite:RMS.db");
+        }catch ( Exception e ) {
+                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+                System.exit(0);
+        }
+        try {
+            stmt = c.createStatement();
+
+        
+        String firstname = firstName.getText();
+        String middlename = middleName.getText();
+        String lastname = lastName.getText();
+        String jobtitle1 = jobTitle.getText();
+        String jobtitle2 = jobTitle1.getText();
+        String jobtitle3 = jobTitle2.getText();
+        String phonenumber = phoneNumber.getText();
+        String street = address.getText();
+        String cityname = city.getText();
+        String statename = state.getText();  
+        String zip = zipCode.getText();
+        String social = socialSecurity.getText().replaceAll("\\D+","");
+        int employeeID = Integer.parseInt(social)%10000;
+        String wageTemp = wage1.getText();
+        float hourlywage1 = Float.parseFloat(wageTemp);
+        wageTemp = wage2.getText();
+        float hourlywage2 = Float.parseFloat(wageTemp);
+        wageTemp = wage3.getText();
+        float hourlywage3 = Float.parseFloat(wageTemp);
+        int monday = 0, tuesday = 0, wednesday = 0, thursday = 0,
+                friday = 0, saturday = 0, sunday = 0;
+        
+        
+        if(monLunch.isSelected() && monDinner.isSelected()){
+            monday = 3;
+        }else if(monLunch.isSelected() && !monDinner.isSelected()){
+            monday = 1;
+        }else if(!monLunch.isSelected() && monDinner.isSelected()){
+            monday = 2;
+        }else if(!monLunch.isSelected() && !monDinner.isSelected()){
+            monday = 0;
+        }
+        
+        if(tuesdayLunch.isSelected() && tuesdayDinner.isSelected()){
+            tuesday = 3;
+        }else if(tuesdayLunch.isSelected() && !tuesdayDinner.isSelected()){
+            tuesday = 1;
+        }else if(!tuesdayLunch.isSelected() && tuesdayDinner.isSelected()){
+            tuesday = 2;
+        }else if(!tuesdayLunch.isSelected() && !tuesdayDinner.isSelected()){
+            tuesday = 0;
+        }
+        
+        if(wedLunch.isSelected() && wedDinner.isSelected()){
+            wednesday = 3;
+        }else if(wedLunch.isSelected() && !wedDinner.isSelected()){
+            wednesday = 1;
+        }else if(!wedLunch.isSelected() && wedDinner.isSelected()){
+            wednesday = 2;
+        }else if(!wedLunch.isSelected() && !wedDinner.isSelected()){
+            wednesday = 0;
+        }
+        
+        if(thursLunch.isSelected() && thursDinner.isSelected()){
+            thursday = 3;
+        }else if(thursLunch.isSelected() && !thursDinner.isSelected()){
+            thursday = 1;
+        }else if(!thursLunch.isSelected() && thursDinner.isSelected()){
+            thursday = 2;
+        }else if(!thursLunch.isSelected() && !thursDinner.isSelected()){
+            thursday = 0;
+        }
+        
+        if(fridayLunch.isSelected() && fridayDinner.isSelected()){
+            friday = 3;
+        }else if(fridayLunch.isSelected() && !fridayDinner.isSelected()){
+            friday = 1;
+        }else if(!fridayLunch.isSelected() && fridayDinner.isSelected()){
+            friday = 2;
+        }else if(!fridayLunch.isSelected() && !fridayDinner.isSelected()){
+            friday = 0;
+        }
+        
+        if(satLunch.isSelected() && satDinner.isSelected()){
+            saturday = 3;
+        }else if(satLunch.isSelected() && !satDinner.isSelected()){
+            saturday = 1;
+        }else if(!satLunch.isSelected() && satDinner.isSelected()){
+            saturday = 2;
+        }else if(!satLunch.isSelected() && !satDinner.isSelected()){
+            saturday = 0;
+        }
+        
+        if(sunLunch.isSelected() && sunDinner.isSelected()){
+            sunday = 3;
+        }else if(sunLunch.isSelected() && !sunDinner.isSelected()){
+            sunday = 1;
+        }else if(!sunLunch.isSelected() && sunDinner.isSelected()){
+            sunday = 2;
+        }else if(!sunLunch.isSelected() && !sunDinner.isSelected()){
+            sunday = 0;
+        }
+        
+        
+        
+            String sql="INSERT INTO Employee ( firstname, middlename, lastname, "
+                    + "jobtitle1, jobtitle2, jobtitle3, phonenumber, street,"
+                    + " city, state, zipcode, employeeid, monday, tuesday,"
+                    + "wednesday, thursday, friday, saturday, sunday, hourlywage1, "
+                    + "hourlywage2, hourlywage3, socialsecurity)"
+                     + "VALUES('" + firstname + "', '" + middlename + "', '" + 
+                    lastname + "', '" + jobtitle1 + "', '" + jobtitle2 + "', '"
+                    + jobtitle3 + "', '" + phonenumber + "', '" + street + 
+                    "', '" + cityname + "', '" + statename + "', '" + zip +
+                     "', '" + employeeID + "', '" + monday + "', '" + tuesday
+                     + "', '" + wednesday + "', '" + thursday + "', '" + friday
+                     + "', '" + saturday + "', '" + sunday + "', '" + hourlywage1
+                     + "', '" + hourlywage2 + "', '" + hourlywage3 + "', '" + social
+                    + "')";
+            stmt.executeUpdate(sql);
+            
+            c.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(NewEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -455,8 +573,6 @@ public class NewEmployee extends javax.swing.JFrame {
     private javax.swing.JTextField firstName;
     private javax.swing.JCheckBox fridayDinner;
     private javax.swing.JCheckBox fridayLunch;
-    private javax.swing.JTextField hourlyWage;
-    private javax.swing.JTextField hours;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -472,17 +588,16 @@ public class NewEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JTextField jobTitle;
     private javax.swing.JTextField jobTitle1;
     private javax.swing.JTextField jobTitle2;
@@ -499,9 +614,11 @@ public class NewEmployee extends javax.swing.JFrame {
     private javax.swing.JCheckBox sunLunch;
     private javax.swing.JCheckBox thursDinner;
     private javax.swing.JCheckBox thursLunch;
-    private javax.swing.JTextField tips;
     private javax.swing.JCheckBox tuesdayDinner;
     private javax.swing.JCheckBox tuesdayLunch;
+    private javax.swing.JTextField wage1;
+    private javax.swing.JTextField wage2;
+    private javax.swing.JTextField wage3;
     private javax.swing.JCheckBox wedDinner;
     private javax.swing.JCheckBox wedLunch;
     private javax.swing.JTextField zipCode;

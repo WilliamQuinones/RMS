@@ -33,13 +33,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="backButton" min="-2" pref="116" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="addButton" min="-2" pref="127" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -56,7 +56,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="zipCode" alignment="0" pref="123" max="32767" attributes="0"/>
+                                  <Component id="zipCode" alignment="0" pref="199" max="32767" attributes="0"/>
                                   <Component id="city" alignment="0" max="32767" attributes="0"/>
                                   <Component id="address" alignment="0" max="32767" attributes="0"/>
                                   <Component id="phoneNumber" alignment="0" max="32767" attributes="0"/>
@@ -72,47 +72,45 @@
                               <Component id="socialSecurity" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jobTitle" min="-2" pref="120" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jobTitle" min="-2" pref="120" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel13" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel14" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="hourlyWage" alignment="0" pref="120" max="32767" attributes="0"/>
-                                          <Component id="hours" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tips" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jobTitle1" min="-2" pref="120" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jobTitle2" min="-2" pref="120" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="wage2" alignment="0" pref="120" max="32767" attributes="0"/>
+                                  <Component id="jobTitle2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="wage3" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jobTitle1" min="-2" pref="120" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="wage1" min="-2" pref="120" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jLabel21" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel23" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel10" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="jLabel21" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel23" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel10" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
@@ -124,7 +122,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="33" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="wedLunch" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -146,14 +144,12 @@
                                   <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="wedDinner" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -214,37 +210,70 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jobTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tuesdayLunch" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="monLunch" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="wage1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jobTitle1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="wage2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jobTitle2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="wage3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                              <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
+                                              <Component id="tuesdayLunch" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="monLunch" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                       <Component id="wedLunch" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="thursLunch" min="-2" max="-2" attributes="0"/>
@@ -255,66 +284,30 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="sunLunch" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="monDinner" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="tuesdayDinner" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="wedDinner" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="thursDinner" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="fridayDinner" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="satDinner" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="sunDinner" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="monDinner" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tuesdayDinner" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="wedDinner" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="thursDinner" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="fridayDinner" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="satDinner" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="sunDinner" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jobTitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jobTitle2" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jobTitle1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="hourlyWage" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="hours" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tips" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="213" max="32767" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="addButton" pref="70" max="32767" attributes="0"/>
-                  <Component id="backButton" max="32767" attributes="0"/>
+                  <Component id="addButton" alignment="0" pref="70" max="32767" attributes="0"/>
+                  <Component id="backButton" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
@@ -322,28 +315,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel18">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Lunch"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel24">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Dinner"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="hourlyWage">
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="wedLunch">
-    </Component>
-    <Component class="javax.swing.JTextField" name="hours">
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="monDinner">
-    </Component>
-    <Component class="javax.swing.JTextField" name="tips">
-    </Component>
-    <Component class="javax.swing.JTextField" name="socialSecurity">
-    </Component>
     <Component class="javax.swing.JTextField" name="firstName">
     </Component>
     <Component class="javax.swing.JTextField" name="middleName">
@@ -380,12 +351,39 @@
     </Component>
     <Component class="javax.swing.JTextField" name="state">
     </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Address"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="text" type="java.lang.String" value="Wednesday"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="jLabel7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="City"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JCheckBox" name="tuesdayLunch">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel16">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Availability"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Zip Code"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="State"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jobTitle">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel15">
       <Properties>
@@ -413,6 +411,16 @@
         <Property name="text" type="java.lang.String" value="Monday"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JButton" name="backButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="wage1">
+    </Component>
     <Component class="javax.swing.JCheckBox" name="thursLunch">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
@@ -424,71 +432,74 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="fridayLunch">
     </Component>
-    <Component class="javax.swing.JCheckBox" name="fridayDinner">
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="satLunch">
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="satDinner">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel23">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Tuesday"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="sunLunch">
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="sunDinner">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel25">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Open Availability"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jobTitle1">
-    </Component>
-    <Component class="javax.swing.JButton" name="backButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Back"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jobTitle2">
-    </Component>
     <Component class="javax.swing.JButton" name="addButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Modify"/>
+        <Property name="text" type="java.lang.String" value="Submit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="fridayDinner">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel26">
       <Properties>
         <Property name="text" type="java.lang.String" value="Job Title 1"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JCheckBox" name="satLunch">
+    </Component>
+    <Component class="javax.swing.JTextField" name="wage2">
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="satDinner">
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel27">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hourly Wage 1"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel23">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tuesday"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="wedLunch">
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="sunLunch">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel28">
       <Properties>
         <Property name="text" type="java.lang.String" value="Job Title 2"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JCheckBox" name="sunDinner">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jobTitle2">
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
         <Property name="text" type="java.lang.String" value="Job Title 3"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JCheckBox" name="monDinner">
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hourly Wage 3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jobTitle1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel18">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lunch"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="wage3">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel24">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Dinner"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -496,32 +507,12 @@
         <Property name="text" type="java.lang.String" value="Last Name"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JTextField" name="socialSecurity">
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Phone Number"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Address"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="City"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Zip Code"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="State"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jobTitle">
     </Component>
   </SubComponents>
 </Form>

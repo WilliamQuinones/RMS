@@ -27,21 +27,90 @@ public class Shipment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        amount = new javax.swing.JTextField();
+        back = new javax.swing.JButton();
+        enter = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Name");
+
+        name.setText("name");
+
+        jLabel2.setText("Amount");
+
+        amount.setText("0.00");
+
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
+        enter.setText("Enter");
+        enter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(back)
+                        .addGap(241, 241, 241)
+                        .addComponent(enter))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                        .addComponent(amount)))
+                .addContainerGap(315, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 311, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(back)
+                    .addComponent(enter))
+                .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        
+        dispose();
+        Inventory s = new Inventory();
+                        
+        s.setVisible(true);
+// TODO add your handling code here:
+    }//GEN-LAST:event_backActionPerformed
+
+    private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +148,11 @@ public class Shipment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField amount;
+    private javax.swing.JButton back;
+    private javax.swing.JButton enter;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField name;
     // End of variables declaration//GEN-END:variables
 }

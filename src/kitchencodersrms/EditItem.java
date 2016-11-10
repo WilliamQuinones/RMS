@@ -267,7 +267,7 @@ public class EditItem extends javax.swing.JFrame {
         String sql;
         Double iAmount = Double.parseDouble(amount.getText());
         Double crit = Double.parseDouble(criticalAmount.getText());
-        int time = Integer.parseInt(criticalTime.getText());
+        int time = Integer.parseInt(criticalTime.getText())*86400;
         int type = 0;
         if(units.isSelected()){
             type = 1;
@@ -394,7 +394,7 @@ public class EditItem extends javax.swing.JFrame {
                 s5a = rs.getInt("s5amount");
                 nm = rs.getString("itemname");
                 camt = rs.getDouble("criticalamount");
-                ccTime = rs.getInt("criticaltime");
+                ccTime = rs.getInt("criticaltime")/86400;
                 
                 //addInventory(txt);
                 //addAmount(amt);

@@ -5,8 +5,11 @@
         <group>
             <file>file:/Users/williammcclain/Desktop/RMS/src/kitchencodersrms/Login.java</file>
             <file>file:/Users/williammcclain/Desktop/RMS/src/kitchencodersrms/Inventory.java</file>
+            <file>file:/Users/williammcclain/Desktop/RMS/src/kitchencodersrms/Employee.java</file>
+            <file>file:/Users/williammcclain/Desktop/RMS/src/kitchencodersrms/Employees.java</file>
             <file>file:/Users/williammcclain/Desktop/RMS/src/kitchencodersrms/KitchenCodersRMS.java</file>
             <file>file:/Users/williammcclain/Desktop/RMS/src/kitchencodersrms/Item.java</file>
+            <file>file:/Users/williammcclain/Desktop/RMS/src/kitchencodersrms/Orders.java</file>
             <file>file:/Users/williammcclain/Desktop/RMS/src/kitchencodersrms/NewItem.java</file>
             <file>file:/Users/williammcclain/Desktop/RMS/src/kitchencodersrms/Shipment.java</file>
             <file>file:/Users/williammcclain/Desktop/RMS/src/kitchencodersrms/EditItem.java</file>

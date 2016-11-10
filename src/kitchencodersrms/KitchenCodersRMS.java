@@ -125,12 +125,12 @@ public class KitchenCodersRMS {
             if (ItemNames.size() == 0){
                 
                 sql = "INSERT INTO Inventory (id,itemname,itemtype,itemamount,criticalamount,criticaltime) "
-                        +"VALUES (1, 'beef', 3, 100, 50, 10)";
+                        +"VALUES (1, 'beef', 3, 100, 50, 864000)";
                         
                 stmt.execute(sql);
                 System.out.println("Added item");
                 sql = "INSERT INTO Inventory (id,itemname,itemtype,itemamount,criticalamount,criticaltime) "
-                        +"VALUES (2, 'buns', 3, 200, 50, 10)";
+                        +"VALUES (2, 'buns', 3, 200, 50, 864000)";
                         
                 stmt.execute(sql);
                 System.out.println("Added item");

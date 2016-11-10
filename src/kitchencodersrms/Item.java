@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -61,6 +63,7 @@ public class Item extends javax.swing.JFrame {
         criticalTimes = new javax.swing.JList<>();
         jLabel8 = new javax.swing.JLabel();
         units = new javax.swing.JLabel();
+        remove = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -130,6 +133,13 @@ public class Item extends javax.swing.JFrame {
 
         units.setText("Units");
 
+        remove.setText("Remove");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,10 +173,12 @@ public class Item extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
                         .addGap(46, 46, 46)
-                        .addComponent(edit)
-                        .addGap(128, 128, 128))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(remove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(106, 106, 106))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,7 +216,10 @@ public class Item extends javax.swing.JFrame {
                                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(back))
-                            .addComponent(edit))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(edit)
+                                .addGap(53, 53, 53)
+                                .addComponent(remove)))
                         .addGap(36, 36, 36))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -339,6 +354,33 @@ public class Item extends javax.swing.JFrame {
         this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_editActionPerformed
+
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
+       
+    Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            String sql = "DELETE FROM Inventory WHERE itemname = ?";
+            ps = c.prepareStatement(sql);
+            ps.setString(1, name.getText());
+            ps.executeUpdate();
+            c.close();
+            dispose();
+            Inventory s = new Inventory();
+                        
+            s.setVisible(true);
+            
+            } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_removeActionPerformed
     void sendName(String info){
         name.setText(info);
     }
@@ -348,19 +390,28 @@ public class Item extends javax.swing.JFrame {
 
     
     private void addShipment(int txt){
-        
+        if(txt != 0){
+        String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                          .format(new Date(txt * 1000L));
        shipments.setModel(DM);
-       DM.addElement(txt);
+       DM.addElement(dateAsText);
+        }
     }
     private void addAmount(Double txt){
         
+        if(txt != 0){
        amounts.setModel(DM2);
        DM2.addElement(txt);
+        }
     }
     private void addCritical(int time){
+        if(time != 0){
+        String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                          .format(new Date(time * 1000L));
         
        criticalTimes.setModel(DM3);
-       DM3.addElement(time);
+       DM3.addElement(dateAsText);
+        }
     }
     
 
@@ -387,6 +438,7 @@ public class Item extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTextPane name;
+    private javax.swing.JButton remove;
     private javax.swing.JList<String> shipments;
     private javax.swing.JTextPane totalAmount;
     private javax.swing.JLabel units;

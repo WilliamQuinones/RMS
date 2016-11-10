@@ -187,7 +187,7 @@ public class NewItem extends javax.swing.JFrame {
         }
         Double cAmount = Double.parseDouble(criticalAmount.getText());
         int cTime = Integer.parseInt(criticalTime.getText().trim());
-        int crTime= cTime;
+        int crTime= cTime*86400;
         Double iAmount = Double.parseDouble(amount.getText());
         c = KitchenCodersRMS.callDatbase();
         String sql = "INSERT INTO Inventory (itemname,itemtype,itemamount,criticalamount,criticaltime) "

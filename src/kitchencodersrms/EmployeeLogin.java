@@ -24,8 +24,8 @@ import javax.swing.*;
  */
 public class EmployeeLogin extends javax.swing.JFrame {
 
-    
-    
+
+
     PreparedStatement ps=null;
     Connection c = null;
     ResultSet rs = null;
@@ -129,12 +129,12 @@ public class EmployeeLogin extends javax.swing.JFrame {
     private void NewTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTicketButtonActionPerformed
         dispose();
         POS s = new POS();
-                        
+
         s.setVisible(true);
-        
+
         // TODO add your handling code here:
 
-        
+
 
     }//GEN-LAST:event_NewTicketButtonActionPerformed
 
@@ -143,10 +143,48 @@ public class EmployeeLogin extends javax.swing.JFrame {
 
         dispose();
         Login s = new Login();
-                        
+
         s.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_BackButtonActionPerformed
+    private void ClockInActionPerformed(java.awt.event.ActionEvent evt) {
 
+        //Checks database for valid id
+        String input = EmployeeID.getText();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:RMS.db");
+
+         } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        try {
+           Statement stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM Employee;" );
+            int row;
+            int clock = 1;
+
+            while(rs.next()){
+                if(rs.getString("employeeid").equals(input)){
+                       row = rs.getRow();
+                       String firstname = rs.getString("firstname");
+                       String lastname = rs.getString("lastname");
+                        JOptionPane.showMessageDialog(null,"Welcome "+firstname+" "+lastname);
+
+
+                }else{
+                        JOptionPane.showMessageDialog(null, "Invalid Login");
+                       }
+            }
+            rs.close();
+            stmt.close();
+            c.close();
+
+         } catch (SQLException ex) {
+                        Logger.getLogger(EmployeeLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+    }
     /**
      * @param args the command line arguments
      */
@@ -154,7 +192,7 @@ public class EmployeeLogin extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

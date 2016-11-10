@@ -5,7 +5,11 @@
  */
 package kitchencodersrms;
 
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -40,6 +44,11 @@ public class Inventory extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         inventoryList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -130,7 +139,19 @@ public class Inventory extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    DefaultListModel DM = new DefaultListModel();
+    DefaultListModel DM2 = new DefaultListModel();
+    
+    private void addInventory(String txt){
+        
+       inventoryList.setModel(DM);
+       DM.addElement(txt);
+    }
+    private void addAmount(Double txt){
+        
+       amountList.setModel(DM2);
+       DM2.addElement(txt);
+    }
     private void newItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newItemActionPerformed
     dispose();
         NewItem s = new NewItem();
@@ -159,6 +180,27 @@ public class Inventory extends javax.swing.JFrame {
     private void inventoryListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_inventoryListValueChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_inventoryListValueChanged
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        Connection c = null;
+        ResultSet rs = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM Inventory");
+            while(rs.next()){
+                String txt = rs.getString("itemname");
+                Double amt = rs.getDouble("itemamount");
+                addInventory(txt);
+                addAmount(amt);
+            }
+            c.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -190,10 +232,13 @@ public class Inventory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                String[] s = {"one", "two", "three"};
+                
                 new Inventory().setVisible(true);
             }
         });
+        
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

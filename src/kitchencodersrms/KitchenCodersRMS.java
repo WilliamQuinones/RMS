@@ -348,7 +348,7 @@ public class KitchenCodersRMS {
             Statement stmt = c.createStatement();
             stmt.execute(sql);
             System.out.println("Added Sales Table");
-            
+            c.close();
         
         } catch (SQLException ex) {
             Logger.getLogger(KitchenCodersRMS.class.getName()).log(Level.SEVERE, null, ex);

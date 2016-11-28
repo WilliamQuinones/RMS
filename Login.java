@@ -31,21 +31,23 @@ public class Login extends javax.swing.JFrame {
     Connection c = null;
     ResultSet rs = null;
     int counter = 0;
+    
     public Login() {
         initComponents();
         groupButton();
+        setText();
     }
-    private void groupButton( ) {
-
-ButtonGroup bg1 = new ButtonGroup( );
-
-    bg1.add(ManagerButton);
-    bg1.add(OrdersButton);
-    bg1.add(POSbutton);
-
-}
-
-
+    private void setText(){
+        UserName.setText("username");
+        PassWord.setText("Password");
+    }
+    private void groupButton(){
+        ButtonGroup bg1 = new ButtonGroup();
+        bg1.add(POSbutton);
+        bg1.add(ManagerButton);
+        bg1.add(OrdersButton);
+    }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -178,8 +180,7 @@ ButtonGroup bg1 = new ButtonGroup( );
     }// </editor-fold>//GEN-END:initComponents
 
     private void EnterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterButtonActionPerformed
-       
-            if(counter<3){
+        if(counter<3){
         counter=counter+1;
         try {
             Class.forName("org.sqlite.JDBC");
@@ -217,16 +218,16 @@ ButtonGroup bg1 = new ButtonGroup( );
                 if(1==managerstatus.get(0)){
                     if(OrdersButton.isSelected()){
                         //java.awt.EventQueue.invokeLater(new Runnable() {
+
                        // public void run() {
                        dispose();
                         Orders s = new Orders();
                         s.setVisible(true);
-                       
+                        
                         //}
                    // });
                         
-                    }
-                    else if (POSbutton.isSelected()){
+                    } else if(POSbutton.isSelected()){
                         
                         //java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -235,20 +236,19 @@ ButtonGroup bg1 = new ButtonGroup( );
                         KitchenCodersRMS.callEmployeeScreen();
                         //close();
                         //}
-
+                        
                     //});
                         
-                    }
-                    else if(ManagerButton.isSelected()){
+                    }else if(ManagerButton.isSelected()){
                         //java.awt.EventQueue.invokeLater(new Runnable() {
 
                         //public void run() {
-  
+                            
                        dispose();
                         ManagerMenu s = new ManagerMenu();
                         
                         s.setVisible(true);
-
+                        
                         //}
                         
                     //});

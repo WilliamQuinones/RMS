@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -73,6 +74,11 @@ public class MenuItem extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel2.setText("Items");
 
@@ -337,6 +343,129 @@ public class MenuItem extends javax.swing.JFrame {
             Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_deleteActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        PreparedStatement ps1 = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            String sql = "SELECT * FROM MenuItem WHERE name = ?";
+            ps = c.prepareStatement(sql);
+            ps.setString(1, name.getText());
+            rs = ps.executeQuery();
+            System.out.println("query performed");
+            Double prc = null;
+            Double cst = null;
+            String txt = null;
+            int type1 = 0;
+            String i1 = "";
+            String i2 = "";
+            String i3 = "";
+            String i4 = "";
+            String i5 = "";
+            String i6 = "";
+            String i7 = "";
+            String i8 = "";
+            String i9 = "";
+            String i10 = "";
+            Double a1 = 0.0;
+            Double a2 = 0.0;
+            Double a3 = 0.0;
+            Double a4 = 0.0;
+            Double a5 = 0.0;
+            Double a6 = 0.0;
+            Double a7 = 0.0;
+            Double a8 = 0.0;
+            Double a9 = 0.0;
+            Double a10 = 0.0;
+            
+            while(rs.next()){
+                txt = rs.getString("name");
+                prc = rs.getDouble("price");
+                cst = rs.getDouble("cost");
+                type1 = rs.getInt("type");
+                i1 = rs.getString("item1");
+                i2 = rs.getString("item2");
+                i3 = rs.getString("item3");
+                i4 = rs.getString("item4");
+                i5 = rs.getString("item5");
+                i6 = rs.getString("item6");
+                i7 = rs.getString("item7");
+                i8 = rs.getString("item8");
+                i9 = rs.getString("item9");
+                i10 = rs.getString("item10");
+                a1 = rs.getDouble("amount1");
+                a2 = rs.getDouble("amount2");
+                a3 = rs.getDouble("amount3");
+                a4 = rs.getDouble("amount4");
+                a5 = rs.getDouble("amount5");
+                a6 = rs.getDouble("amount6");
+                a7 = rs.getDouble("amount7");
+                a8 = rs.getDouble("amount8");
+                a9 = rs.getDouble("amount9");
+                a10 = rs.getDouble("amount10");
+                
+            }
+           
+                //Double amt = rs.getDouble("itemamount");
+                String price1 = prc.toString();
+                price.setText(price1);
+                String cost1 = cst.toString();
+                cost.setText(cost1);
+                if(type1==1){
+                    type.setText("Entre");
+                }
+                if(type1==2){
+                    type.setText("Side");
+                }
+                if(type1==3){
+                    type.setText("Desert");
+                }
+                if(type1==4){
+                    type.setText("Drink");
+                }
+                String am1 = a1.toString();
+                amount1.setText(am1);
+                String am2 = a2.toString();
+                amount2.setText(am2);
+                String am3 = a3.toString();
+                amount3.setText(am3);
+                String am4 = a4.toString();
+                amount4.setText(am4);
+                String am5 = a5.toString();
+                amount5.setText(am5);
+                String am6 = a6.toString();
+                amount6.setText(am6);
+                String am7 = a7.toString();
+                amount7.setText(am7);
+                String am8 = a8.toString();
+                amount8.setText(am8);
+                String am9 = a9.toString();
+                amount9.setText(am9);
+                String am10 = a10.toString();
+                amount10.setText(am10);
+                item1.setText(i1);
+                item2.setText(i2);
+                item3.setText(i3);
+                item4.setText(i4);
+                item5.setText(i5);
+                item6.setText(i6);
+                item7.setText(i7);
+                item8.setText(i8);
+                item9.setText(i9);
+                item10.setText(i10);
+                c.close();
+                 
+               
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
     DefaultListModel DM = new DefaultListModel();
     DefaultListModel DM2 = new DefaultListModel();
     private void addMenuItem(String txt){
@@ -353,26 +482,7 @@ public class MenuItem extends javax.swing.JFrame {
        //amountList.setModel(DM2);
        DM2.addElement(txt);
     }
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
-        // TODO add your handling code here:
-        Connection c = null;
-        ResultSet rs = null;
-        c = KitchenCodersRMS.callDatbase();
-        Statement stmt;
-        try {
-            stmt = c.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM MenuItem");
-            while(rs.next()){
-                String txt = rs.getString("name");
-                //Double amt = rs.getDouble("itemamount");
-                addMenuItem(txt);
-                //addAmount(amt);
-            }
-            c.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }                                 
+                                
 
     private void inventoryListMouseClicked(java.awt.event.MouseEvent evt) {                                           
         // TODO add your handling code here

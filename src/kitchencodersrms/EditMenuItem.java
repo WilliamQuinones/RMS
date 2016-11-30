@@ -5,11 +5,24 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author williammcclain
  */
 public class EditMenuItem extends javax.swing.JFrame {
+    PreparedStatement ps=null;
+    Connection c = null;
+    ResultSet rs = null;
+    String Original=null;
 
     /**
      * Creates new form EditMenuItem
@@ -66,6 +79,11 @@ public class EditMenuItem extends javax.swing.JFrame {
         drink = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel5.setText("Cost");
 
@@ -105,6 +123,11 @@ public class EditMenuItem extends javax.swing.JFrame {
         });
 
         enter.setText("Enter");
+        enter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Name");
 
@@ -171,7 +194,7 @@ public class EditMenuItem extends javax.swing.JFrame {
                                             .addComponent(amount9, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                             .addComponent(amount6, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                             .addComponent(amount7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                            .addComponent(amount8, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                            .addComponent(amount8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                             .addComponent(amount10, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
@@ -204,14 +227,14 @@ public class EditMenuItem extends javax.swing.JFrame {
                 .addContainerGap(51, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
                         .addComponent(entre)
                         .addComponent(side)
                         .addComponent(desert)
-                        .addComponent(drink)))
+                        .addComponent(drink))
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
@@ -229,9 +252,9 @@ public class EditMenuItem extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(amount7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(amount8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(amount8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(amount9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,10 +319,269 @@ public class EditMenuItem extends javax.swing.JFrame {
     }//GEN-LAST:event_BackActionPerformed
 void sendName(String info){
         name.setText(info);
+        Original = info;
     }
     private void item4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_item4ActionPerformed
+
+    private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
+        // TODO add your handling code here:
+         String name1 = name.getText();
+        int type1=0;
+        if(entre.isSelected()){
+            type1=1;
+        }
+        if(side.isSelected()){
+            type1=2;
+        }
+        if(desert.isSelected()){
+            type1=3;
+        }
+        if(drink.isSelected()){
+            type1=4;
+        }
+        Double a1=0.0;
+        if(amount1.getText().equals("")==false){
+        if(Double.parseDouble(amount1.getText())>0 && amount1.getText()!=null){
+           a1 =  Double.parseDouble(amount1.getText());
+        }
+        }
+        Double a2=0.0;
+        if(amount2.getText().equals("")==false){
+        if(Double.parseDouble(amount2.getText())>0 && amount2.getText()!=null){
+           a2 =  Double.parseDouble(amount2.getText());
+        }
+        }
+        Double a3=0.0;
+        if(amount3.getText().equals("")==false){
+        if(Double.parseDouble(amount3.getText())>0 && amount3.getText()!=null){
+           a3 =  Double.parseDouble(amount3.getText());
+        }
+        }
+        Double a4=0.0;
+        if(amount4.getText().equals("")==false){
+        if(Double.parseDouble(amount4.getText())>0 && amount4.getText()!=null){
+           a4 =  Double.parseDouble(amount4.getText());
+        }
+        }
+        Double a5=0.0;
+        if(amount5.getText().equals("")==false){
+        if(Double.parseDouble(amount5.getText())>0 && amount5.getText()!=null){
+           a5 =  Double.parseDouble(amount5.getText());
+        }
+        }
+        Double a6=0.0;
+        if(amount6.getText().equals("")==false){
+        if(Double.parseDouble(amount6.getText())>0 && amount6.getText()!=null){
+           a6 =  Double.parseDouble(amount6.getText());
+        }
+        }
+        Double a7=0.0;
+        if(amount7.getText().equals("")==false){
+        if(Double.parseDouble(amount7.getText())>0 && amount7.getText()!=null){
+           a7 =  Double.parseDouble(amount7.getText());
+        }
+        }
+        Double a8=0.0;
+        if(amount8.getText().equals("")==false){
+        if(Double.parseDouble(amount8.getText())>0 && amount8.getText()!=null){
+           a8 =  Double.parseDouble(amount8.getText());
+        }
+        }
+        Double a9=0.0;
+        if(amount9.getText().equals("")==false){
+        if(Double.parseDouble(amount9.getText())>0 && amount9.getText()!=null){
+           a9 =  Double.parseDouble(amount9.getText());
+        }
+        }
+        Double a10=0.0;
+        if(amount10.getText().equals("")==false){
+        if(Double.parseDouble(amount10.getText())>0 && amount10.getText()!=null){
+           a10 =  Double.parseDouble(amount10.getText());
+        }
+        }
+        String i1 = item1.getText();
+        String i2 = item2.getText();
+        String i3 = item3.getText();
+        String i4 = item4.getText();
+        String i5 = item5.getText();
+        String i6 = item6.getText();
+        String i7 = item7.getText();
+        String i8 = item8.getText();
+        String i9 = item9.getText();
+        String i10 = item10.getText();
+        Double cst= 0.0;
+        if(cost.getText()!=null){
+            cst =  Double.parseDouble(cost.getText());
+        }
+        Double prc= 0.0;
+        if(price.getText()!=null){
+            prc =  Double.parseDouble(price.getText());
+        }
+        c = KitchenCodersRMS.callDatbase();
+        String sql = "INSERT INTO MenuItem (name,type,cost,price,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,amount1,amount2,amount3,amount4,amount5,amount6,amount7,amount8,amount9,amount10) "
+                        +"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try {
+            ps = c.prepareStatement(sql);
+            ps.setString(1, name1);
+            ps.setInt(2, type1);
+            ps.setDouble(3, cst);
+            ps.setDouble(4, prc);
+            ps.setString(5, i1);
+            ps.setString(6, i2);
+            ps.setString(7, i3);
+            ps.setString(8, i4);
+            ps.setString(9, i5);
+            ps.setString(10, i6);
+            ps.setString(11, i7);
+            ps.setString(12, i8);
+            ps.setString(13, i9);
+            ps.setString(14, i10);
+            ps.setDouble(15, a1);
+            ps.setDouble(16, a2);
+            ps.setDouble(17, a3);
+            ps.setDouble(18, a4);
+            ps.setDouble(19, a5);
+            ps.setDouble(20, a6);
+            ps.setDouble(21, a7);
+            ps.setDouble(22, a8);
+            ps.setDouble(23, a9);
+            ps.setDouble(24, a10);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NewItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dispose();
+        Menu s = new Menu();
+                        
+        s.setVisible(true);
+    }//GEN-LAST:event_enterActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+         Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        PreparedStatement ps1 = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            String sql = "SELECT * FROM MenuItem WHERE name = ?";
+            ps = c.prepareStatement(sql);
+            ps.setString(1, name.getText());
+            rs = ps.executeQuery();
+            System.out.println("query performed");
+            ArrayList<String> itemNames = new ArrayList<String>();
+            Double prc = null;
+            Double cst = null;
+            String txt = null;
+            int type1 = 0;
+            String i1 = "";
+            String i2 = "";
+            String i3 = "";
+            String i4 = "";
+            String i5 = "";
+            String i6 = "";
+            String i7 = "";
+            String i8 = "";
+            String i9 = "";
+            String i10 = "";
+            Double a1 = 0.0;
+            Double a2 = 0.0;
+            Double a3 = 0.0;
+            Double a4 = 0.0;
+            Double a5 = 0.0;
+            Double a6 = 0.0;
+            Double a7 = 0.0;
+            Double a8 = 0.0;
+            Double a9 = 0.0;
+            Double a10 = 0.0;
+            
+            while(rs.next()){
+                txt = rs.getString("name");
+                prc = rs.getDouble("price");
+                cst = rs.getDouble("cost");
+                type1 = rs.getInt("type");
+                i1 = rs.getString("item1");
+                i2 = rs.getString("item2");
+                i3 = rs.getString("item3");
+                i4 = rs.getString("item4");
+                i5 = rs.getString("item5");
+                i6 = rs.getString("item6");
+                i7 = rs.getString("item7");
+                i8 = rs.getString("item8");
+                i9 = rs.getString("item9");
+                i10 = rs.getString("item10");
+                a1 = rs.getDouble("amount1");
+                a2 = rs.getDouble("amount2");
+                a3 = rs.getDouble("amount3");
+                a4 = rs.getDouble("amount4");
+                a5 = rs.getDouble("amount5");
+                a6 = rs.getDouble("amount6");
+                a7 = rs.getDouble("amount7");
+                a8 = rs.getDouble("amount8");
+                a9 = rs.getDouble("amount9");
+                a10 = rs.getDouble("amount10");
+                
+            }
+           
+                //Double amt = rs.getDouble("itemamount");
+                String price1 = prc.toString();
+                price.setText(price1);
+                String cost1 = cst.toString();
+                cost.setText(cost1);
+                if(type1==1){
+                    entre.setSelected(true);
+                }
+                if(type1==2){
+                    side.setSelected(true);
+                }
+                if(type1==3){
+                    desert.setSelected(true);
+                }
+                if(type1==4){
+                    drink.setSelected(true);
+                }
+                String am1 = a1.toString();
+                amount1.setText(am1);
+                String am2 = a2.toString();
+                amount2.setText(am2);
+                String am3 = a3.toString();
+                amount3.setText(am3);
+                String am4 = a4.toString();
+                amount4.setText(am4);
+                String am5 = a5.toString();
+                amount5.setText(am5);
+                String am6 = a6.toString();
+                amount6.setText(am6);
+                String am7 = a7.toString();
+                amount7.setText(am7);
+                String am8 = a8.toString();
+                amount8.setText(am8);
+                String am9 = a9.toString();
+                amount9.setText(am9);
+                String am10 = a10.toString();
+                amount10.setText(am10);
+                item1.setText(i1);
+                item2.setText(i2);
+                item3.setText(i3);
+                item4.setText(i4);
+                item5.setText(i5);
+                item6.setText(i6);
+                item7.setText(i7);
+                item8.setText(i8);
+                item9.setText(i9);
+                item10.setText(i10);
+                c.close();
+                 
+               
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

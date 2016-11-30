@@ -186,6 +186,7 @@ public class EmployeeLogin extends javax.swing.JFrame {
             int clock = 1;
 
             while(rs.next()){
+                
                 if(rs.getString("employeeid").equals(input)){
                        row = rs.getRow();
                        String firstname = rs.getString("firstname");

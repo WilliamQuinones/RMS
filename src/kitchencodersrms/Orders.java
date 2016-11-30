@@ -5,11 +5,24 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author williammcclain
  */
 public class Orders extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form Orders
@@ -28,17 +41,32 @@ public class Orders extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        orders = new javax.swing.JList<>();
         Back = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        orderDetails = new javax.swing.JList<>();
+        finish = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        orders.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        orders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ordersMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(orders);
 
         Back.setText("Back");
         Back.addActionListener(new java.awt.event.ActionListener() {
@@ -47,32 +75,77 @@ public class Orders extends javax.swing.JFrame {
             }
         });
 
+        orderDetails.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(orderDetails);
+
+        finish.setText("Finish");
+
+        jLabel1.setText("Orders");
+
+        jLabel2.setText("Details");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(645, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
                 .addComponent(Back)
-                .addGap(80, 80, 80))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(finish)
+                .addGap(120, 120, 120))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(151, 151, 151))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
-                .addComponent(Back)
-                .addGap(28, 28, 28))
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Back)
+                    .addComponent(finish))
+                .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    DefaultListModel DM = new DefaultListModel();
+    DefaultListModel DM1 = new DefaultListModel();
+    
+    private void addDetail(String txt){
+        
+       orderDetails.setModel(DM);
+       DM.addElement(txt);
+    }
+    private void addOrder(String txt){
+        
+       orderDetails.setModel(DM1);
+       DM1.addElement(txt);
+    }
+    
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         dispose();
         Login s = new Login();
@@ -81,6 +154,72 @@ public class Orders extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        Connection c = null;
+        ResultSet rs = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM Tickets");
+            while(rs.next()){
+                int open1 = rs.getInt("open");
+                if(open1==1){
+                    int ticket1 = rs.getInt("id");
+                    int time1 = rs.getInt("time");
+                    
+                    String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                          .format(new Date(time1 * 1000L));
+                    String displayed = ticket1+"    "+dateAsText;
+                    addOrder(displayed);
+                }
+            }
+            c.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void ordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ordersMouseClicked
+        // TODO add your handling code here:
+        orderDetails.clearSelection();
+        String selected = orders.getSelectedValue().toString();
+        int space = selected.indexOf(" ");
+        selected = selected.substring(0, space);
+        Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        PreparedStatement ps1 = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            String sql = "SELECT * FROM Tickets WHERE id = ?";
+            ps = c.prepareStatement(sql);
+            ps.setString(1, selected);
+            rs = ps.executeQuery();
+            System.out.println("query performed");
+            
+            while(rs.next()){
+                addDetail("Ticket: "+selected);
+                String server = rs.getString("server");
+                addDetail("Server: "+server);
+                
+                
+                
+            }
+           
+                c.close();
+                 
+               
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ordersMouseClicked
 
     /**
      * @param args the command line arguments
@@ -119,7 +258,12 @@ public class Orders extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JButton finish;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> orderDetails;
+    private javax.swing.JList<String> orders;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,11 +5,21 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author williammcclain
  */
 public class NewMenuItem extends javax.swing.JFrame {
+    PreparedStatement ps=null;
+    Connection c = null;
+    ResultSet rs = null;
 
     /**
      * Creates new form NewMenuItem
@@ -103,6 +113,11 @@ public class NewMenuItem extends javax.swing.JFrame {
         });
 
         enter.setText("Enter");
+        enter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Cost");
 
@@ -303,6 +318,140 @@ public class NewMenuItem extends javax.swing.JFrame {
     private void item10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_item10ActionPerformed
+
+    private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
+        // TODO add your handling code here:
+        String name1 = name.getText();
+        int type1=0;
+        if(entre.isSelected()){
+            type1=1;
+        }
+        if(side.isSelected()){
+            type1=2;
+        }
+        if(desert.isSelected()){
+            type1=3;
+        }
+        if(drink.isSelected()){
+            type1=4;
+        }
+        Double a1=0.0;
+        if(amount1.getText().equals("")==false){
+        if(Double.parseDouble(amount1.getText())>0 && amount1.getText()!=null){
+           a1 =  Double.parseDouble(amount1.getText());
+        }
+        }
+        Double a2=0.0;
+        if(amount2.getText().equals("")==false){
+        if(Double.parseDouble(amount2.getText())>0 && amount2.getText()!=null){
+           a2 =  Double.parseDouble(amount2.getText());
+        }
+        }
+        Double a3=0.0;
+        if(amount3.getText().equals("")==false){
+        if(Double.parseDouble(amount3.getText())>0 && amount3.getText()!=null){
+           a3 =  Double.parseDouble(amount3.getText());
+        }
+        }
+        Double a4=0.0;
+        if(amount4.getText().equals("")==false){
+        if(Double.parseDouble(amount4.getText())>0 && amount4.getText()!=null){
+           a4 =  Double.parseDouble(amount4.getText());
+        }
+        }
+        Double a5=0.0;
+        if(amount5.getText().equals("")==false){
+        if(Double.parseDouble(amount5.getText())>0 && amount5.getText()!=null){
+           a5 =  Double.parseDouble(amount5.getText());
+        }
+        }
+        Double a6=0.0;
+        if(amount6.getText().equals("")==false){
+        if(Double.parseDouble(amount6.getText())>0 && amount6.getText()!=null){
+           a6 =  Double.parseDouble(amount6.getText());
+        }
+        }
+        Double a7=0.0;
+        if(amount7.getText().equals("")==false){
+        if(Double.parseDouble(amount7.getText())>0 && amount7.getText()!=null){
+           a7 =  Double.parseDouble(amount7.getText());
+        }
+        }
+        Double a8=0.0;
+        if(amount8.getText().equals("")==false){
+        if(Double.parseDouble(amount8.getText())>0 && amount8.getText()!=null){
+           a8 =  Double.parseDouble(amount8.getText());
+        }
+        }
+        Double a9=0.0;
+        if(amount9.getText().equals("")==false){
+        if(Double.parseDouble(amount9.getText())>0 && amount9.getText()!=null){
+           a9 =  Double.parseDouble(amount9.getText());
+        }
+        }
+        Double a10=0.0;
+        if(amount10.getText().equals("")==false){
+        if(Double.parseDouble(amount10.getText())>0 && amount10.getText()!=null){
+           a10 =  Double.parseDouble(amount10.getText());
+        }
+        }
+        String i1 = item1.getText();
+        String i2 = item2.getText();
+        String i3 = item3.getText();
+        String i4 = item4.getText();
+        String i5 = item5.getText();
+        String i6 = item6.getText();
+        String i7 = item7.getText();
+        String i8 = item8.getText();
+        String i9 = item9.getText();
+        String i10 = item10.getText();
+        Double cst= 0.0;
+        if(cost.getText()!=null){
+            cst =  Double.parseDouble(cost.getText());
+        }
+        Double prc= 0.0;
+        if(price.getText()!=null){
+            prc =  Double.parseDouble(price.getText());
+        }
+        c = KitchenCodersRMS.callDatbase();
+        String sql = "INSERT INTO MenuItem (name,type,cost,price,item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,amount1,amount2,amount3,amount4,amount5,amount6,amount7,amount8,amount9,amount10) "
+                        +"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try {
+            ps = c.prepareStatement(sql);
+            ps.setString(1, name1);
+            ps.setInt(2, type1);
+            ps.setDouble(3, cst);
+            ps.setDouble(4, prc);
+            ps.setString(5, i1);
+            ps.setString(6, i2);
+            ps.setString(7, i3);
+            ps.setString(8, i4);
+            ps.setString(9, i5);
+            ps.setString(10, i6);
+            ps.setString(11, i7);
+            ps.setString(12, i8);
+            ps.setString(13, i9);
+            ps.setString(14, i10);
+            ps.setDouble(15, a1);
+            ps.setDouble(16, a2);
+            ps.setDouble(17, a3);
+            ps.setDouble(18, a4);
+            ps.setDouble(19, a5);
+            ps.setDouble(20, a6);
+            ps.setDouble(21, a7);
+            ps.setDouble(22, a8);
+            ps.setDouble(23, a9);
+            ps.setDouble(24, a10);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NewItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        dispose();
+        Menu s = new Menu();
+                        
+        s.setVisible(true);
+    }//GEN-LAST:event_enterActionPerformed
 
     /**
      * @param args the command line arguments

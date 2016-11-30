@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import java.util.ArrayList;
+import java.sql.*;
 
 /**
  *
@@ -51,6 +53,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         entreList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -177,6 +184,33 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+        DefaultListModel DM = new DefaultListModel();
+    DefaultListModel DM2 = new DefaultListModel();
+    DefaultListModel DM3 = new DefaultListModel();
+    DefaultListModel DM4 = new DefaultListModel();
+    
+    private void addEntre(String txt){
+        
+       entreList.setModel(DM);
+       DM.addElement(txt);
+    }
+    private void addDesert(String txt){
+        
+       desertList.setModel(DM2);
+       DM2.addElement(txt);
+    }
+    
+    private void addSide(String txt){
+        
+       sideList.setModel(DM3);
+       DM3.addElement(txt);
+    }
+    private void addDrink(String txt){
+        
+       drinkList.setModel(DM4);
+       DM4.addElement(txt);
+    }
     private void newItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newItemActionPerformed
         dispose();
         NewMenuItem s = new NewMenuItem();
@@ -230,8 +264,9 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_drinkListMouseClicked
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+         // TODO add your handling code here:
         Connection c = null;
         ResultSet rs = null;
         c = KitchenCodersRMS.callDatbase();
@@ -240,56 +275,35 @@ public class Menu extends javax.swing.JFrame {
             stmt = c.createStatement();
             rs = stmt.executeQuery("SELECT * FROM MenuItem");
             while(rs.next()){
-                int type = rs.getInt("type");
+                int type1 = rs.getInt("type");
                 String txt = rs.getString("name");
+                System.out.println(txt);
                 //Double amt = rs.getDouble("itemamount");
-                if(type == 1){
+                if(type1 == 1){
                     addEntre(txt);
                 }
-                if(type == 2){
+                if(type1 == 2){
                     addSide(txt);
                 }
-                if(type == 3){
+                if(type1 == 3){
                     addDesert(txt);
                 }
-                if(type == 4){
+                if(type1 == 4){
                     addDrink(txt);
                 }
                 
                 
             }
             c.close();
+            
         } catch (SQLException ex) {
             Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }     
+    }//GEN-LAST:event_formWindowOpened
+
     
-    DefaultListModel DM = new DefaultListModel();
-    DefaultListModel DM2 = new DefaultListModel();
-    DefaultListModel DM3 = new DefaultListModel();
-    DefaultListModel DM4 = new DefaultListModel();
     
-    private void addEntre(String txt){
-        
-       entreList.setModel(DM);
-       DM.addElement(txt);
-    }
-    private void addDesert(String txt){
-        
-       desertList.setModel(DM2);
-       DM2.addElement(txt);
-    }
-    
-    private void addSide(String txt){
-        
-       sideList.setModel(DM);
-       DM3.addElement(txt);
-    }
-    private void addDrink(String txt){
-        
-       drinkList.setModel(DM2);
-       DM4.addElement(txt);
-    }
+
     /**
      * @param args the command line arguments
      */

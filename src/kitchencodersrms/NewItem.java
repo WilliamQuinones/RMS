@@ -49,7 +49,7 @@ public class NewItem extends javax.swing.JFrame {
         units = new javax.swing.JRadioButton();
         liters = new javax.swing.JRadioButton();
         pounds = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        enter = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         criticalAmount = new javax.swing.JTextField();
@@ -72,10 +72,10 @@ public class NewItem extends javax.swing.JFrame {
 
         pounds.setText("Pounds");
 
-        jButton1.setText("Enter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        enter.setText("Enter");
+        enter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                enterActionPerformed(evt);
             }
         });
 
@@ -106,7 +106,7 @@ public class NewItem extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(enter)
                 .addGap(232, 232, 232))
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
@@ -156,7 +156,7 @@ public class NewItem extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(enter)
                     .addComponent(backButton))
                 .addGap(23, 23, 23))
         );
@@ -172,7 +172,7 @@ public class NewItem extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
         // TODO add your handling code here:
         String name1 = name.getText();
         int type1=0;
@@ -208,7 +208,7 @@ public class NewItem extends javax.swing.JFrame {
         Inventory s = new Inventory();
                         
         s.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_enterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,7 +253,7 @@ public class NewItem extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JTextField criticalAmount;
     private javax.swing.JTextField criticalTime;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton enter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

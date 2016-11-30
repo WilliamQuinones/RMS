@@ -5,6 +5,14 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author williammcclain
@@ -53,8 +61,18 @@ public class MenuItem extends javax.swing.JFrame {
         jLabel1.setText("Menu Items");
 
         newMenuItem.setText("New Menu Item");
+        newMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newMenuItemActionPerformed(evt);
+            }
+        });
 
         editMenuItem.setText("Edit Menu Item");
+        editMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editMenuItemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,11 +115,70 @@ public class MenuItem extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    DefaultListModel DM = new DefaultListModel();
+    DefaultListModel DM2 = new DefaultListModel();
+    private void addMenuItem(String txt){
+        
+       menuItemList.setModel(DM);
+       DM.addElement(txt);
+    }
+    
+    private void addAmount(Double txt){
+        
+       //amountList.setModel(DM2);
+       DM2.addElement(txt);
+    }
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
+        dispose();
+        ManagerMenu s = new ManagerMenu();
+                        
+        s.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
+    private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        NewMenuItem s = new NewMenuItem();
+                        
+        s.setVisible(true);
+    }//GEN-LAST:event_newMenuItemActionPerformed
+
+    private void editMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMenuItemActionPerformed
+        // TODO add your handling code here:
+        String selected = menuItemList.getSelectedValue().toString();
+        EditMenuItem ni = new EditMenuItem();
+        ni.sendName(selected);
+        ni.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_editMenuItemActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+        // TODO add your handling code here:
+        Connection c = null;
+        ResultSet rs = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM MenuItem");
+            while(rs.next()){
+                String txt = rs.getString("name");
+                //Double amt = rs.getDouble("itemamount");
+                addMenuItem(txt);
+                //addAmount(amt);
+            }
+            c.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }                                 
+
+    private void inventoryListMouseClicked(java.awt.event.MouseEvent evt) {                                           
+        // TODO add your handling code here
+        
+        
+    }
     /**
      * @param args the command line arguments
      */

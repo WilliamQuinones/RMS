@@ -232,6 +232,10 @@ public class NewMenuItem extends javax.swing.JFrame {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
+        dispose();
+        MenuItem s = new MenuItem();
+                        
+        s.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
 
     private void item4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item4ActionPerformed

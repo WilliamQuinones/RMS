@@ -6,6 +6,7 @@
 package kitchencodersrms;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -67,6 +68,7 @@ public class MenuItem extends javax.swing.JFrame {
         amount7 = new javax.swing.JTextField();
         amount8 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +117,13 @@ public class MenuItem extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Items");
+
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,17 +180,19 @@ public class MenuItem extends javax.swing.JFrame {
                                     .addComponent(amount10, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(59, 59, 59)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cost)
-                                            .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(76, 76, 76)
-                                        .addComponent(jLabel6))))))
+                                        .addComponent(jLabel6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(57, 57, 57)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(delete)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(cost)
+                                                .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(138, 138, 138)
                         .addComponent(jLabel7)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +261,8 @@ public class MenuItem extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Back)
-                    .addComponent(editM))
+                    .addComponent(editM)
+                    .addComponent(delete))
                 .addGap(53, 53, 53))
         );
 
@@ -279,13 +291,46 @@ public class MenuItem extends javax.swing.JFrame {
 
     private void editMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMActionPerformed
         // TODO add your handling code here:
+          
+        String selected = name.getText();
+        EditMenuItem ni = new EditMenuItem();
+        ni.sendName(selected);
+        ni.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_editMActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        // TODO add your handling code here:
+        Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            String sql = "DELETE FROM MenuItem WHERE name = ?";
+            ps = c.prepareStatement(sql);
+            ps.setString(1, name.getText());
+            ps.executeUpdate();
+            c.close();
+            dispose();
+            Menu s = new Menu();
+                        
+            s.setVisible(true);
+            
+            } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_deleteActionPerformed
     DefaultListModel DM = new DefaultListModel();
     DefaultListModel DM2 = new DefaultListModel();
     private void addMenuItem(String txt){
         
       // menuItemList.setModel(DM);
        DM.addElement(txt);
+    }
+    void sendName(String info){
+        name.setText(info);
     }
     
     private void addAmount(Double txt){
@@ -367,6 +412,7 @@ public class MenuItem extends javax.swing.JFrame {
     private javax.swing.JTextField amount8;
     private javax.swing.JTextField amount9;
     private javax.swing.JTextField cost;
+    private javax.swing.JButton delete;
     private javax.swing.JButton editM;
     private javax.swing.JTextField item1;
     private javax.swing.JTextField item10;

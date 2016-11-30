@@ -5,6 +5,14 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author williammcclain
@@ -28,15 +36,15 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        inventoryList = new javax.swing.JList<>();
+        entreList = new javax.swing.JList<>();
         newItem = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        inventoryList1 = new javax.swing.JList<>();
+        sideList = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        inventoryList2 = new javax.swing.JList<>();
+        desertList = new javax.swing.JList<>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        inventoryList3 = new javax.swing.JList<>();
+        drinkList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,12 +52,17 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        inventoryList.setModel(new javax.swing.AbstractListModel<String>() {
+        entreList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(inventoryList);
+        entreList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                entreListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(entreList);
 
         newItem.setText("Add Menu Item");
         newItem.addActionListener(new java.awt.event.ActionListener() {
@@ -65,26 +78,41 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        inventoryList1.setModel(new javax.swing.AbstractListModel<String>() {
+        sideList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(inventoryList1);
+        sideList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sideListMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(sideList);
 
-        inventoryList2.setModel(new javax.swing.AbstractListModel<String>() {
+        desertList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(inventoryList2);
+        desertList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                desertListMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(desertList);
 
-        inventoryList3.setModel(new javax.swing.AbstractListModel<String>() {
+        drinkList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane4.setViewportView(inventoryList3);
+        drinkList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                drinkListMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(drinkList);
 
         jLabel1.setText("Entre");
 
@@ -166,6 +194,102 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void entreListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entreListMouseClicked
+        // TODO add your handling code here:
+        String selected = entreList.getSelectedValue().toString();
+        MenuItem ni = new MenuItem();
+        ni.sendName(selected);
+        ni.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_entreListMouseClicked
+
+    private void sideListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sideListMouseClicked
+        // TODO add your handling code here:
+        String selected = sideList.getSelectedValue().toString();
+        MenuItem ni = new MenuItem();
+        ni.sendName(selected);
+        ni.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_sideListMouseClicked
+
+    private void desertListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desertListMouseClicked
+        // TODO add your handling code here:
+        String selected = desertList.getSelectedValue().toString();
+        MenuItem ni = new MenuItem();
+        ni.sendName(selected);
+        ni.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_desertListMouseClicked
+
+    private void drinkListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drinkListMouseClicked
+        // TODO add your handling code here:
+        String selected = drinkList.getSelectedValue().toString();
+        MenuItem ni = new MenuItem();
+        ni.sendName(selected);
+        ni.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_drinkListMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+        // TODO add your handling code here:
+        Connection c = null;
+        ResultSet rs = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM MenuItem");
+            while(rs.next()){
+                int type = rs.getInt("type");
+                String txt = rs.getString("name");
+                //Double amt = rs.getDouble("itemamount");
+                if(type == 1){
+                    addEntre(txt);
+                }
+                if(type == 2){
+                    addSide(txt);
+                }
+                if(type == 3){
+                    addDesert(txt);
+                }
+                if(type == 4){
+                    addDrink(txt);
+                }
+                
+                
+            }
+            c.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }     
+    
+    DefaultListModel DM = new DefaultListModel();
+    DefaultListModel DM2 = new DefaultListModel();
+    DefaultListModel DM3 = new DefaultListModel();
+    DefaultListModel DM4 = new DefaultListModel();
+    
+    private void addEntre(String txt){
+        
+       entreList.setModel(DM);
+       DM.addElement(txt);
+    }
+    private void addDesert(String txt){
+        
+       desertList.setModel(DM2);
+       DM2.addElement(txt);
+    }
+    
+    private void addSide(String txt){
+        
+       sideList.setModel(DM);
+       DM3.addElement(txt);
+    }
+    private void addDrink(String txt){
+        
+       drinkList.setModel(DM2);
+       DM4.addElement(txt);
+    }
     /**
      * @param args the command line arguments
      */
@@ -204,10 +328,9 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JList<String> inventoryList;
-    private javax.swing.JList<String> inventoryList1;
-    private javax.swing.JList<String> inventoryList2;
-    private javax.swing.JList<String> inventoryList3;
+    private javax.swing.JList<String> desertList;
+    private javax.swing.JList<String> drinkList;
+    private javax.swing.JList<String> entreList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -217,5 +340,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton newItem;
+    private javax.swing.JList<String> sideList;
     // End of variables declaration//GEN-END:variables
 }

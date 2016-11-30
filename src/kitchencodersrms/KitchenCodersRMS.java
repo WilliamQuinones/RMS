@@ -298,12 +298,34 @@ public class KitchenCodersRMS {
             
             Statement stmt = c.createStatement();
             stmt.execute(sql);
-            System.out.println("Added Inventory Table");
+            System.out.println("Added Tickets Table");
+            
+            ResultSet rs = stmt.executeQuery("SELECT server FROM Tickets");
+            ArrayList<String> Names = new ArrayList<String>();
+            
+            while(rs.next()){
+                Names.add(rs.getString("server"));
+            }
+            
+            //If there are no values in the table creates an item
+            
+            if (Names.size() == 0){
+                
+                sql = "INSERT INTO Tickets (id,server,tablenumber,item1,item2,item3,item4,item5,time,open) "
+                        
+                        +"VALUES (1, 'Tyler', 1, 'burger', 'cake', 'coke','fries','bacon',1292838124,1)";
+                stmt.execute(sql);
+                System.out.println("Added menu item");
+                
+            }
             
         
         } catch (SQLException ex) {
             Logger.getLogger(KitchenCodersRMS.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
         //Create Timeclock table
         
         sql = "CREATE TABLE IF NOT EXISTS TimeClock (\n"+

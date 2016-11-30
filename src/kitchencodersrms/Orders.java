@@ -45,7 +45,6 @@ public class Orders extends javax.swing.JFrame {
         Back = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         orderDetails = new javax.swing.JList<>();
-        finish = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -82,8 +81,6 @@ public class Orders extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(orderDetails);
 
-        finish.setText("Finish");
-
         jLabel1.setText("Orders");
 
         jLabel2.setText("Details");
@@ -101,9 +98,7 @@ public class Orders extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(98, 98, 98)
                 .addComponent(Back)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(finish)
-                .addGap(120, 120, 120))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(127, 127, 127)
                 .addComponent(jLabel1)
@@ -123,9 +118,7 @@ public class Orders extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Back)
-                    .addComponent(finish))
+                .addComponent(Back)
                 .addGap(16, 16, 16))
         );
 
@@ -142,7 +135,7 @@ public class Orders extends javax.swing.JFrame {
     }
     private void addOrder(String txt){
         
-       orderDetails.setModel(DM1);
+       orders.setModel(DM1);
        DM1.addElement(txt);
     }
     
@@ -208,8 +201,23 @@ public class Orders extends javax.swing.JFrame {
                 addDetail("Ticket: "+selected);
                 String server = rs.getString("server");
                 addDetail("Server: "+server);
-                
-                
+                int table = rs.getInt("tablenumber");
+                addDetail("Table: "+table);
+                String item1 = rs.getString("item1");
+                addDetail(item1);
+                String item2 = rs.getString("item2");
+                addDetail(item2);
+                String item3 = rs.getString("item3");
+                addDetail(item3);
+                String item4 = rs.getString("item4");
+                addDetail(item4);
+                String item5 = rs.getString("item5");
+                addDetail(item5);
+                int time1 = rs.getInt("time");
+                    
+                    String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                          .format(new Date(time1 * 1000L));
+                addDetail(dateAsText);
                 
             }
            
@@ -258,7 +266,6 @@ public class Orders extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
-    private javax.swing.JButton finish;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

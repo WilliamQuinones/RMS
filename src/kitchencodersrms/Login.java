@@ -31,8 +31,21 @@ public class Login extends javax.swing.JFrame {
     Connection c = null;
     ResultSet rs = null;
     int counter = 0;
+    
     public Login() {
         initComponents();
+        groupButton();
+        setText();
+    }
+    private void setText(){
+        UserName.setText("username");
+        PassWord.setText("Password");
+    }
+    private void groupButton(){
+        ButtonGroup bg1 = new ButtonGroup();
+        bg1.add(POSbutton);
+        bg1.add(ManagerButton);
+        bg1.add(OrdersButton);
     }
      
     /**
@@ -197,6 +210,8 @@ public class Login extends javax.swing.JFrame {
             if(UserNames.size()>1){
                 JOptionPane.showMessageDialog(null, "Error: Multiple Usernames match");
             }
+           
+           
             if(UserNames.size()==0){
                 JOptionPane.showMessageDialog(null, "Error: Invalid Login");
             }
@@ -214,8 +229,7 @@ public class Login extends javax.swing.JFrame {
                         //}
                    // });
                         
-                    }
-                    if(POSbutton.isSelected()){
+                    } else if(POSbutton.isSelected()){
                         
                         //java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -227,8 +241,7 @@ public class Login extends javax.swing.JFrame {
                         
                     //});
                         
-                    }
-                    if(ManagerButton.isSelected()){
+                    }else if(ManagerButton.isSelected()){
                         //java.awt.EventQueue.invokeLater(new Runnable() {
 
                         //public void run() {

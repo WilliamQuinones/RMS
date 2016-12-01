@@ -5,12 +5,27 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.awt.List;
+import java.io.File;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 /**
  *
  * @author williammcclain
  */
 public class NewAdmin extends javax.swing.JFrame {
-
+   
+    Statement stmt =null;
+    Connection c = null;
+    ResultSet rs = null;
+    
     /**
      * Creates new form NewAdmin
      */
@@ -27,21 +42,150 @@ public class NewAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        UsernameField = new javax.swing.JTextField();
+        UsernameLabel = new javax.swing.JLabel();
+        PasswordLabel = new javax.swing.JLabel();
+        AddButton = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
+        PasswordField = new javax.swing.JPasswordField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        UsernameLabel.setText("Username");
+
+        PasswordLabel.setText("Password");
+
+        AddButton.setText("Add");
+        AddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddButtonActionPerformed(evt);
+            }
+        });
+
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(UsernameLabel)
+                    .addComponent(PasswordLabel))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(UsernameField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(PasswordField))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(488, Short.MAX_VALUE)
+                .addComponent(BackButton)
+                .addGap(48, 48, 48)
+                .addComponent(AddButton)
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsernameLabel))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PasswordLabel)
+                    .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddButton)
+                    .addComponent(BackButton))
+                .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
+        // TODO add your handling code here:
+        
+        String username = UsernameField.getText();
+        String password = PasswordField.getText();
+        boolean blank = false;
+     
+        
+        try {
+                Class.forName("org.sqlite.JDBC");
+                c = DriverManager.getConnection("jdbc:sqlite:RMS.db");
+        
+        }catch ( Exception e ) {
+                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+                System.exit(0);
+        }
+        try {
+            stmt = c.createStatement();
+         try{
+             
+             if(username.isEmpty() || password.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter valid input");
+            blank = true;
+        }
+             
+             if(blank == false){
+                 
+            stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM Login" );
+           
+            while(rs.next()){
+                //Checks to see if username already exist
+                
+                if(rs.getString("username").equals(username)){
+                    JOptionPane.showMessageDialog(null, "Username already exist. Try Again");
+                    c.close();
+                    dispose();
+                    NewAdmin n = new NewAdmin();
+                    n.setVisible(true);
+                
+                }else{
+                 String sql = "INSERT INTO Login (username,password,manager) "
+                        +"VALUES ('" + username + "', '" + password + "',1)";
+
+                 stmt.executeUpdate(sql);
+                 int input = JOptionPane.showOptionDialog(null, "New Admin Added", "Success", JOptionPane.DEFAULT_OPTION,
+                 JOptionPane.INFORMATION_MESSAGE, null, null, null);
+            
+            if(input == JOptionPane.OK_OPTION){
+                 c.close();
+                 dispose();
+                 NewAdmin n = new NewAdmin();
+                 n.setVisible(true);
+                }
+            
+                }
+               }
+             }
+         }catch(Exception e){}
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(NewEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_AddButtonActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+            // TODO add your handling code here:
+                dispose();
+                ManagerMenu n = new ManagerMenu();
+                n.setVisible(true);
+
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +223,11 @@ public class NewAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddButton;
+    private javax.swing.JButton BackButton;
+    private javax.swing.JPasswordField PasswordField;
+    private javax.swing.JLabel PasswordLabel;
+    private javax.swing.JTextField UsernameField;
+    private javax.swing.JLabel UsernameLabel;
     // End of variables declaration//GEN-END:variables
 }

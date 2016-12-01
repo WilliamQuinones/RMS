@@ -99,11 +99,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Clock In"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClockInActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ClockOut">
       <Properties>
         <Property name="text" type="java.lang.String" value="Clock Out"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClockOutActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="NewTicketButton">
       <Properties>
@@ -117,6 +123,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Open Tickets"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OpenTicketsButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

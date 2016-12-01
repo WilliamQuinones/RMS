@@ -5,6 +5,12 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 /**
@@ -44,10 +50,10 @@ public class POS extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         desertList = new javax.swing.JList<>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        SideList = new javax.swing.JList<>();
+        sideList = new javax.swing.JList<>();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        OrderList = new javax.swing.JList<>();
+        orderList = new javax.swing.JList<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -70,6 +76,11 @@ public class POS extends javax.swing.JFrame {
         enter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Entree");
 
@@ -100,21 +111,21 @@ public class POS extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(desertList);
 
-        SideList.setModel(new javax.swing.AbstractListModel<String>() {
+        sideList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane4.setViewportView(SideList);
+        jScrollPane4.setViewportView(sideList);
 
         jLabel5.setText("Order");
 
-        OrderList.setModel(new javax.swing.AbstractListModel<String>() {
+        orderList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane5.setViewportView(OrderList);
+        jScrollPane5.setViewportView(orderList);
 
         jLabel6.setText("Total");
 
@@ -285,9 +296,9 @@ public class POS extends javax.swing.JFrame {
 
     DefaultListModel DM = new DefaultListModel();
     DefaultListModel DM1 = new DefaultListModel();
+    DefaultListModel DM2 = new DefaultListModel();
     DefaultListModel DM3 = new DefaultListModel();
     DefaultListModel DM4 = new DefaultListModel();
-    DefaultListModel DM5 = new DefaultListModel();
     private void addEntre(String txt){
         
        entreList.setModel(DM);
@@ -309,6 +320,11 @@ public class POS extends javax.swing.JFrame {
        drinkList.setModel(DM4);
        DM4.addElement(txt);
     }
+    private void addToOrder(String txt){
+        
+       orderList.setModel(DM1);
+       DM1.addElement(txt);
+    }
     
     private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
         // TODO add your handling code here:
@@ -325,6 +341,42 @@ public class POS extends javax.swing.JFrame {
     private void tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tableActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tableActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        Connection c = null;
+        ResultSet rs = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM MenuItem");
+            while(rs.next()){
+                int type1 = rs.getInt("type");
+                String txt = rs.getString("name");
+                System.out.println(txt);
+                //Double amt = rs.getDouble("itemamount");
+                if(type1 == 1){
+                    addEntre(txt);
+                }
+                if(type1 == 2){
+                    addSide(txt);
+                }
+                if(type1 == 3){
+                    addDesert(txt);
+                }
+                if(type1 == 4){
+                    addDrink(txt);
+                }
+                
+                
+            }
+            c.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -366,9 +418,7 @@ public class POS extends javax.swing.JFrame {
     private javax.swing.JButton BackButton;
     private javax.swing.JButton CloseButton;
     private javax.swing.JButton EditButton;
-    private javax.swing.JList<String> OrderList;
     private javax.swing.JTextPane ServerField;
-    private javax.swing.JList<String> SideList;
     private javax.swing.JTextPane TaxField;
     private javax.swing.JTextPane TicketField;
     private javax.swing.JTextField TipField;
@@ -397,6 +447,8 @@ public class POS extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JList<String> orderList;
+    private javax.swing.JList<String> sideList;
     private javax.swing.JTextField table;
     // End of variables declaration//GEN-END:variables
 }

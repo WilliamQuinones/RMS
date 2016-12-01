@@ -127,11 +127,16 @@ public class NewMenuItem extends javax.swing.JFrame {
 
         jLabel8.setText("Type");
 
-        entre.setText("Entre");
+        entre.setText("Entree");
+        entre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entreActionPerformed(evt);
+            }
+        });
 
         side.setText("Side");
 
-        desert.setText("Desert");
+        desert.setText("Dessert");
 
         drink.setText("Drink");
 
@@ -452,6 +457,10 @@ public class NewMenuItem extends javax.swing.JFrame {
                         
         s.setVisible(true);
     }//GEN-LAST:event_enterActionPerformed
+
+    private void entreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_entreActionPerformed
 
     /**
      * @param args the command line arguments

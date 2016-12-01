@@ -337,8 +337,11 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="entre">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Entre"/>
+        <Property name="text" type="java.lang.String" value="Entree"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="entreActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="side">
       <Properties>
@@ -347,7 +350,7 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="desert">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Desert"/>
+        <Property name="text" type="java.lang.String" value="Dessert"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="drink">

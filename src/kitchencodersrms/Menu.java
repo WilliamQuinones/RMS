@@ -121,11 +121,11 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(drinkList);
 
-        jLabel1.setText("Entre");
+        jLabel1.setText("Entree");
 
         jLabel2.setText("Side");
 
-        jLabel3.setText("Desert");
+        jLabel3.setText("Dessert");
 
         jLabel4.setText("Drink");
 

@@ -418,13 +418,13 @@ public class MenuItem extends javax.swing.JFrame {
                 String cost1 = cst.toString();
                 cost.setText(cost1);
                 if(type1==1){
-                    type.setText("Entre");
+                    type.setText("Entree");
                 }
                 if(type1==2){
                     type.setText("Side");
                 }
                 if(type1==3){
-                    type.setText("Desert");
+                    type.setText("Dessert");
                 }
                 if(type1==4){
                     type.setText("Drink");

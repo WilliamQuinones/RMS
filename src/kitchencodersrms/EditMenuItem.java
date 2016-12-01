@@ -133,11 +133,11 @@ public class EditMenuItem extends javax.swing.JFrame {
 
         jLabel8.setText("Type");
 
-        entre.setText("Entre");
+        entre.setText("Entree");
 
         side.setText("Side");
 
-        desert.setText("Desert");
+        desert.setText("Dessert");
 
         drink.setText("Drink");
 

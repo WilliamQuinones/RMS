@@ -59,12 +59,10 @@ public class POS extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         orderList = new javax.swing.JList<>();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         TotalField = new javax.swing.JTextPane();
         jLabel8 = new javax.swing.JLabel();
         BackButton = new javax.swing.JButton();
-        TipField = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
         ticket = new javax.swing.JTextPane();
         remove = new javax.swing.JButton();
@@ -152,8 +150,6 @@ public class POS extends javax.swing.JFrame {
 
         jLabel6.setText("Total");
 
-        jLabel7.setText("Tip");
-
         jScrollPane6.setViewportView(TotalField);
 
         jLabel8.setText("Ticket");
@@ -164,8 +160,6 @@ public class POS extends javax.swing.JFrame {
                 BackButtonActionPerformed(evt);
             }
         });
-
-        TipField.setText("0.0");
 
         jScrollPane8.setViewportView(ticket);
 
@@ -247,7 +241,6 @@ public class POS extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(35, 35, 35))))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(150, 150, 150)
@@ -256,7 +249,6 @@ public class POS extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TipField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -317,12 +309,9 @@ public class POS extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel7)
-                                .addComponent(TipField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel10)
                             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(table, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
@@ -610,7 +599,6 @@ public class POS extends javax.swing.JFrame {
     private javax.swing.JButton BackButton;
     private javax.swing.JTextPane ServerField;
     private javax.swing.JTextPane TaxField;
-    private javax.swing.JTextField TipField;
     private javax.swing.JTextPane TotalField;
     private javax.swing.JList<String> desertList;
     private javax.swing.JList<String> drinkList;
@@ -624,7 +612,6 @@ public class POS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;

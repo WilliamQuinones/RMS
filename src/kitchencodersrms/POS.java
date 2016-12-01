@@ -6,10 +6,12 @@
 package kitchencodersrms;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -464,6 +466,77 @@ public class POS extends javax.swing.JFrame {
 
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
         // TODO add your handling code here:
+        DefaultListModel model = (DefaultListModel) orderList.getModel();
+        int listSize = model.getSize()-1;
+        int start = 0;
+        ArrayList items = new ArrayList();
+        for(int i = 0; i < listSize; i++){
+            
+            String item = model.getElementAt(i).toString();
+            items.add(item);
+            
+        }
+        String item1 = null;
+        String item2 = null;
+        String item3 = null;
+        String item4 = null;
+        String item5 = null;
+        int count = 1;
+        for(int j = 0; j<items.size(); j++){
+            if(count<6){
+                if(count==1){
+                    item1 = items.get(j).toString();
+                }
+                if(count==2){
+                    item2 = items.get(j).toString();
+                }
+                if(count==3){
+                    item3 = items.get(j).toString();
+                }
+                if(count==4){
+                    item4 = items.get(j).toString();
+                }
+                if(count==5){
+                    item5 = items.get(j).toString();
+                }
+            }
+            count++;
+        }
+        int id = Integer.parseInt(ticket.getText());
+        int tbl = Integer.parseInt(table.getText());
+        Long sysTime = System.currentTimeMillis();
+        Long divTime = sysTime / 1000;
+        String divTimes = divTime.toString();
+        int currentTime = Integer.parseInt(divTimes);
+        PreparedStatement ps=null;
+        Connection c = null;
+        ResultSet rs = null;
+        c = KitchenCodersRMS.callDatbase();
+        String sql = "INSERT INTO Tickets (id,server,tablenumber,item1,item2,item3,item4,item5,time,open) "
+                        +"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try {
+            ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setString(2, server);
+            ps.setInt(3, tbl);
+            ps.setString(4, item1);
+            ps.setString(5, item2);
+            ps.setString(6, item3);
+            ps.setString(7, item4);
+            ps.setString(8, item5);
+            ps.setInt(9, currentTime);
+            ps.setInt(10, 1);
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NewItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        POS s = new POS(); 
+        s.server=server;
+        s.setVisible(true);
+        dispose();
     }//GEN-LAST:event_enterActionPerformed
 
     private void removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseClicked

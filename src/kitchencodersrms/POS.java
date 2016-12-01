@@ -425,10 +425,10 @@ public class POS extends javax.swing.JFrame {
             rs = stmt.executeQuery("SELECT * FROM Tickets");
             while(rs.next()){
                 int open1 = rs.getInt("open");
-                if(open1==1){
+                
                     ticket1 = rs.getInt("id");
                     
-                }
+                
             }
             int newTicket = ticket1 + 1;
             String tix = Integer.toString(newTicket);
@@ -520,15 +520,37 @@ public class POS extends javax.swing.JFrame {
             ps.setInt(1, id);
             ps.setString(2, server);
             ps.setInt(3, tbl);
+            if(item1!=null){
             ps.setString(4, item1);
+            }else{
+                ps.setString(4, "");
+            }
+            if(item2!=null){
             ps.setString(5, item2);
+            }else{
+                ps.setString(5, "");
+            }
+            if(item3!=null){
             ps.setString(6, item3);
+            }else{
+                ps.setString(6, "");
+            }
+            if(item4!=null){
             ps.setString(7, item4);
+            }
+            else{
+                ps.setString(7, "");
+            }
+            if(item5!=null){
             ps.setString(8, item5);
+            }else{
+                ps.setString(8, "");
+            }
             ps.setInt(9, currentTime);
             ps.setInt(10, 1);
             
             ps.executeUpdate();
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(NewItem.class.getName()).log(Level.SEVERE, null, ex);
         }

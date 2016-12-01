@@ -45,6 +45,9 @@ public class Tickets extends javax.swing.JFrame {
         orderDetails = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        tip = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        close = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -83,31 +86,48 @@ public class Tickets extends javax.swing.JFrame {
 
         jLabel2.setText("Details");
 
+        jLabel3.setText("Tip");
+
+        close.setText("Close Ticket");
+        close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(Back)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(127, 127, 127)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(151, 151, 151))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(Back)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
+                        .addComponent(jLabel3)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tip, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(close)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -116,13 +136,17 @@ public class Tickets extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(Back)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Back)
+                    .addComponent(tip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(close))
                 .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    int Active;
     String server = null;
     DefaultListModel DM = new DefaultListModel();
     DefaultListModel DM1 = new DefaultListModel();
@@ -148,6 +172,8 @@ public class Tickets extends javax.swing.JFrame {
         String selected = orders.getSelectedValue().toString();
         int space = selected.indexOf(" ");
         selected = selected.substring(0, space);
+        int this1 = Integer.parseInt(selected);
+        Active = this1;
         Connection c = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -195,26 +221,61 @@ public class Tickets extends javax.swing.JFrame {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         dispose();
-        Login s = new Login();
+        EmployeeLogin s = new EmployeeLogin();
 
         s.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         // TODO add your handling code here:
         Connection c = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
+        PreparedStatement ps1 = null;
         c = KitchenCodersRMS.callDatbase();
         Statement stmt;
-        try {
+        int id = Active;
+        String t = tip.getText();
+    
+        String sql;
+        try{
             stmt = c.createStatement();
-            String sql ="SELECT * FROM Tickets WHERE server = ?";
+            sql = "UPDATE Tickets SET tip = "+t+" WHERE id = "+id+";";
+            
+            stmt.executeUpdate(sql);
+            
+            sql = "UPDATE Tickets SET open = 0 WHERE id = "+id+";";
+            
+            stmt.executeUpdate(sql);
+                c.close();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Tickets ni = new Tickets();
+        ni.server = server;
+        ni.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_closeActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        Connection c = null;
+        ResultSet rs = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        PreparedStatement ps = null;
+
+        try {
+            String sql = "SELECT * FROM Tickets WHERE server = ?";
             ps = c.prepareStatement(sql);
             ps.setString(1, server);
             rs = ps.executeQuery();
+            System.out.println("query performed");
             while(rs.next()){
                 int open1 = rs.getInt("open");
                 if(open1==1){
@@ -268,14 +329,17 @@ public class Tickets extends javax.swing.JFrame {
             }
         });
     }
-
+    String serverId=null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
+    private javax.swing.JButton close;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> orderDetails;
     private javax.swing.JList<String> orders;
+    private javax.swing.JTextField tip;
     // End of variables declaration//GEN-END:variables
 }

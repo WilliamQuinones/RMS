@@ -357,7 +357,7 @@ public class EditItem extends javax.swing.JFrame {
     }//GEN-LAST:event_enterActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-         Connection c = null;
+        Connection c = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
         PreparedStatement ps1 = null;

@@ -133,6 +133,11 @@ public class Orders extends javax.swing.JFrame {
        orderDetails.setModel(DM);
        DM.addElement(txt);
     }
+    private void clearDetails(){
+        
+       orderDetails.setModel(DM);
+       DM.clear();
+    }
     private void addOrder(String txt){
         
        orders.setModel(DM1);
@@ -179,7 +184,7 @@ public class Orders extends javax.swing.JFrame {
 
     private void ordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ordersMouseClicked
         // TODO add your handling code here:
-        orderDetails.clearSelection();
+        clearDetails();
         String selected = orders.getSelectedValue().toString();
         int space = selected.indexOf(" ");
         selected = selected.substring(0, space);

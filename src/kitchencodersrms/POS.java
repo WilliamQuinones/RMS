@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -62,7 +64,7 @@ public class POS extends javax.swing.JFrame {
         BackButton = new javax.swing.JButton();
         TipField = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
-        TicketField = new javax.swing.JTextPane();
+        ticket = new javax.swing.JTextPane();
         EditButton = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -144,7 +146,7 @@ public class POS extends javax.swing.JFrame {
 
         TipField.setText("0.0");
 
-        jScrollPane8.setViewportView(TicketField);
+        jScrollPane8.setViewportView(ticket);
 
         EditButton.setText("Edit");
         EditButton.addActionListener(new java.awt.event.ActionListener() {
@@ -376,6 +378,29 @@ public class POS extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
         }
+        c = null;
+        rs = null;
+        c = KitchenCodersRMS.callDatbase();
+        
+        int ticket1 = 0;
+        try {
+            stmt = c.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM Tickets");
+            while(rs.next()){
+                int open1 = rs.getInt("open");
+                if(open1==1){
+                    ticket1 = rs.getInt("id");
+                    
+                }
+            }
+            int newTicket = ticket1 + 1;
+            String tix = Integer.toString(newTicket);
+            ticket.setText(tix);
+            c.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -420,7 +445,6 @@ public class POS extends javax.swing.JFrame {
     private javax.swing.JButton EditButton;
     private javax.swing.JTextPane ServerField;
     private javax.swing.JTextPane TaxField;
-    private javax.swing.JTextPane TicketField;
     private javax.swing.JTextField TipField;
     private javax.swing.JTextPane TotalField;
     private javax.swing.JList<String> desertList;
@@ -450,5 +474,6 @@ public class POS extends javax.swing.JFrame {
     private javax.swing.JList<String> orderList;
     private javax.swing.JList<String> sideList;
     private javax.swing.JTextField table;
+    private javax.swing.JTextPane ticket;
     // End of variables declaration//GEN-END:variables
 }

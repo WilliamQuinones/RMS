@@ -91,7 +91,7 @@ public class ManagerMenu extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("jLabel2.setText(\"Next week's schedule hasn't been set yet!");
+        jTextArea1.setText("Next week's schedule hasn't been set yet!");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

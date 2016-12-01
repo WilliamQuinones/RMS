@@ -151,7 +151,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="jLabel2.setText(&quot;Next week&apos;s schedule hasn&apos;t been set yet!"/>
+            <Property name="text" type="java.lang.String" value="Next week&apos;s schedule hasn&apos;t been set yet!"/>
           </Properties>
         </Component>
       </SubComponents>

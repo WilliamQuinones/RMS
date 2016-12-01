@@ -50,7 +50,6 @@ public class NewEmployee extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         wedLunch = new javax.swing.JCheckBox();
         jLabel28 = new javax.swing.JLabel();
-        jobTitle2 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         monDinner = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
@@ -76,7 +75,6 @@ public class NewEmployee extends javax.swing.JFrame {
         tuesdayLunch = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jobTitle = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         tuesdayDinner = new javax.swing.JCheckBox();
         jLabel19 = new javax.swing.JLabel();
@@ -94,10 +92,12 @@ public class NewEmployee extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         sunLunch = new javax.swing.JCheckBox();
         sunDinner = new javax.swing.JCheckBox();
-        jobTitle1 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        job1ComboBox = new javax.swing.JComboBox<>();
+        job2ComboBox = new javax.swing.JComboBox<>();
+        job3ComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,6 +165,13 @@ public class NewEmployee extends javax.swing.JFrame {
 
         jLabel4.setText("Availability");
 
+        job1ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Server", "SA", "Host", "Bar" }));
+        job1ComboBox.setSelectedIndex(-1);
+
+        job2ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Server", "SA", "Host", "Bar" }));
+
+        job3ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Server", "SA", "Host", "Bar" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,10 +214,6 @@ public class NewEmployee extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel26)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel12)
                                     .addComponent(jLabel13)
@@ -218,16 +221,20 @@ public class NewEmployee extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(wage2, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                    .addComponent(jobTitle2)
-                                    .addComponent(wage3)))
+                                    .addComponent(wage3)
+                                    .addComponent(job3ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel28)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jobTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(job2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel26)
+                                    .addComponent(jLabel27))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(wage1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(job1ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(wage1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(67, 67, 67)
@@ -236,13 +243,10 @@ public class NewEmployee extends javax.swing.JFrame {
                                         .addComponent(jLabel21)
                                         .addComponent(jLabel23)
                                         .addComponent(jLabel10))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel18)
@@ -272,7 +276,7 @@ public class NewEmployee extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -312,9 +316,9 @@ public class NewEmployee extends javax.swing.JFrame {
                             .addComponent(socialSecurity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel26)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(job1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -323,16 +327,16 @@ public class NewEmployee extends javax.swing.JFrame {
                                     .addComponent(jLabel27))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jobTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel28))
+                                    .addComponent(jLabel28)
+                                    .addComponent(job2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(wage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jobTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13))
+                                    .addComponent(jLabel13)
+                                    .addComponent(job3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(wage3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,7 +392,7 @@ public class NewEmployee extends javax.swing.JFrame {
                                         .addComponent(satDinner)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(sunDinner)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                     .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -417,13 +421,16 @@ public class NewEmployee extends javax.swing.JFrame {
         try {
             stmt = c.createStatement();
 
+        String jobtitle1 = " ";
         
         String firstname = firstName.getText();
         String middlename = middleName.getText();
         String lastname = lastName.getText();
-        String jobtitle1 = jobTitle.getText();
-        String jobtitle2 = jobTitle1.getText();
-        String jobtitle3 = jobTitle2.getText();
+        if(!(job1ComboBox.getSelectedIndex() == -1)){
+            jobtitle1 = job1ComboBox.getSelectedItem().toString();
+        }      
+        String jobtitle2 = job2ComboBox.getSelectedItem().toString();
+        String jobtitle3 = job3ComboBox.getSelectedItem().toString();
         String phonenumber = phoneNumber.getText();
         String street = address.getText();
         String cityname = city.getText();
@@ -455,8 +462,14 @@ public class NewEmployee extends javax.swing.JFrame {
             blankField = true;
         }
         
+        if(job1ComboBox.getSelectedIndex() == -1 && job3ComboBox.getSelectedItem().toString().equals(" ")
+                && job2ComboBox.getSelectedItem().toString().equals(" ")){
+            
+            blankField = true;
+            
+        }
         
-        if(!jobtitle1.isEmpty()){
+        if(!(job1ComboBox.getSelectedIndex() == -1)){
                     wageTemp = wage1.getText();
                     try{
                         hourlywage1 = Float.parseFloat(wageTemp);
@@ -465,7 +478,7 @@ public class NewEmployee extends javax.swing.JFrame {
                         blankField = true;
                     }
         }
-        if(!jobtitle2.isEmpty()){
+        if(!job2ComboBox.getSelectedItem().toString().equals(" ")){
                     wageTemp = wage2.getText();
                     try{
                         hourlywage2 = Float.parseFloat(wageTemp);
@@ -474,7 +487,7 @@ public class NewEmployee extends javax.swing.JFrame {
                         blankField = true;
                     }
         }
-        if(!jobtitle3.isEmpty()){
+        if(!job3ComboBox.getSelectedItem().toString().equals(" ")){
                     wageTemp = wage3.getText();    
                     try{
                         hourlywage3 = Float.parseFloat(wageTemp);
@@ -664,9 +677,9 @@ public class NewEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jobTitle;
-    private javax.swing.JTextField jobTitle1;
-    private javax.swing.JTextField jobTitle2;
+    private javax.swing.JComboBox<String> job1ComboBox;
+    private javax.swing.JComboBox<String> job2ComboBox;
+    private javax.swing.JComboBox<String> job3ComboBox;
     private javax.swing.JTextField lastName;
     private javax.swing.JTextField middleName;
     private javax.swing.JCheckBox monDinner;

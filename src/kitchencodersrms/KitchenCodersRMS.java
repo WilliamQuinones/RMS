@@ -298,34 +298,12 @@ public class KitchenCodersRMS {
             
             Statement stmt = c.createStatement();
             stmt.execute(sql);
-            System.out.println("Added Tickets Table");
-            
-            ResultSet rs = stmt.executeQuery("SELECT server FROM Tickets");
-            ArrayList<String> Names = new ArrayList<String>();
-            
-            while(rs.next()){
-                Names.add(rs.getString("server"));
-            }
-            
-            //If there are no values in the table creates an item
-            
-            if (Names.size() == 0){
-                
-                sql = "INSERT INTO Tickets (id,server,tablenumber,item1,item2,item3,item4,item5,time,open) "
-                        
-                        +"VALUES (1, 'Tyler', 1, 'burger', 'cake', 'coke','fries','bacon',1292838124,1)";
-                stmt.execute(sql);
-                System.out.println("Added menu item");
-                
-            }
+            System.out.println("Added Inventory Table");
             
         
         } catch (SQLException ex) {
             Logger.getLogger(KitchenCodersRMS.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
         //Create Timeclock table
         
         sql = "CREATE TABLE IF NOT EXISTS TimeClock (\n"+
@@ -377,11 +355,89 @@ public class KitchenCodersRMS {
             Statement stmt = c.createStatement();
             stmt.execute(sql);
             System.out.println("Added Sales Table");
-            c.close();
+            
         
         } catch (SQLException ex) {
             Logger.getLogger(KitchenCodersRMS.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+            //Create or check for Schedule table in database if it does not exist
+    
+        // SQL statement to create a Schedule table
+        sql = "CREATE TABLE IF NOT EXISTS ScheduleCurrent (\n"+
+                " id integer PRIMARY KEY AUTOINCREMENT,\n"+
+                " name text NOT NULL,\n"+
+                " phonenumber text,\n"+
+                " jobtitle1 text,\n"+
+                " jobtitle2 text,\n"+
+                " jobtitle3 text,\n"+
+                " sundayam text,\n"+
+                " sundaypm text,\n"+
+                " mondayam text,\n"+
+                " mondaypm text,\n"+
+                " tuesdayam text,\n"+
+                " tuesdaypm text,\n"+
+                " wednesdayam text,\n"+
+                " wednesdaypm text,\n"+
+                " thursdayam text,\n"+
+                " thursdaypm text,\n"+
+                " fridayam text,\n"+
+                " fridaypm text,\n"+
+                " saturdayam text,\n"+
+                " saturdaypm text,\n"+
+                " dateupdated integer,\n"+
+                " dateupdatedBOH integer\n"+
+                ");";
+        try {
+            
+           
+            
+            Statement stmt = c.createStatement();
+            stmt.execute(sql);
+            System.out.println("Added ScheduleCurrent Table");
+
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(KitchenCodersRMS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+                sql = "CREATE TABLE IF NOT EXISTS ScheduleNext (\n"+
+                " id integer PRIMARY KEY AUTOINCREMENT,\n"+
+                " name text NOT NULL,\n"+
+                " phonenumber text,\n"+
+                " jobtitle1 text,\n"+
+                " jobtitle2 text,\n"+
+                " jobtitle3 text,\n"+
+                " sundayam text,\n"+
+                " sundaypm text,\n"+
+                " mondayam text,\n"+
+                " mondaypm text,\n"+
+                " tuesdayam text,\n"+
+                " tuesdaypm text,\n"+
+                " wednesdayam text,\n"+
+                " wednesdaypm text,\n"+
+                " thursdayam text,\n"+
+                " thursdaypm text,\n"+
+                " fridayam text,\n"+
+                " fridaypm text,\n"+
+                " saturdayam text,\n"+
+                " saturdaypm text,\n"+
+                " hasbeenupdated text,\n"+
+                " hasbeenupdatedBOH text\n"+
+                ");";
+        try {
+            
+           
+            
+            Statement stmt = c.createStatement();
+            stmt.execute(sql);
+            System.out.println("Added ScheduleNext Table");
+
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(KitchenCodersRMS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         //Display Login Screen
         

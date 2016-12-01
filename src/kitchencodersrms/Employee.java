@@ -49,7 +49,6 @@ public class Employee extends javax.swing.JFrame {
         address = new javax.swing.JTextField();
         lastName = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         city = new javax.swing.JTextField();
@@ -62,7 +61,6 @@ public class Employee extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jobTitle = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         tuesdayDinner = new javax.swing.JCheckBox();
         jLabel19 = new javax.swing.JLabel();
@@ -71,36 +69,38 @@ public class Employee extends javax.swing.JFrame {
         wedDinner = new javax.swing.JCheckBox();
         jLabel21 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        wage1 = new javax.swing.JTextField();
         thursLunch = new javax.swing.JCheckBox();
         jLabel22 = new javax.swing.JLabel();
         thursDinner = new javax.swing.JCheckBox();
         fridayLunch = new javax.swing.JCheckBox();
         addButton = new javax.swing.JButton();
         fridayDinner = new javax.swing.JCheckBox();
-        jLabel26 = new javax.swing.JLabel();
         satLunch = new javax.swing.JCheckBox();
-        wage2 = new javax.swing.JTextField();
         satDinner = new javax.swing.JCheckBox();
-        jLabel27 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         wedLunch = new javax.swing.JCheckBox();
         sunLunch = new javax.swing.JCheckBox();
-        jLabel28 = new javax.swing.JLabel();
         sunDinner = new javax.swing.JCheckBox();
-        jobTitle2 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
         monDinner = new javax.swing.JCheckBox();
-        jLabel14 = new javax.swing.JLabel();
-        jobTitle1 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        wage3 = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         socialSecurity = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         employeeID = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        wage2 = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        wage3 = new javax.swing.JTextField();
+        job1ComboBox = new javax.swing.JComboBox<>();
+        job2ComboBox = new javax.swing.JComboBox<>();
+        job3ComboBox = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        wage1 = new javax.swing.JTextField();
 
         jLabel4.setText("Last Name");
 
@@ -112,8 +112,6 @@ public class Employee extends javax.swing.JFrame {
         });
 
         jLabel17.setText("Social Security");
-
-        jLabel12.setText("Hourly Wage 2");
 
         jLabel1.setText("First Name");
 
@@ -155,17 +153,7 @@ public class Employee extends javax.swing.JFrame {
             }
         });
 
-        jLabel26.setText("Job Title 1");
-
-        jLabel27.setText("Hourly Wage 1");
-
         jLabel23.setText("Tuesday");
-
-        jLabel28.setText("Job Title 2");
-
-        jLabel13.setText("Job Title 3");
-
-        jLabel14.setText("Hourly Wage 3");
 
         jLabel18.setText("Lunch");
 
@@ -176,6 +164,20 @@ public class Employee extends javax.swing.JFrame {
         jLabel5.setText("Phone Number");
 
         jLabel11.setText("Employee ID");
+
+        jLabel26.setText("Job Title 1");
+
+        jLabel27.setText("Hourly Wage 1");
+
+        jLabel28.setText("Job Title 2");
+
+        jLabel13.setText("Job Title 3");
+
+        jLabel14.setText("Hourly Wage 3");
+
+        job1ComboBox.setSelectedIndex(-1);
+
+        jLabel12.setText("Hourly Wage 2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -219,29 +221,31 @@ public class Employee extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel26)
+                                .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel12)
                                     .addComponent(jLabel13)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel11))
+                                    .addComponent(jLabel14))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(wage2, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                    .addComponent(jobTitle2)
+                                    .addComponent(wage2)
                                     .addComponent(wage3)
-                                    .addComponent(employeeID)))
+                                    .addComponent(job3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel28)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jobTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(job2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel26)
+                                    .addComponent(jLabel27))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(wage1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(job1ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(wage1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(67, 67, 67)
@@ -322,10 +326,7 @@ public class Employee extends javax.swing.JFrame {
                             .addComponent(jLabel17)
                             .addComponent(socialSecurity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel26)
-                            .addComponent(jLabel16))
+                        .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -378,31 +379,35 @@ public class Employee extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(satDinner)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(sunDinner))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(wage1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel27))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jobTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel28))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(wage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jobTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(wage3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel11)
-                                    .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(sunDinner))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(job1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(wage1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel27))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(job2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(wage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(job3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(wage3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(employeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
@@ -435,12 +440,16 @@ public class Employee extends javax.swing.JFrame {
             stmt = c.createStatement();
 
         
+            String jobtitle1 = " ";
+            
             String firstname = firstName.getText();
             String middlename = middleName.getText();
             String lastname = lastName.getText();
-            String jobtitle1 = jobTitle.getText();
-            String jobtitle2 = jobTitle1.getText();
-            String jobtitle3 = jobTitle2.getText();
+            if(!(job1ComboBox.getSelectedIndex() == -1)){
+                jobtitle1 = job1ComboBox.getSelectedItem().toString();
+            }
+            String jobtitle2 = job2ComboBox.getSelectedItem().toString();
+            String jobtitle3 = job3ComboBox.getSelectedItem().toString();
             String phonenumber = phoneNumber.getText();
             String street = address.getText();
             String cityname = city.getText();
@@ -466,34 +475,33 @@ public class Employee extends javax.swing.JFrame {
                 blankField = true;
             }
 
-
-            if(!jobtitle1.isEmpty()){
-                        wageTemp = wage1.getText();
-                        try{
-                            hourlywage1 = Float.parseFloat(wageTemp);
-                        }catch(Exception e){
-                            JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 1");
-                            blankField = true;
-                        }
+        if(!(job1ComboBox.getSelectedIndex() == -1)){
+            wageTemp = wage1.getText();
+            try{
+                hourlywage1 = Float.parseFloat(wageTemp);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 1");
+                blankField = true;
             }
-            if(!jobtitle2.isEmpty()){
-                        wageTemp = wage2.getText();
-                        try{
-                            hourlywage2 = Float.parseFloat(wageTemp);
-                        }catch(Exception e){
-                            JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 2");
-                            blankField = true;
-                        }
+        }
+        if(!job2ComboBox.getSelectedItem().toString().equals(" ")){
+            wageTemp = wage2.getText();
+            try{
+                hourlywage2 = Float.parseFloat(wageTemp);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 2");
+                blankField = true;
             }
-            if(!jobtitle3.isEmpty()){
-                        wageTemp = wage3.getText();    
-                        try{
-                            hourlywage3 = Float.parseFloat(wageTemp);
-                        }catch(Exception e){
-                            JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 3");
-                            blankField = true;
-                        }
+        }
+        if(!job3ComboBox.getSelectedItem().toString().equals(" ")){
+            wageTemp = wage3.getText();
+            try{
+                hourlywage3 = Float.parseFloat(wageTemp);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 3");
+                blankField = true;
             }
+        }
 
             if(!blankField){
 
@@ -571,16 +579,7 @@ public class Employee extends javax.swing.JFrame {
 
 
 
-                /*String sql="UPDATE Employee SET firstname ='" + firstname + "', middlename ='" + middlename + 
-                        "', lastname='"+ lastname + "', jobtitle1='" + jobtitle1 + "', jobtitle2='"
-                         + jobtitle2 + "', jobtitle3='" + jobtitle3 + "', phonenumber='" + phonenumber + 
-                        "', street='" + street + "', city='" + cityname + "', state='" + statename +
-                        "', zipcode='" + zip + "', employeeid=" + employeeID + ", monday=" + monday 
-                        + ", tuesday=" + tuesday + ", wednesday=" + wednesday + ", thursday="
-                        + ", friday=" + friday + ", saturday=" + saturday + ", sunday=" + sunday
-                        + ", hourlywage1=" + hourlywage1 + ", hourlywage2=" + hourlywage2 + 
-                        ", hourlywage3=" + hourlywage3 + ", socialsecurity='" + social + 
-                        "' WHERE firstname='" + first + "' AND lastname='" + last + "'";*/
+
                 String sql="UPDATE Employee SET firstname ='" + firstname + "', middlename='" + middlename + 
                         "', lastname='" + lastname + "', jobtitle1='" + jobtitle1 + "', jobtitle2='" + jobtitle2 + 
                         "', jobtitle3='" + jobtitle3 + "', phonenumber='" + phonenumber + "', street='" + street + 
@@ -633,11 +632,102 @@ public class Employee extends javax.swing.JFrame {
                     middleName.setText(temp);
                     lastName.setText(last);
                     temp = rs.getString("jobtitle1");
-                    jobTitle.setText(temp);
+                    if(temp.equals("Dishwasher") || temp.equals("Kitchen") || temp.equals("Food Preparation") ){
+                        job1ComboBox.addItem("Dishwasher");
+                        job1ComboBox.addItem("Kitchen");
+                        job1ComboBox.addItem("Food Preparation");
+                        job2ComboBox.addItem(" ");
+                        job2ComboBox.addItem("Dishwasher");
+                        job2ComboBox.addItem("Kitchen");
+                        job2ComboBox.addItem("Food Preparation");
+                        job3ComboBox.addItem(" ");
+                        job3ComboBox.addItem("Dishwasher");
+                        job3ComboBox.addItem("Kitchen");
+                        job3ComboBox.addItem("Food Preparation");
+                        job1ComboBox.setSelectedItem(temp);
+                    }else if(temp.equals("Server") || temp.equals("SA") || temp.equals("Host")
+                            || temp.equals("Bar")){
+                        job1ComboBox.addItem("Server");
+                        job1ComboBox.addItem("SA");
+                        job1ComboBox.addItem("Host");
+                        job1ComboBox.addItem("Bar");
+                        job2ComboBox.addItem(" ");
+                        job2ComboBox.addItem("Server");
+                        job2ComboBox.addItem("SA");
+                        job2ComboBox.addItem("Host");
+                        job2ComboBox.addItem("Bar");
+                        job3ComboBox.addItem(" ");
+                        job3ComboBox.addItem("Server");
+                        job3ComboBox.addItem("SA");
+                        job3ComboBox.addItem("Host");
+                        job3ComboBox.addItem("Bar");
+                        job1ComboBox.setSelectedItem(temp);
+                    }
+                    
                     temp = rs.getString("jobtitle2");
-                    jobTitle1.setText(temp);
+                    if(temp.equals("Dishwasher") || temp.equals("Kitchen") || temp.equals("Food Preparation") ){
+                        job1ComboBox.addItem("Dishwasher");
+                        job1ComboBox.addItem("Kitchen");
+                        job1ComboBox.addItem("Food Preparation");
+                        job2ComboBox.addItem(" ");
+                        job2ComboBox.addItem("Dishwasher");
+                        job2ComboBox.addItem("Kitchen");
+                        job2ComboBox.addItem("Food Preparation");
+                        job3ComboBox.addItem(" ");
+                        job3ComboBox.addItem("Dishwasher");
+                        job3ComboBox.addItem("Kitchen");
+                        job3ComboBox.addItem("Food Preparation");
+                        job2ComboBox.setSelectedItem(temp);
+                    }else if(temp.equals("Server") || temp.equals("SA") || temp.equals("Host")
+                            || temp.equals("Bar")){
+                        job1ComboBox.addItem("Server");
+                        job1ComboBox.addItem("SA");
+                        job1ComboBox.addItem("Host");
+                        job1ComboBox.addItem("Bar");
+                        job2ComboBox.addItem(" ");
+                        job2ComboBox.addItem("Server");
+                        job2ComboBox.addItem("SA");
+                        job2ComboBox.addItem("Host");
+                        job2ComboBox.addItem("Bar");
+                        job3ComboBox.addItem(" ");
+                        job3ComboBox.addItem("Server");
+                        job3ComboBox.addItem("SA");
+                        job3ComboBox.addItem("Host");
+                        job3ComboBox.addItem("Bar");
+                        job2ComboBox.setSelectedItem(temp);
+                    }
                     temp = rs.getString("jobtitle3");
-                    jobTitle2.setText(temp);
+                    if(temp.equals("Dishwasher") || temp.equals("Kitchen") || temp.equals("Food Preparation") ){
+                        job1ComboBox.addItem("Dishwasher");
+                        job1ComboBox.addItem("Kitchen");
+                        job1ComboBox.addItem("Food Preparation");
+                        job2ComboBox.addItem(" ");
+                        job2ComboBox.addItem("Dishwasher");
+                        job2ComboBox.addItem("Kitchen");
+                        job2ComboBox.addItem("Food Preparation");
+                        job3ComboBox.addItem(" ");
+                        job3ComboBox.addItem("Dishwasher");
+                        job3ComboBox.addItem("Kitchen");
+                        job3ComboBox.addItem("Food Preparation");
+                        job3ComboBox.setSelectedItem(temp);
+                    }else if(temp.equals("Server") || temp.equals("SA") || temp.equals("Host")
+                            || temp.equals("Bar")){
+                        job1ComboBox.addItem("Server");
+                        job1ComboBox.addItem("SA");
+                        job1ComboBox.addItem("Host");
+                        job1ComboBox.addItem("Bar");
+                        job2ComboBox.addItem(" ");
+                        job2ComboBox.addItem("Server");
+                        job2ComboBox.addItem("SA");
+                        job2ComboBox.addItem("Host");
+                        job2ComboBox.addItem("Bar");
+                        job3ComboBox.addItem(" ");
+                        job3ComboBox.addItem("Server");
+                        job3ComboBox.addItem("SA");
+                        job3ComboBox.addItem("Host");
+                        job3ComboBox.addItem("Bar");
+                        job3ComboBox.setSelectedItem(temp);
+                    }
                     temp = rs.getString("phonenumber");
                     phoneNumber.setText(temp);
                     temp = rs.getString("street");
@@ -773,9 +863,9 @@ public class Employee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jobTitle;
-    private javax.swing.JTextField jobTitle1;
-    private javax.swing.JTextField jobTitle2;
+    private javax.swing.JComboBox<String> job1ComboBox;
+    private javax.swing.JComboBox<String> job2ComboBox;
+    private javax.swing.JComboBox<String> job3ComboBox;
     private javax.swing.JTextField lastName;
     private javax.swing.JTextField middleName;
     private javax.swing.JCheckBox monDinner;

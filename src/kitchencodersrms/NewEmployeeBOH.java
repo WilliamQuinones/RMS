@@ -42,15 +42,19 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backButton = new javax.swing.JButton();
-        wage1 = new javax.swing.JTextField();
-        addButton = new javax.swing.JButton();
-        jLabel26 = new javax.swing.JLabel();
         wage2 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
+        zipCode = new javax.swing.JTextField();
+        state = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        tuesdayLunch = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
         wedLunch = new javax.swing.JCheckBox();
+        jLabel9 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jobTitle2 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         monDinner = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
@@ -58,6 +62,28 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         socialSecurity = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        tuesdayDinner = new javax.swing.JCheckBox();
+        jLabel19 = new javax.swing.JLabel();
+        monLunch = new javax.swing.JCheckBox();
+        jLabel20 = new javax.swing.JLabel();
+        job1ComboBox = new javax.swing.JComboBox<>();
+        wedDinner = new javax.swing.JCheckBox();
+        jLabel21 = new javax.swing.JLabel();
+        job2ComboBox = new javax.swing.JComboBox<>();
+        thursLunch = new javax.swing.JCheckBox();
+        job3ComboBox = new javax.swing.JComboBox<>();
+        jLabel22 = new javax.swing.JLabel();
+        thursDinner = new javax.swing.JCheckBox();
+        fridayLunch = new javax.swing.JCheckBox();
+        fridayDinner = new javax.swing.JCheckBox();
+        satLunch = new javax.swing.JCheckBox();
+        satDinner = new javax.swing.JCheckBox();
+        jLabel23 = new javax.swing.JLabel();
+        sunLunch = new javax.swing.JCheckBox();
+        sunDinner = new javax.swing.JCheckBox();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         firstName = new javax.swing.JTextField();
         middleName = new javax.swing.JTextField();
         phoneNumber = new javax.swing.JTextField();
@@ -68,38 +94,67 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         city = new javax.swing.JTextField();
-        zipCode = new javax.swing.JTextField();
-        state = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        tuesdayLunch = new javax.swing.JCheckBox();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jobTitle = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        tuesdayDinner = new javax.swing.JCheckBox();
-        jLabel19 = new javax.swing.JLabel();
-        monLunch = new javax.swing.JCheckBox();
-        jLabel20 = new javax.swing.JLabel();
-        wedDinner = new javax.swing.JCheckBox();
-        jLabel21 = new javax.swing.JLabel();
-        thursLunch = new javax.swing.JCheckBox();
-        jLabel22 = new javax.swing.JLabel();
-        thursDinner = new javax.swing.JCheckBox();
-        fridayLunch = new javax.swing.JCheckBox();
-        fridayDinner = new javax.swing.JCheckBox();
-        satLunch = new javax.swing.JCheckBox();
-        satDinner = new javax.swing.JCheckBox();
-        jLabel23 = new javax.swing.JLabel();
-        sunLunch = new javax.swing.JCheckBox();
-        sunDinner = new javax.swing.JCheckBox();
-        jobTitle1 = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+        wage1 = new javax.swing.JTextField();
+        addButton = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel27.setText("Hourly Wage 1");
+
+        jLabel6.setText("Address");
+
+        jLabel10.setText("Wednesday");
+
+        jLabel7.setText("City");
+
+        jLabel8.setText("Zip Code");
+
+        jLabel9.setText("State");
+
+        jLabel28.setText("Job Title 2");
+
+        jLabel15.setText("Thursday");
+
+        jLabel13.setText("Job Title 3");
+
+        jLabel14.setText("Hourly Wage 3");
+
+        jLabel3.setText("Last Name");
+
+        jLabel5.setText("Phone Number");
+
+        jLabel19.setText("Friday");
+
+        jLabel20.setText("Saturday");
+
+        job1ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dishwasher", "Kitchen", "Food Preparation" }));
+        job1ComboBox.setSelectedIndex(-1);
+
+        jLabel21.setText("Monday");
+
+        job2ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Dishwasher", "Kitchen", "Food Preparation" }));
+
+        job3ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Dishwasher", "Kitchen", "Food Preparation" }));
+
+        jLabel22.setText("Sunday");
+
+        jLabel23.setText("Tuesday");
+
+        jLabel18.setText("Lunch");
+
+        jLabel24.setText("Dinner");
+
+        jLabel4.setText("Availability");
+
+        jLabel17.setText("Social Security");
+
+        jLabel12.setText("Hourly Wage 2");
+
+        jLabel1.setText("First Name");
+
+        jLabel2.setText("Middle Name");
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -116,54 +171,6 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
         });
 
         jLabel26.setText("Job Title 1");
-
-        jLabel27.setText("Hourly Wage 1");
-
-        jLabel28.setText("Job Title 2");
-
-        jLabel13.setText("Job Title 3");
-
-        jLabel14.setText("Hourly Wage 3");
-
-        jLabel3.setText("Last Name");
-
-        jLabel5.setText("Phone Number");
-
-        jLabel17.setText("Social Security");
-
-        jLabel12.setText("Hourly Wage 2");
-
-        jLabel1.setText("First Name");
-
-        jLabel2.setText("Middle Name");
-
-        jLabel6.setText("Address");
-
-        jLabel10.setText("Wednesday");
-
-        jLabel7.setText("City");
-
-        jLabel8.setText("Zip Code");
-
-        jLabel9.setText("State");
-
-        jLabel15.setText("Thursday");
-
-        jLabel19.setText("Friday");
-
-        jLabel20.setText("Saturday");
-
-        jLabel21.setText("Monday");
-
-        jLabel22.setText("Sunday");
-
-        jLabel23.setText("Tuesday");
-
-        jLabel18.setText("Lunch");
-
-        jLabel24.setText("Dinner");
-
-        jLabel4.setText("Availability");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,10 +214,6 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel26)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel12)
                                     .addComponent(jLabel13)
@@ -218,16 +221,20 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(wage2, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                    .addComponent(jobTitle2)
-                                    .addComponent(wage3)))
+                                    .addComponent(wage3)
+                                    .addComponent(job3ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel28)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jobTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(job2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel26)
+                                    .addComponent(jLabel27))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(wage1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(job1ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(wage1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(67, 67, 67)
@@ -236,13 +243,10 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
                                         .addComponent(jLabel21)
                                         .addComponent(jLabel23)
                                         .addComponent(jLabel10))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel18)
@@ -272,7 +276,7 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -312,9 +316,9 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
                             .addComponent(socialSecurity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jobTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel26)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(job1ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -323,16 +327,16 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
                                     .addComponent(jLabel27))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jobTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel28))
+                                    .addComponent(jLabel28)
+                                    .addComponent(job2ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(wage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jobTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13))
+                                    .addComponent(jLabel13)
+                                    .addComponent(job3ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(wage3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,7 +392,7 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
                                         .addComponent(satDinner)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(sunDinner)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                     .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -404,156 +408,165 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
         s.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    
-    //submit button code
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         try {
-                Class.forName("org.sqlite.JDBC");
-                c = DriverManager.getConnection("jdbc:sqlite:RMS.db");
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:RMS.db");
         }catch ( Exception e ) {
-                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-                System.exit(0);
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
         try {
             stmt = c.createStatement();
 
-        
-        String firstname = firstName.getText();
-        String middlename = middleName.getText();
-        String lastname = lastName.getText();
-        String jobtitle1 = jobTitle.getText();
-        String jobtitle2 = jobTitle1.getText();
-        String jobtitle3 = jobTitle2.getText();
-        String phonenumber = phoneNumber.getText();
-        String street = address.getText();
-        String cityname = city.getText();
-        String statename = state.getText();  
-        String zip = zipCode.getText();
-        String social = socialSecurity.getText().replaceAll("\\D+","");
+            String jobtitle1 = " ";
 
-        int BOH = 1;
-        int monday = 0, tuesday = 0, wednesday = 0, thursday = 0,
-                friday = 0, saturday = 0, sunday = 0;
-        
-        boolean blankField = false;
-        
-        if(firstname.isEmpty() || lastname.isEmpty() || (jobtitle1.isEmpty() && 
-                jobtitle2.isEmpty() && jobtitle3.isEmpty()) || phonenumber.isEmpty() || 
-                street.isEmpty() || cityname.isEmpty() || statename.isEmpty() || 
-                zip.isEmpty()){
+            String firstname = firstName.getText();
+            String middlename = middleName.getText();
+            String lastname = lastName.getText();
+            if(!(job1ComboBox.getSelectedIndex() == -1)){
+                jobtitle1 = job1ComboBox.getSelectedItem().toString();
+            }
+            String jobtitle2 = job2ComboBox.getSelectedItem().toString();
+            String jobtitle3 = job3ComboBox.getSelectedItem().toString();
+            String phonenumber = phoneNumber.getText();
+            String street = address.getText();
+            String cityname = city.getText();
+            String statename = state.getText();
+            String zip = zipCode.getText();
+            String social = "";
+
+            try{
+                social = socialSecurity.getText().replaceAll("\\D+","");
+            }catch(Exception e){}
+
+            int BOH = 1;
+            int monday = 0, tuesday = 0, wednesday = 0, thursday = 0,
+            friday = 0, saturday = 0, sunday = 0;
+
+            boolean blankField = false;
+
+            if(firstname.isEmpty() || lastname.isEmpty() || (jobtitle1.isEmpty() &&
+                jobtitle2.isEmpty() && jobtitle3.isEmpty()) || phonenumber.isEmpty() ||
+            street.isEmpty() || cityname.isEmpty() || statename.isEmpty() ||
+            zip.isEmpty()){
             blankField = true;
         }
-        
+
         if(social.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please input valid value for social security");
             blankField = true;
         }
-        
-        
-        if(!jobtitle1.isEmpty()){
-                    wageTemp = wage1.getText();
-                    try{
-                        hourlywage1 = Float.parseFloat(wageTemp);
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 1");
-                        blankField = true;
-                    }
+
+        if(job1ComboBox.getSelectedIndex() == -1 && job3ComboBox.getSelectedItem().toString().equals(" ")
+            && job2ComboBox.getSelectedItem().toString().equals(" ")){
+
+            blankField = true;
+
         }
-        if(!jobtitle2.isEmpty()){
-                    wageTemp = wage2.getText();
-                    try{
-                        hourlywage2 = Float.parseFloat(wageTemp);
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 2");
-                        blankField = true;
-                    }
+
+        if(!(job1ComboBox.getSelectedIndex() == -1)){
+            wageTemp = wage1.getText();
+            try{
+                hourlywage1 = Float.parseFloat(wageTemp);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 1");
+                blankField = true;
+            }
         }
-        if(!jobtitle3.isEmpty()){
-                    wageTemp = wage3.getText();    
-                    try{
-                        hourlywage3 = Float.parseFloat(wageTemp);
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 3");
-                        blankField = true;
-                    }
+        if(!job2ComboBox.getSelectedItem().toString().equals(" ")){
+            wageTemp = wage2.getText();
+            try{
+                hourlywage2 = Float.parseFloat(wageTemp);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 2");
+                blankField = true;
+            }
         }
-        
+        if(!job3ComboBox.getSelectedItem().toString().equals(" ")){
+            wageTemp = wage3.getText();
+            try{
+                hourlywage3 = Float.parseFloat(wageTemp);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input valid value for hourly wage 3");
+                blankField = true;
+            }
+        }
+
         if(!blankField){
 
-        int employeeID = Integer.parseInt(social)%10000;
-            
-        if(monLunch.isSelected() && monDinner.isSelected()){
-            monday = 3;
-        }else if(monLunch.isSelected() && !monDinner.isSelected()){
-            monday = 1;
-        }else if(!monLunch.isSelected() && monDinner.isSelected()){
-            monday = 2;
-        }else if(!monLunch.isSelected() && !monDinner.isSelected()){
-            monday = 0;
-        }
-        
-        if(tuesdayLunch.isSelected() && tuesdayDinner.isSelected()){
-            tuesday = 3;
-        }else if(tuesdayLunch.isSelected() && !tuesdayDinner.isSelected()){
-            tuesday = 1;
-        }else if(!tuesdayLunch.isSelected() && tuesdayDinner.isSelected()){
-            tuesday = 2;
-        }else if(!tuesdayLunch.isSelected() && !tuesdayDinner.isSelected()){
-            tuesday = 0;
-        }
-        
-        if(wedLunch.isSelected() && wedDinner.isSelected()){
-            wednesday = 3;
-        }else if(wedLunch.isSelected() && !wedDinner.isSelected()){
-            wednesday = 1;
-        }else if(!wedLunch.isSelected() && wedDinner.isSelected()){
-            wednesday = 2;
-        }else if(!wedLunch.isSelected() && !wedDinner.isSelected()){
-            wednesday = 0;
-        }
-        
-        if(thursLunch.isSelected() && thursDinner.isSelected()){
-            thursday = 3;
-        }else if(thursLunch.isSelected() && !thursDinner.isSelected()){
-            thursday = 1;
-        }else if(!thursLunch.isSelected() && thursDinner.isSelected()){
-            thursday = 2;
-        }else if(!thursLunch.isSelected() && !thursDinner.isSelected()){
-            thursday = 0;
-        }
-        
-        if(fridayLunch.isSelected() && fridayDinner.isSelected()){
-            friday = 3;
-        }else if(fridayLunch.isSelected() && !fridayDinner.isSelected()){
-            friday = 1;
-        }else if(!fridayLunch.isSelected() && fridayDinner.isSelected()){
-            friday = 2;
-        }else if(!fridayLunch.isSelected() && !fridayDinner.isSelected()){
-            friday = 0;
-        }
-        
-        if(satLunch.isSelected() && satDinner.isSelected()){
-            saturday = 3;
-        }else if(satLunch.isSelected() && !satDinner.isSelected()){
-            saturday = 1;
-        }else if(!satLunch.isSelected() && satDinner.isSelected()){
-            saturday = 2;
-        }else if(!satLunch.isSelected() && !satDinner.isSelected()){
-            saturday = 0;
-        }
-        
-        if(sunLunch.isSelected() && sunDinner.isSelected()){
-            sunday = 3;
-        }else if(sunLunch.isSelected() && !sunDinner.isSelected()){
-            sunday = 1;
-        }else if(!sunLunch.isSelected() && sunDinner.isSelected()){
-            sunday = 2;
-        }else if(!sunLunch.isSelected() && !sunDinner.isSelected()){
-            sunday = 0;
-        }
-        
-        
-        
+            int employeeID = Integer.parseInt(social)%10000;
+
+            if(monLunch.isSelected() && monDinner.isSelected()){
+                monday = 3;
+            }else if(monLunch.isSelected() && !monDinner.isSelected()){
+                monday = 1;
+            }else if(!monLunch.isSelected() && monDinner.isSelected()){
+                monday = 2;
+            }else if(!monLunch.isSelected() && !monDinner.isSelected()){
+                monday = 0;
+            }
+
+            if(tuesdayLunch.isSelected() && tuesdayDinner.isSelected()){
+                tuesday = 3;
+            }else if(tuesdayLunch.isSelected() && !tuesdayDinner.isSelected()){
+                tuesday = 1;
+            }else if(!tuesdayLunch.isSelected() && tuesdayDinner.isSelected()){
+                tuesday = 2;
+            }else if(!tuesdayLunch.isSelected() && !tuesdayDinner.isSelected()){
+                tuesday = 0;
+            }
+
+            if(wedLunch.isSelected() && wedDinner.isSelected()){
+                wednesday = 3;
+            }else if(wedLunch.isSelected() && !wedDinner.isSelected()){
+                wednesday = 1;
+            }else if(!wedLunch.isSelected() && wedDinner.isSelected()){
+                wednesday = 2;
+            }else if(!wedLunch.isSelected() && !wedDinner.isSelected()){
+                wednesday = 0;
+            }
+
+            if(thursLunch.isSelected() && thursDinner.isSelected()){
+                thursday = 3;
+            }else if(thursLunch.isSelected() && !thursDinner.isSelected()){
+                thursday = 1;
+            }else if(!thursLunch.isSelected() && thursDinner.isSelected()){
+                thursday = 2;
+            }else if(!thursLunch.isSelected() && !thursDinner.isSelected()){
+                thursday = 0;
+            }
+
+            if(fridayLunch.isSelected() && fridayDinner.isSelected()){
+                friday = 3;
+            }else if(fridayLunch.isSelected() && !fridayDinner.isSelected()){
+                friday = 1;
+            }else if(!fridayLunch.isSelected() && fridayDinner.isSelected()){
+                friday = 2;
+            }else if(!fridayLunch.isSelected() && !fridayDinner.isSelected()){
+                friday = 0;
+            }
+
+            if(satLunch.isSelected() && satDinner.isSelected()){
+                saturday = 3;
+            }else if(satLunch.isSelected() && !satDinner.isSelected()){
+                saturday = 1;
+            }else if(!satLunch.isSelected() && satDinner.isSelected()){
+                saturday = 2;
+            }else if(!satLunch.isSelected() && !satDinner.isSelected()){
+                saturday = 0;
+            }
+
+            if(sunLunch.isSelected() && sunDinner.isSelected()){
+                sunday = 3;
+            }else if(sunLunch.isSelected() && !sunDinner.isSelected()){
+                sunday = 1;
+            }else if(!sunLunch.isSelected() && sunDinner.isSelected()){
+                sunday = 2;
+            }else if(!sunLunch.isSelected() && !sunDinner.isSelected()){
+                sunday = 0;
+            }
+
             String sql="INSERT INTO Employee ( firstname, middlename, lastname, "
                     + "jobtitle1, jobtitle2, jobtitle3, phonenumber, street,"
                     + " city, state, zipcode, employeeid, monday, tuesday,"
@@ -569,27 +582,26 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
                      + "', '" + hourlywage2 + "', '" + hourlywage3 + "', '" + social
                     + "', '" + BOH + "')";
             stmt.executeUpdate(sql);
-            
+
             int input = JOptionPane.showOptionDialog(null, "Employee added", "Success", JOptionPane.DEFAULT_OPTION,
-                 JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                JOptionPane.INFORMATION_MESSAGE, null, null, null);
             if(input == JOptionPane.OK_OPTION){
-                 c.close();
-                 dispose();
-                 Employees s = new Employees();
-                 s.setVisible(true);
+                c.close();
+                dispose();
+                Employees s = new Employees();
+                s.setVisible(true);
             }
 
         }else{
             JOptionPane.showMessageDialog(null, "Please fill out all required fields");
         }
-        
-        
-        
+
         } catch (SQLException ex) {
-            Logger.getLogger(NewEmployeeBOH.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NewEmployee.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -658,9 +670,9 @@ public class NewEmployeeBOH extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jobTitle;
-    private javax.swing.JTextField jobTitle1;
-    private javax.swing.JTextField jobTitle2;
+    private javax.swing.JComboBox<String> job1ComboBox;
+    private javax.swing.JComboBox<String> job2ComboBox;
+    private javax.swing.JComboBox<String> job3ComboBox;
     private javax.swing.JTextField lastName;
     private javax.swing.JTextField middleName;
     private javax.swing.JCheckBox monDinner;

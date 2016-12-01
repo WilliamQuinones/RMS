@@ -27,6 +27,8 @@ public class Employees extends javax.swing.JFrame {
      */
     public Employees() {
         initComponents();
+        
+        
     }
 
     /**

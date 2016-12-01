@@ -5,17 +5,31 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author williammcclain
  */
 public class Schedule extends javax.swing.JFrame {
-
+Statement stmt = null;
+    Connection c = null;
+    ResultSet rs;
+        String name, AM = " ", PM = " ", jobtitle1 = " ", jobtitle2 = " ", jobtitle3 = " ", temp = " ";
     /**
      * Creates new form Schedule
      */
     public Schedule() {
         initComponents();
+
     }
 
     /**
@@ -27,21 +41,395 @@ public class Schedule extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        fohSchedule = new javax.swing.JTable();
+        backButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        bohSchedule = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        dateLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
+        fohSchedule.setModel(new javax.swing.table.DefaultTableModel(
+            new String [][] {
+                {"Server", "", ""},
+                {"SA", "", ""},
+                {"Host", "", ""},
+                {"Bar", "", ""}
+            },
+            new String [] {
+                "Name", "AM", "PM"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
-        pack();
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        }
+    );
+    jScrollPane1.setViewportView(fohSchedule);
+
+    backButton.setText("Back");
+    backButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            backButtonActionPerformed(evt);
+        }
+    });
+
+    jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+    jLabel1.setText("Today's Schedule");
+
+    bohSchedule.setModel(new javax.swing.table.DefaultTableModel(
+        new String [][] {
+            {"Dishwasher", "", ""},
+            {"Kitchen", "", ""},
+            {"Food Preparation", "", ""}
+        },
+        new String [] {
+            "Name", "AM", "PM"
+        }
+
+    ) {
+        Class[] types = new Class [] {
+            java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+        };
+        boolean[] canEdit = new boolean [] {
+            false, false, false
+        };
+
+        public Class getColumnClass(int columnIndex) {
+            return types [columnIndex];
+        }
+
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
+        }
+    }
+    );
+    jScrollPane2.setViewportView(bohSchedule);
+
+    jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+    jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+    dateLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addContainerGap(60, Short.MAX_VALUE)
+            .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap())
+    );
+    jPanel1Layout.setVerticalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    jLabel2.setText("FOH");
+
+    jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    jLabel3.setText("BOH");
+
+    jButton1.setText("View Weekly FOH");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+        }
+    });
+
+    jButton2.setText("View Weekly BOH");
+    jButton2.setToolTipText("");
+    jButton2.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton2ActionPerformed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(238, 238, 238)
+                    .addComponent(jLabel2))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel1)))
+            .addGap(158, 158, 158)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(151, 151, 151)
+            .addComponent(jLabel3)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGap(89, 89, 89)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(129, 129, 129))
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGap(19, 19, 19)
+            .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(161, 161, 161)
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(148, 148, 148))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addContainerGap(13, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(33, 33, 33)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(42, 42, 42)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(30, 30, 30)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGap(27, 27, 27))
+    );
+
+    pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        try{
+            c.close();
+        }   catch(Exception e){}   
+        dispose();
+                        ManagerMenu s = new ManagerMenu();                  
+                        s.setVisible(true);  
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       try{
+            c.close();
+        }   catch(Exception e){}   
+        dispose();
+                        FOHschedule s = new FOHschedule();                  
+                        s.setVisible(true);  
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try{
+            c.close();
+        }   catch(Exception e){}   
+        dispose();
+                        BOHschedule s = new BOHschedule();                  
+                        s.setVisible(true);  
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+        //set checks to update table
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:RMS.db");
+            c.setAutoCommit(false);
+        }catch ( Exception e ) {
+                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+                System.exit(0);
+        }
+        
+        String rowValue;
+        DefaultTableModel model = (DefaultTableModel) fohSchedule.getModel();
+        int nRow = model.getRowCount();
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_MONTH); 
+        dateLabel.setText(cal.get(Calendar.MONTH) + 1 + "/" + (cal.get(Calendar.DAY_OF_MONTH)));
+
+
+        //foh table
+        try{
+                stmt = c.createStatement();
+                rs = stmt.executeQuery("SELECT * FROM ScheduleCurrent");
+                while(rs.next()){          
+                    name = rs.getString("name");
+                    jobtitle1 = rs.getString("jobtitle1");
+                    jobtitle2 = rs.getString("jobtitle2");
+                    jobtitle3 = rs.getString("jobtitle3");
+
+
+                    switch (day) {
+                        case Calendar.SUNDAY:
+                            AM = rs.getString("sundayam");
+                            PM = rs.getString("sundaypm");
+
+                        case Calendar.MONDAY:
+                            AM = rs.getString("mondayam");
+                            PM = rs.getString("mondaypm");
+
+                        case Calendar.TUESDAY:
+                            AM = rs.getString("tuesdayam");
+                            PM = rs.getString("tuesdaypm");
+                        case Calendar.WEDNESDAY:
+                            AM = rs.getString("wednesdayam");
+                            PM = rs.getString("wednesdaypm");
+
+                        case Calendar.THURSDAY:
+                            AM = rs.getString("thursdayam");
+                            PM = rs.getString("thursdaypm");
+
+                        case Calendar.FRIDAY:
+                            AM = rs.getString("fridayam");
+                            PM = rs.getString("fridaypm");
+                        case Calendar.SATURDAY:
+                            AM = rs.getString("saturdayam");
+                            PM = rs.getString("saturdaypm");
+
+                      }
+                    
+
+                 
+
+                    for(int i = 0; i < nRow; i++){
+                        rowValue = model.getValueAt(i, 0).toString();
+
+                        if(rowValue.equals("Server")){     
+                            if(jobtitle1.equals("Server") || jobtitle2.equals("Server") || jobtitle3.equals("Server")){
+                                model.insertRow(i+1,new String[]{name, AM, PM});
+                                nRow = model.getRowCount();
+                            }
+                            
+                        }
+                        if(rowValue.equals("Host")){      
+                            if(jobtitle1.equals("Host") || jobtitle2.equals("Host") || jobtitle3.equals("Host")){
+                                model.insertRow(i+1,new String[]{name, AM, PM});
+                                nRow = model.getRowCount();
+                            }
+                        }
+                        if(rowValue.equals("SA")){      
+                            if(jobtitle1.equals("SA") || jobtitle2.equals("SA") || jobtitle3.equals("SA")){
+                                model.insertRow(i+1,new String[]{name, AM, PM});
+                                nRow = model.getRowCount();
+                            }
+                        }if(rowValue.equals("Bar")){      
+                            if(jobtitle1.equals("Bar") || jobtitle2.equals("Bar") || jobtitle3.equals("Bar")){
+                                model.insertRow(i+1,new String[]{name, AM, PM});
+                                nRow = model.getRowCount();
+                            }
+                        }
+                    }
+
+                }
+            }catch(SQLException ex){Logger.getLogger(FOHschedule.class.getName()).log(Level.SEVERE, null, ex);}
+        
+        model = (DefaultTableModel) bohSchedule.getModel();
+        nRow = model.getRowCount();
+        
+        //boh table
+                try{
+                stmt = c.createStatement();
+                rs = stmt.executeQuery("SELECT * FROM ScheduleCurrent");
+                while(rs.next()){          
+                    name = rs.getString("name");
+                    jobtitle1 = rs.getString("jobtitle1");
+                    jobtitle2 = rs.getString("jobtitle2");
+                    jobtitle3 = rs.getString("jobtitle3");
+
+
+                    switch (day) {
+                        case Calendar.SUNDAY:
+                            AM = rs.getString("sundayam");
+                            PM = rs.getString("sundaypm");
+
+                        case Calendar.MONDAY:
+                            AM = rs.getString("mondayam");
+                            PM = rs.getString("mondaypm");
+
+                        case Calendar.TUESDAY:
+                            AM = rs.getString("tuesdayam");
+                            PM = rs.getString("tuesdaypm");
+                        case Calendar.WEDNESDAY:
+                            AM = rs.getString("wednesdayam");
+                            PM = rs.getString("wednesdaypm");
+
+                        case Calendar.THURSDAY:
+                            AM = rs.getString("thursdayam");
+                            PM = rs.getString("thursdaypm");
+
+                        case Calendar.FRIDAY:
+                            AM = rs.getString("fridayam");
+                            PM = rs.getString("fridaypm");
+                        case Calendar.SATURDAY:
+                            AM = rs.getString("saturdayam");
+                            PM = rs.getString("saturdaypm");
+
+                      }
+                    
+
+                 
+
+                    for(int i = 0; i < nRow; i++){
+                        rowValue = model.getValueAt(i, 0).toString();
+
+                        if(rowValue.equals("Kitchen")){     
+                            if(jobtitle1.equals("Kitchen") || jobtitle2.equals("Kitchen") || jobtitle3.equals("Kitchen")){
+                               model.insertRow(i+1,new String[]{name, AM, PM});
+                                nRow = model.getRowCount();
+                            }
+                            
+                        }
+                        if(rowValue.equals("Food Preparation")){      
+                            if(jobtitle1.equals("Food Preparation") || jobtitle2.equals("Food Preparation") || jobtitle3.equals("Food Preparation")){
+                               model.insertRow(i+1,new String[]{name, AM, PM});
+                                nRow = model.getRowCount();
+                            }
+                        }
+                        if(rowValue.equals("Dishwasher")){      
+                            if(jobtitle1.equals("Dishwasher") || jobtitle2.equals("Dishwasher") || jobtitle3.equals("Dishwasher")){
+                                model.insertRow(i+1,new String[]{name, AM, PM});
+                                nRow = model.getRowCount();
+                            }
+                        }
+                    }
+
+                }
+            }catch(SQLException ex){Logger.getLogger(FOHschedule.class.getName()).log(Level.SEVERE, null, ex);}
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -79,5 +467,17 @@ public class Schedule extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
+    private javax.swing.JTable bohSchedule;
+    private javax.swing.JLabel dateLabel;
+    private javax.swing.JTable fohSchedule;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

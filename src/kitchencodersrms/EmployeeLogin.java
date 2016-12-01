@@ -31,6 +31,7 @@ public class EmployeeLogin extends javax.swing.JFrame {
     ResultSet rs = null;
     boolean clockedin = false;
     int counter = 0;
+    int currentID;
     /**
      * Creates new form EmployeeViewScreen
      */
@@ -150,11 +151,9 @@ public class EmployeeLogin extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "Error: Please Clock In");
         }else{
-        
-        POS s = new POS();
-        s.server = ServerName;
-        s.setVisible(true);
         dispose();
+        POS s = new POS();
+        s.setVisible(true);
         // TODO add your handling code here:
         }
     }//GEN-LAST:event_NewTicketButtonActionPerformed
@@ -189,12 +188,16 @@ public class EmployeeLogin extends javax.swing.JFrame {
                 
                 if(rs.getString("employeeid").equals(input)){
                        row = rs.getRow();
+                       currentID = rs.getRow();
                        String firstname = rs.getString("firstname");
                        String lastname = rs.getString("lastname");
                         JOptionPane.showMessageDialog(null,"Welcome "+firstname+" "+lastname);
                         clockedin = true;
-                        Server = firstname;
                         ServerName = firstname+" "+lastname;
+                        /*
+                        String sql = "UPDATE Employee SET Clockin = 1 WHERE id = "+row+"";
+                        stmt.executeUpdate(sql);
+                        */
                 }else{
                         if (counter < 3){
                         JOptionPane.showMessageDialog(null, "Invalid Login");
@@ -223,27 +226,22 @@ public class EmployeeLogin extends javax.swing.JFrame {
 
     private void ClockOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClockOutActionPerformed
         // TODO add your handling code here:
+               if(clockedin == false){ 
+            JOptionPane.showMessageDialog(null, "Error: Please Clock In");
+        }else{
+           JOptionPane.showMessageDialog(null, "You have clocked out");
+           
+
+       }
+    }//GEN-LAST:event_ClockOutActionPerformed
+
+    private void OpenTicketsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenTicketsButtonActionPerformed
+        // TODO add your handling code here:
         if(clockedin == false){ 
             JOptionPane.showMessageDialog(null, "Error: Please Clock In");
         }else{
           clockedin = false;
         }
-    }//GEN-LAST:event_ClockOutActionPerformed
-
-    private void OpenTicketsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenTicketsButtonActionPerformed
-        // TODO add your handling code here:
-       if(clockedin == false){ 
-            JOptionPane.showMessageDialog(null, "Error: Please Clock In");
-        }else{
-           //JOptionPane.showMessageDialog(null, "You have clocked out");
-           
-           
-        Tickets s = new Tickets();
-        s.server = ServerName;
-        s.setVisible(true);
-           dispose();
-
-       }
     }//GEN-LAST:event_OpenTicketsButtonActionPerformed
     public static String ServerName(){
         return ServerName;
@@ -287,7 +285,6 @@ public class EmployeeLogin extends javax.swing.JFrame {
         });
     }
 public static String ServerName;
-public static String Server;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JButton ClockIn;

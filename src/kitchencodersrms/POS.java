@@ -65,7 +65,7 @@ public class POS extends javax.swing.JFrame {
         TipField = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
         ticket = new javax.swing.JTextPane();
-        EditButton = new javax.swing.JButton();
+        remove = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         TaxField = new javax.swing.JTextPane();
@@ -97,12 +97,22 @@ public class POS extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        entreList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                entreListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(entreList);
 
         drinkList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        drinkList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                drinkListMouseClicked(evt);
+            }
         });
         jScrollPane2.setViewportView(drinkList);
 
@@ -111,12 +121,22 @@ public class POS extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        desertList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                desertListMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(desertList);
 
         sideList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        sideList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sideListMouseClicked(evt);
+            }
         });
         jScrollPane4.setViewportView(sideList);
 
@@ -148,10 +168,10 @@ public class POS extends javax.swing.JFrame {
 
         jScrollPane8.setViewportView(ticket);
 
-        EditButton.setText("Edit");
-        EditButton.addActionListener(new java.awt.event.ActionListener() {
+        remove.setText("Remove");
+        remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditButtonActionPerformed(evt);
+                removeActionPerformed(evt);
             }
         });
 
@@ -175,6 +195,11 @@ public class POS extends javax.swing.JFrame {
         jLabel11.setText("Table");
 
         enter.setText("Enter");
+        enter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,12 +219,11 @@ public class POS extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(table, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane9)
-                        .addComponent(jScrollPane8)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                        .addComponent(jLabel2)))
+                    .addComponent(table)
+                    .addComponent(jScrollPane9)
+                    .addComponent(jScrollPane8)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                    .addComponent(jLabel2))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -227,10 +251,10 @@ public class POS extends javax.swing.JFrame {
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(remove, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enter))))
-                .addContainerGap(85, Short.MAX_VALUE))
+                            .addComponent(enter, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,16 +269,19 @@ public class POS extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
                                 .addComponent(enter)
-                                .addGap(27, 27, 27)
-                                .addComponent(EditButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(remove)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(CloseButton))))
+                                .addComponent(CloseButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -328,9 +355,9 @@ public class POS extends javax.swing.JFrame {
        DM1.addElement(txt);
     }
     
-    private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EditButtonActionPerformed
+    }//GEN-LAST:event_removeActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         dispose();
@@ -403,6 +430,34 @@ public class POS extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowOpened
 
+    private void entreListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entreListMouseClicked
+        // TODO add your handling code here:
+        String selected = entreList.getSelectedValue().toString();
+        addToOrder(selected);
+    }//GEN-LAST:event_entreListMouseClicked
+
+    private void drinkListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drinkListMouseClicked
+        // TODO add your handling code here:
+        String selected = drinkList.getSelectedValue().toString();
+        addToOrder(selected);
+    }//GEN-LAST:event_drinkListMouseClicked
+
+    private void desertListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desertListMouseClicked
+        // TODO add your handling code here:
+        String selected = desertList.getSelectedValue().toString();
+        addToOrder(selected);
+    }//GEN-LAST:event_desertListMouseClicked
+
+    private void sideListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sideListMouseClicked
+        // TODO add your handling code here:
+        String selected = sideList.getSelectedValue().toString();
+        addToOrder(selected);
+    }//GEN-LAST:event_sideListMouseClicked
+
+    private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -438,11 +493,10 @@ public class POS extends javax.swing.JFrame {
             }
         });
     }
-
+    String server = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JButton CloseButton;
-    private javax.swing.JButton EditButton;
     private javax.swing.JTextPane ServerField;
     private javax.swing.JTextPane TaxField;
     private javax.swing.JTextField TipField;
@@ -472,6 +526,7 @@ public class POS extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JList<String> orderList;
+    private javax.swing.JButton remove;
     private javax.swing.JList<String> sideList;
     private javax.swing.JTextField table;
     private javax.swing.JTextPane ticket;

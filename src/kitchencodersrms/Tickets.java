@@ -5,6 +5,17 @@
  */
 package kitchencodersrms;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author williammcclain
@@ -27,21 +38,201 @@ public class Tickets extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        orders = new javax.swing.JList<>();
+        Back = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        orderDetails = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+
+        orders.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        orders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ordersMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(orders);
+
+        Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
+
+        orderDetails.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(orderDetails);
+
+        jLabel1.setText("Tickets");
+
+        jLabel2.setText("Details");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(Back)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(151, 151, 151))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(Back)
+                .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    String server = null;
+    DefaultListModel DM = new DefaultListModel();
+    DefaultListModel DM1 = new DefaultListModel();
+    
+    private void addDetail(String txt){
+        
+       orderDetails.setModel(DM);
+       DM.addElement(txt);
+    }
+    private void clearDetails(){
+        
+       orderDetails.setModel(DM);
+       DM.clear();
+    }
+    private void addOrder(String txt){
+        
+       orders.setModel(DM1);
+       DM1.addElement(txt);
+    }
+    private void ordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ordersMouseClicked
+        // TODO add your handling code here:
+        clearDetails();
+        String selected = orders.getSelectedValue().toString();
+        int space = selected.indexOf(" ");
+        selected = selected.substring(0, space);
+        Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        PreparedStatement ps1 = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            String sql = "SELECT * FROM Tickets WHERE id = ?";
+            ps = c.prepareStatement(sql);
+            ps.setString(1, selected);
+            rs = ps.executeQuery();
+            System.out.println("query performed");
+
+            while(rs.next()){
+                addDetail("Ticket: "+selected);
+                String server = rs.getString("server");
+                addDetail("Server: "+server);
+                int table = rs.getInt("tablenumber");
+                addDetail("Table: "+table);
+                String item1 = rs.getString("item1");
+                addDetail(item1);
+                String item2 = rs.getString("item2");
+                addDetail(item2);
+                String item3 = rs.getString("item3");
+                addDetail(item3);
+                String item4 = rs.getString("item4");
+                addDetail(item4);
+                String item5 = rs.getString("item5");
+                addDetail(item5);
+                int time1 = rs.getInt("time");
+
+                String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                .format(new Date(time1 * 1000L));
+                addDetail(dateAsText);
+
+            }
+
+            c.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ordersMouseClicked
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        dispose();
+        Login s = new Login();
+
+        s.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        Connection c = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        c = KitchenCodersRMS.callDatbase();
+        Statement stmt;
+        try {
+            stmt = c.createStatement();
+            String sql ="SELECT * FROM Tickets WHERE server = ?";
+            ps = c.prepareStatement(sql);
+            ps.setString(1, server);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                int open1 = rs.getInt("open");
+                if(open1==1){
+                    int ticket1 = rs.getInt("id");
+                    int time1 = rs.getInt("time");
+                    
+                    String dateAsText = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                          .format(new Date(time1 * 1000L));
+                    String displayed = ticket1+"    "+dateAsText;
+                    addOrder(displayed);
+                }
+            }
+            c.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -79,5 +270,12 @@ public class Tickets extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> orderDetails;
+    private javax.swing.JList<String> orders;
     // End of variables declaration//GEN-END:variables
 }
